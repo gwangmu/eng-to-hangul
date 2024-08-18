@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import eng_to_ipa as ipa
+import argparse
 
 ipa_to_han = {
     # Two-symbol transcription
@@ -11,7 +12,12 @@ ipa_to_han = {
         "ər": "ㅓ얼", 
         "oʊ": "ㅗ우", 
         "ɔɪ": "ㅗ이", 
-        "əʊ": "ㅓ우"},
+        "əʊ": "ㅓ우",
+        "ts": "ㅊ",
+        "wɑ": "와",
+        "wə": "워",
+        "ʃə": "셔",
+    },
     # Single-symbol transcription
     1: {
         "ʤ": "ㅈ", 
@@ -21,7 +27,7 @@ ipa_to_han = {
         "b": "ㅂ",
         "d": "ㄷ",
         "e": "ㅔ",
-        "f": "ㅍ",
+        "f": "`ㅍ",
         "g": "ㄱ",
         "i": "ㅣ",
         "k": "ㅋ",
@@ -31,45 +37,66 @@ ipa_to_han = {
         "o": "ㅗ",
         "p": "ㅍ",
         "q": "ㅋ",
-        "r": "ㄹ",
+        "r": "`ㄹ",
         "s": "ㅅ",
         "t": "ㅌ",
-        "v": "ㅂ",
+        "v": "`ㅂ",
         "w": "ㅜ",
         "x": "ㅋㅅ",
-        "z": "ㅈ",
+        "z": "`ㅈ",
         "ə": "ㅓ",
         "ɑ": "ㅏ",
         "ɔ": "ㅗ",
-        "ð": "ㄷ",
+        "ð": "`ㄷ",
         "ɛ": "ㅔ",
         "h": "ㅎ",
         "ɪ": "ㅣ",
         "ŋ": "ㅇ응",
         "ʃ": "쉬",
-        "θ": "ㄸ",
+        "θ": "`ㄸ",
         "ʊ": "ㅜ",
         "u": "ㅜ",
         "ʒ": "ㅈ",
         "i": "ㅣ",
-        "j": "ㅠ"}}
+        "j": "ㅠ",
+    }}
 
-while True:
-    sent_eng = input("Eng: ")
-    sent_ipa = ipa.convert(sent_eng, keep_punct=False)
+ipa_nums = sorted(ipa_to_han.keys(), reverse=True)
 
-    ipa_nums = sorted(ipa_to_han.keys(), reverse=True) + [0]
+parser = argparse.ArgumentParser()
+parser.add_argument('sent_eng', type=str, help="Sentence in English")
+args = parser.parse_args()
 
-    sent_han = ""
-    while (sent_ipa):
-        if (sent_ipa[0:1] == " "):
-            sent_han = sent_han + " "
-            sent_ipa = sent_ipa[1:]
+sent_eng = args.sent_eng
+sent_ipa = ipa.convert(sent_eng, keep_punct=False)
+sent_ipa_org = sent_ipa
 
-        for ipa_num in ipa_nums:
-            if (ipa_num == 0): exit
-            if (sent_ipa[0:ipa_num] in ipa_to_han[ipa_num].keys()):
-                sent_han = sent_han + ipa_to_han[ipa_num][sent_ipa[0:ipa_num]]
-                sent_ipa = sent_ipa[ipa_num:]
-                break
-        print(sent_ipa, sent_han)
+trans_steps = []
+sent_han = ""
+while (sent_ipa):
+    # Carry over spaces.
+    if (sent_ipa[0:1] == " "):
+        sent_han = sent_han + " "
+        sent_ipa = sent_ipa[1:]
+
+    # Ignore stresses for now.
+    if (sent_ipa[0:1] == "ˈ" or sent_ipa[0:1] == "ˌ"):
+        sent_ipa = sent_ipa[1:]
+
+    # Transcribe IPA symbols, longer symbol sets first.
+    for ipa_num in ipa_nums + [-1]:
+        if (ipa_num == -1): 
+            print("error: unrecognized IPA symbol '{}'".format(sent_ipa[0:1]))
+            print("error: transcription steps;")
+            for i, trans_step in enumerate(trans_steps):
+                print("{}: {}".format(i, trans_step))
+            exit
+        if (sent_ipa[0:ipa_num] in ipa_to_han[ipa_num].keys()):
+            sent_han = sent_han + ipa_to_han[ipa_num][sent_ipa[0:ipa_num]]
+            sent_ipa = sent_ipa[ipa_num:]
+            break
+
+    trans_steps = trans_steps + [sent_ipa, sent_han]
+
+print("IPA: {}".format(sent_ipa_org))
+print("Han: {}".format(sent_han))
