@@ -11,7 +11,8 @@ English sentence to naturally-sounding (modified) Hangul notation.
 ## TODO
 
  - Collect loose Hangul symbols into a complete letter.
-    - 'ㅁ' should be the final consonant.
+    - 'ㅁ', 'ㄴ', 'ㄹ', 'ㅇ' should be the final consonant if the next letter
+      has the initial consonant or there is no next letter.
     - Any other consonants should be vowelless consonant letters.
  - Assign 'ㅇ' in front of vowel Hangul symbols without the first consonant.
  - Define context-dependent IPA symbols (e.g., 'ʃ' or 'w') with multi-symbol
