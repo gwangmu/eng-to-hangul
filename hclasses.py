@@ -9,6 +9,9 @@ class HangulConsonant:
     def is_none(self):
         return self.value == None
 
+    def has_anno(self):
+        return self.anno
+
 class HangulVowel:
     def __init__(self, value):
         self.value = value
@@ -27,7 +30,8 @@ class NonHangulLetter(Letter):
         return self.value
 
 class HangulLetter(Letter):
-    def __init__(self, initial=None, vowel=None, final=None, whole=None):
+    def __init__(self, initial=None, vowel=None, final=None, whole=None,
+            initial_anno=False, final_anno=False):
         if (whole):
             whole_int = ord(whole)
             whole_int = whole_int - 44032
@@ -46,9 +50,9 @@ class HangulLetter(Letter):
             vowel = tables.han_vowel[idx_vowel]
             final = tables.han_final[idx_final]
 
-        self.initial = HangulConsonant(initial) 
+        self.initial = HangulConsonant(initial, anno=initial_anno) 
         self.vowel = HangulVowel(vowel)
-        self.final = HangulConsonant(final)
+        self.final = HangulConsonant(final, anno=final_anno)
 
     def is_empty(self):
         return (self.initial.is_none() and self.vowel.is_none() and
@@ -61,14 +65,14 @@ class HangulLetter(Letter):
         return (not self.initial.is_none() and not self.vowel.is_none() and
                 not self.final.is_none())
 
-    def set_initial(self, han):
-        self.initial = HangulConsonant(han)
+    def set_initial(self, han, anno=False):
+        self.initial = HangulConsonant(han, anno=anno)
 
     def set_vowel(self, han):
         self.vowel = HangulVowel(han)
 
-    def set_final(self, han):
-        self.final = HangulConsonant(han)
+    def set_final(self, han, anno=False):
+        self.final = HangulConsonant(han, anno=anno)
 
     def fuse(self):
         no_initial = tables.han_initial.index(self.initial.value)
@@ -84,5 +88,8 @@ class HangulLetter(Letter):
             else:
                 return self.initial.value
         else:
-            return self.fuse()
+            anno = ""
+            if (self.initial.has_anno() or (self.final and self.final.has_anno())):
+                anno = "`"
+            return anno + self.fuse()
 

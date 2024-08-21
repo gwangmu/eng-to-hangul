@@ -75,7 +75,7 @@ while (sent_han):
         if (cur_hcl.initial.is_none()):
             if (util.is_hangul_initial(cur_han)):
                 log.debug('jamo.initial.initial')
-                cur_hcl.set_initial(cur_han)
+                cur_hcl.set_initial(cur_han, anno=has_anno)
             elif (util.is_hangul_vowel(cur_han)):
                 log.debug('jamo.initial.vowel')
                 cur_hcl.set_initial('ㅇ')
@@ -88,10 +88,10 @@ while (sent_han):
                 if (util.is_hangul_initfin(cur_han)):
                     log.debug('jamo.vowel.initial.initfin')
                     cur_hcl.set_vowel('ㅡ')
-                    cur_hcl.set_final(cur_han)
+                    cur_hcl.set_final(cur_han, anno=has_anno)
                 else:
                     log.debug('jamo.vowel.initial.!initfin')
-                    sent_hcls = sent_hcls + [hcl.HangulLetter(initial=cur_han)]
+                    sent_hcls = sent_hcls + [hcl.HangulLetter(initial=cur_han, initial_anno=has_anno)]
             elif (util.is_hangul_vowel(cur_han)):
                 log.debug('jamo.vowel.vowel')
                 cur_hcl.set_vowel(cur_han)
@@ -100,18 +100,16 @@ while (sent_han):
                 if (util.is_hangul_initfin(cur_han)):
                     if (util.is_hangul_vowel(next_han)):
                         log.debug('jamo.final.initial.initfin.vowel')
-                        sent_hcls = sent_hcls + [hcl.HangulLetter(initial=cur_han)]
+                        sent_hcls = sent_hcls + [hcl.HangulLetter(initial=cur_han, initial_anno=has_anno)]
                     else:
                         log.debug('jamo.final.initial.initfin.!vowel')
-                        cur_hcl.set_final(cur_han)
+                        cur_hcl.set_final(cur_han, anno=has_anno)
                 else:
                     log.debug('jamo.final.initial.!initfin')
-                    sent_hcls = sent_hcls + \
-                        [hcl.HangulLetter(initial=cur_han)]
+                    sent_hcls = sent_hcls + [hcl.HangulLetter(initial=cur_han, initial_anno=has_anno)]
             elif (util.is_hangul_vowel(cur_han)):
                 log.debug('jamo.final.vowel')
-                sent_hcls = sent_hcls + \
-                    [hcl.HangulLetter(initial='ㅇ', vowel=cur_han)]
+                sent_hcls = sent_hcls + [hcl.HangulLetter(initial='ㅇ', vowel=cur_han)]
     else:
         log.debug('!jamo')
         sent_hcls = sent_hcls + [hcl.NonHangulLetter(cur_han)]
