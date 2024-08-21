@@ -18,7 +18,9 @@ sent_eng = args.sent_eng
 sent_ipa = ipa.convert(sent_eng, keep_punct=False)
 sent_ipa_org = sent_ipa
 
-trans_steps = []
+# Transcribe IPA to hangul.
+log.debug("## Transcription")
+
 sent_han = ""
 while (sent_ipa):
     # Carry over spaces.
@@ -45,11 +47,12 @@ while (sent_ipa):
             log.error("{}: {}".format(i, trans_step))
         log.fatal("terminating...")
 
-    trans_steps = trans_steps + [sent_ipa, sent_han]
-
-sent_han_org = sent_han
+    log.debug(sent_ipa + " --> " + sent_han)
 
 # Pack loose Hangul letters.
+log.debug("## Packing")
+
+sent_han_org = sent_han
 sent_hcls = [hcl.HangulLetter()]
 while (sent_han):
     cur_hcl = sent_hcls[-1]
