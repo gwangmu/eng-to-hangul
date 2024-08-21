@@ -1,0 +1,88 @@
+import tables
+import log
+
+class HangulConsonant:
+    def __init__(self, value, anno=False):
+        self.value = value
+        self.anno = anno
+
+    def is_none(self):
+        return self.value == None
+
+class HangulVowel:
+    def __init__(self, value):
+        self.value = value
+
+    def is_none(self):
+        return self.value == None
+
+class Letter:
+    pass
+
+class NonHangulLetter(Letter):
+    def __init__(self, value=None):
+        self.value = value
+
+    def __repr__(self):
+        return self.value
+
+class HangulLetter(Letter):
+    def __init__(self, initial=None, vowel=None, final=None, whole=None):
+        if (whole):
+            whole_int = ord(whole)
+            whole_int = whole_int - 44032
+            idx_final = int(whole_int % 28)
+            whole_int = whole_int - idx_final
+            log.debug("idx (final): " + str(idx_final))
+            whole_int = whole_int / 28
+            idx_vowel = int(whole_int % 21)
+            whole_int = whole_int - idx_vowel
+            log.debug("idx (vowel): " + str(idx_vowel))
+            whole_int = whole_int / 21
+            idx_initial = int(whole_int)
+            log.debug("idx (initial): " + str(idx_initial))
+            
+            initial = tables.han_initial[idx_initial]
+            vowel = tables.han_vowel[idx_vowel]
+            final = tables.han_final[idx_final]
+
+        self.initial = HangulConsonant(initial) 
+        self.vowel = HangulVowel(vowel)
+        self.final = HangulConsonant(final)
+
+    def is_empty(self):
+        return (self.initial.is_none() and self.vowel.is_none() and
+                self.final.is_none())
+
+    def is_defined(self):
+        return (not self.initial.is_none() and not self.vowel.is_none())
+
+    def is_full(self):
+        return (not self.initial.is_none() and not self.vowel.is_none() and
+                not self.final.is_none())
+
+    def set_initial(self, han):
+        self.initial = HangulConsonant(han)
+
+    def set_vowel(self, han):
+        self.vowel = HangulVowel(han)
+
+    def set_final(self, han):
+        self.final = HangulConsonant(han)
+
+    def fuse(self):
+        no_initial = tables.han_initial.index(self.initial.value)
+        no_vowel = tables.han_vowel.index(self.vowel.value)
+        no_final = tables.han_final.index(self.final.value)
+
+        return chr((no_initial * 588 + no_vowel * 28 + no_final) + 44032)
+
+    def __repr__(self):
+        if (not self.is_defined()):
+            if (self.initial.is_none()):
+                return '□ '
+            else:
+                return self.initial.value
+        else:
+            return self.fuse()
+
