@@ -3,6 +3,7 @@
 import argparse
 import eng_to_ipa as ipa
 import logging as log
+import matplotlib.lines as lines
 import matplotlib.pyplot as plt
 
 import tables
@@ -126,23 +127,63 @@ while (sent_han):
     log.debug(sent_hcls)
     log.debug("")
 
-sent_han_fuse = ''.join(str(x) for x in sent_hcls)
+sent_han_fuse = ''.join(x.get_str_wo_anno() for x in sent_hcls)
 
 log.info("ipa: {}".format(sent_ipa_org))
 log.info("han: {}".format(sent_han_org))
 log.info("hcl: {}".format(sent_hcls))
-log.info("hfu: {}".format(sent_han_fuse)
+log.info("hfu: {}".format(sent_han_fuse))
 
 # Draw Hangul letters.
 log.debug("## Draw")
 
+VERTICAL_PAD = 20
+HORIZONTAL_PAD = 40
+FONTBOX_SIZE = 28
+FONTBOX_YOFF = 4
+
 plt.rcParams['font.family'] = 'UnDotum'
-plt.rcParams['font.size'] = '34'
+plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
 plt.rcParams['axes.unicode_minus'] = False
 
-fig, ax = plt.subplots()
+px = 1/plt.rcParams['figure.dpi']
+fig, ax = plt.subplots(figsize=((40+len(sent_han_fuse)*FONTBOX_SIZE)*px, (HORIZONTAL_PAD*2+FONTBOX_SIZE)*px))
 ax.set_axis_off()
 
-ax.text(0, 0, "테스트", transform=None)
+for i, letter in enumerate(sent_hcls):
+    han = letter.get_str_wo_anno()
+    cur_x = VERTICAL_PAD+i*FONTBOX_SIZE
+    cur_y = HORIZONTAL_PAD
+    ax.text(cur_x, cur_y+FONTBOX_YOFF, han, transform=None)
+    p = plt.Rectangle((cur_x, cur_y), FONTBOX_SIZE, FONTBOX_SIZE, fill=False, transform=None, clip_on=False)
+    ax.add_patch(p)
+
+    if (type(letter) is hcl.HangulLetter):
+        if (letter.initial.has_anno()):
+            vert_pos_rel=[]
+            if (letter.initial.value in ['ㅂ', 'ㅍ']):
+                vert_pos_rel = [[0.45, 0.20], [0.55, 0.20]]
+            elif (letter.initial.value in ['ㄹ', 'ㄷ', 'ㄸ']):
+                vert_pos_rel = [[0.02, 0.20], [0.02, 0.30]]
+            elif (letter.initial.value in ['ㅈ']):
+                vert_pos_rel = [[0.50, 0.45], [0.54, 0.45]]
+
+            if (not letter.final.is_none()):
+                trans_off = (0.00, 0.40)
+                trans_scale = (0.70, 0.60)
+            elif (not letter.vowel.is_none()):
+                trans_off = (0.00, 0.40)
+                trans_scale = (1.00, 0.60)
+            else:
+                trans_off = (0.00, 0.00)
+                trans_scale = (1.00, 1.00)
+
+            vert_pos_rel = map(lambda v: (v[0]*trans_scale[0]+trans_off[0], v[1]*trans_scale[1]+trans_off[1]), vert_pos_rel)
+            vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE+cur_x, v[1]*FONTBOX_SIZE+cur_y), vert_pos_rel)
+
+            vert_pos_rel = list(map(list, zip(*vert_pos_rel)))
+            print(vert_pos_rel)
+            line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=2, color='r', transform=None, clip_on=False)
+            ax.add_line(line)
 
 plt.show()

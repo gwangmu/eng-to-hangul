@@ -32,6 +32,9 @@ class NonHangulLetter(Letter):
     def __str__(self):
         return self.value
 
+    def get_str_wo_anno(self):
+        return self.value
+
 class HangulLetter(Letter):
     def __init__(self, initial=None, vowel=None, final=None, whole=None,
             initial_anno=False, final_anno=False):
