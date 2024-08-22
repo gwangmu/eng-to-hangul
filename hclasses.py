@@ -28,6 +28,9 @@ class NonHangulLetter(Letter):
 
     def __repr__(self):
         return self.value
+    
+    def __str__(self):
+        return self.value
 
 class HangulLetter(Letter):
     def __init__(self, initial=None, vowel=None, final=None, whole=None,
@@ -81,15 +84,26 @@ class HangulLetter(Letter):
 
         return chr((no_initial * 588 + no_vowel * 28 + no_final) + 44032)
 
-    def __repr__(self):
+    def get_str_wo_anno(self):
         if (not self.is_defined()):
             if (self.initial.is_none()):
                 return '□ '
             else:
                 return self.initial.value
         else:
+            return self.fuse()
+
+    def __str__(self):
+        if (not self.is_defined()):
+            if (self.initial.is_none()):
+                return '□ '
+            else:
+                return ("`" if (self.initial.has_anno()) else "") + self.initial.value
+        else:
             anno = ""
             if (self.initial.has_anno() or (self.final and self.final.has_anno())):
                 anno = "`"
             return anno + self.fuse()
 
+    def __repr__(self):
+        return str(self)

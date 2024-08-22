@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
-import eng_to_ipa as ipa
 import argparse
+import eng_to_ipa as ipa
 import logging as log
+import matplotlib.pyplot as plt
 
 import tables
 import util
@@ -125,6 +126,23 @@ while (sent_han):
     log.debug(sent_hcls)
     log.debug("")
 
+sent_han_fuse = ''.join(str(x) for x in sent_hcls)
+
 log.info("ipa: {}".format(sent_ipa_org))
 log.info("han: {}".format(sent_han_org))
 log.info("hcl: {}".format(sent_hcls))
+log.info("hfu: {}".format(sent_han_fuse)
+
+# Draw Hangul letters.
+log.debug("## Draw")
+
+plt.rcParams['font.family'] = 'UnDotum'
+plt.rcParams['font.size'] = '34'
+plt.rcParams['axes.unicode_minus'] = False
+
+fig, ax = plt.subplots()
+ax.set_axis_off()
+
+ax.text(0, 0, "테스트", transform=None)
+
+plt.show()
