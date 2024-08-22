@@ -154,19 +154,26 @@ for i, letter in enumerate(sent_hcls):
     han = letter.get_str_wo_anno()
     cur_x = VERTICAL_PAD+i*FONTBOX_SIZE
     cur_y = HORIZONTAL_PAD
-    ax.text(cur_x, cur_y+FONTBOX_YOFF, han, transform=None)
+
     #p = plt.Rectangle((cur_x, cur_y), FONTBOX_SIZE, FONTBOX_SIZE, fill=False, transform=None, clip_on=False)
     #ax.add_patch(p)
 
+    overall_trans_off = (0.00, 0.00)
+    overall_scale_factor = 1
+
     if (type(letter) is hcl.HangulLetter):
+        if (not letter.initial.is_none() and letter.vowel.is_none() and letter.final.is_none()):
+            overall_trans_off = (0.00, -0.10)
+            overall_scale_factor = 0.8
+
         if (letter.initial.has_anno()):
             vert_pos_rel=[]
             if (letter.initial.value in ['ㅂ', 'ㅍ']):
-                vert_pos_rel = [[0.45, 0.20], [0.55, 0.20]]
+                vert_pos_rel = [[0.45, 0.25], [0.55, 0.25]]
             elif (letter.initial.value in ['ㄹ', 'ㄷ', 'ㄸ']):
-                vert_pos_rel = [[0.02, 0.23], [0.02, 0.33]]
+                vert_pos_rel = [[0.05, 0.23], [0.05, 0.33]]
             elif (letter.initial.value in ['ㅈ']):
-                vert_pos_rel = [[0.50, 0.45], [0.54, 0.45]]
+                vert_pos_rel = [[0.50, 0.40], [0.54, 0.40]]
 
             if (not letter.final.is_none()):
                 trans_off = (0.00, 0.40)
@@ -187,15 +194,19 @@ for i, letter in enumerate(sent_hcls):
                 trans_scale = (1.00, 1.00)
 
             if (not letter.final.is_none()):
-                trans_off = (trans_off[0], trans_off[1]+0.1)
-                trans_scale = (trans_scale[0], trans_scale[1]-0.1)
+                trans_off = (trans_off[0], trans_off[1]+0.05)
+                trans_scale = (trans_scale[0]*1.2, trans_scale[1]-0.0)
 
-            vert_pos_rel = map(lambda v: (v[0]*trans_scale[0]+trans_off[0], v[1]*trans_scale[1]+trans_off[1]), vert_pos_rel)
-            vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE+cur_x, v[1]*FONTBOX_SIZE+cur_y), vert_pos_rel)
+            vert_pos_rel = map(lambda v: (v[0]*trans_scale[0]+trans_off[0]+overall_trans_off[0], v[1]*trans_scale[1]+trans_off[1]+overall_trans_off[1]), vert_pos_rel)
+            vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
 
             vert_pos_rel = list(map(list, zip(*vert_pos_rel)))
             print(vert_pos_rel)
-            line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=2, color='black', transform=None, clip_on=False)
+            line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=1.5, color='black', transform=None, clip_on=False)
             ax.add_line(line)
+    
+    plt.rcParams['font.size'] = str(FONTBOX_SIZE*overall_scale_factor*0.75)
+    ax.text(cur_x+FONTBOX_SIZE*overall_trans_off[0], cur_y+FONTBOX_YOFF+FONTBOX_SIZE*overall_trans_off[1], han, transform=None)
+    plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
 
 plt.show()
