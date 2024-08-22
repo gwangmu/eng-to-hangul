@@ -1,5 +1,5 @@
 import tables
-import log
+import logging as log
 
 class HangulConsonant:
     def __init__(self, value, anno=False):

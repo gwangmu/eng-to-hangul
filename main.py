@@ -2,17 +2,17 @@
 
 import eng_to_ipa as ipa
 import argparse
+import logging as log
 
 import tables
 import util
 import hclasses as hcl
-import log
-
-log.init()
 
 parser = argparse.ArgumentParser()
 parser.add_argument('sent_eng', type=str, help="Sentence in English")
 args = parser.parse_args()
+
+log.basicConfig(level=log.INFO)
 
 sent_eng = args.sent_eng
 sent_ipa = ipa.convert(sent_eng, keep_punct=False)
@@ -123,7 +123,7 @@ while (sent_han):
     
     log.debug(sent_han)
     log.debug(sent_hcls)
-    log.debug()
+    log.debug("")
 
 log.info("ipa: {}".format(sent_ipa_org))
 log.info("han: {}".format(sent_han_org))
