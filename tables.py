@@ -68,3 +68,8 @@ han_final = [None, 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ'
 
 # Hangul initial consonants, which can also naturally be final
 han_initfin = ['ㅁ', 'ㄴ', 'ㄹ', 'ㅇ']
+
+# Hangul vowels by shape
+vertical_han_vowel = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅣ'] 
+horizontal_han_vowel = ['ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ'] 
+wide_han_vowel = ['ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅢ']
