@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # IPA to hangul transcription
 ipa_to_han = {
     "eɪ": "ㅔ이", 

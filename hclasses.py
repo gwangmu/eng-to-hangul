@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import tables
 import logging as log
 
