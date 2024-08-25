@@ -23,10 +23,10 @@ def draw(sent_hcl, output=None):
     fig, ax = plt.subplots(figsize=((40+len(sent_hcl)*FONTBOX_SIZE)*px, (HORIZONTAL_PAD*2+FONTBOX_SIZE)*px))
     ax.set_axis_off()
 
+    cur_x = VERTICAL_PAD
+    cur_y = HORIZONTAL_PAD
     for i, letter in enumerate(sent_hcl):
         han = letter.get_str_wo_anno()
-        cur_x = VERTICAL_PAD+i*FONTBOX_SIZE
-        cur_y = HORIZONTAL_PAD
 
         #p = plt.Rectangle((cur_x, cur_y), FONTBOX_SIZE, FONTBOX_SIZE, fill=False, transform=None, clip_on=False)
         #ax.add_patch(p)
@@ -81,6 +81,12 @@ def draw(sent_hcl, output=None):
         plt.rcParams['font.size'] = str(FONTBOX_SIZE*overall_scale_factor*0.75)
         ax.text(cur_x+FONTBOX_SIZE*overall_trans_off[0], cur_y+FONTBOX_YOFF+FONTBOX_SIZE*overall_trans_off[1], han, transform=None)
         plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
+
+        if (i < len(sent_hcl)-1):
+            if (util.is_hangul(han)):
+                cur_x = cur_x + FONTBOX_SIZE
+            else:
+                cur_x = cur_x + FONTBOX_SIZE*0.5
 
     if (not output):
         plt.show()
