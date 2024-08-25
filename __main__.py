@@ -66,6 +66,7 @@ for i, eng_sent in enumerate(eng_sents):
     hcl_sent = api.convert(ipa_sent, "ipa", "hcl", pass_args["ipa_to_hcl"])
     han_sent = api.convert(hcl_sent, "hcl", "han", pass_args["hcl_to_han"])
 
+    log.info("- eng: {}".format(eng_sent))
     log.info("- ipa: {}".format(ipa_sent))
     log.debug("- hlo: {}".format(han_sent))
     log.debug("- hcl: {}".format(hcl_sent))

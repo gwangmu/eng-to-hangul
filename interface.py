@@ -6,7 +6,7 @@ import drawing as dr
 import translit as tr
 
 logger = log.getLogger()
-logger.setLevel(log.INFO)
+logger.setLevel(log.DEBUG)
 
 ch = log.StreamHandler()
 formatter = log.Formatter('%(levelname)s: [%(name)s] %(message)s')

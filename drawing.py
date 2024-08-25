@@ -47,14 +47,19 @@ def draw(sent_hcl, output=None):
                 overall_scale_factor = 0.8
                 next_x = cur_x + FONTBOX_SIZE * 0.8
 
+        plt.rcParams['font.size'] = str(FONTBOX_SIZE*overall_scale_factor*0.75)
+        ax.text(cur_x+FONTBOX_SIZE*overall_trans_off[0], cur_y+FONTBOX_YOFF+FONTBOX_SIZE*overall_trans_off[1], han, transform=None)
+        plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
+
+        if (type(letter) is hcl.HangulLetter):
             if (letter.initial.has_anno()):
                 vert_pos_rel=[]
                 if (letter.initial.value in ['ㅂ', 'ㅍ']):
-                    vert_pos_rel = [[0.45, 0.25], [0.55, 0.25]]
+                    vert_pos_rel = [[0.45, 0.15], [0.55, 0.15]]
                 elif (letter.initial.value in ['ㄹ', 'ㄷ', 'ㄸ']):
                     vert_pos_rel = [[0.05, 0.23], [0.05, 0.33]]
                 elif (letter.initial.value in ['ㅈ']):
-                    vert_pos_rel = [[0.50, 0.40], [0.54, 0.40]]
+                    vert_pos_rel = [[0.46, 0.30], [0.56, 0.30]]
 
                 trans_off = (0.00, 0.00)
                 trans_scale = (1.00, 1.00)
@@ -66,6 +71,10 @@ def draw(sent_hcl, output=None):
                 def apply_rel_scale(rel_w, rel_h):
                     nonlocal trans_scale
                     trans_scale = (trans_scale[0]*rel_w, trans_scale[1]*rel_h)
+
+                if (letter.is_self_consonant()):
+                    apply_rel_off(0.00, 0.15)
+                    apply_rel_scale(1.00, 0.85)
 
                 if (not letter.final.is_none()):
                     apply_rel_off(0.00, 0.25)
@@ -79,14 +88,12 @@ def draw(sent_hcl, output=None):
                         apply_rel_off(0.00, 0.00)
                         apply_rel_scale(0.75, 1.00)
                     elif (letter.vowel.value in tables.horizontal_han_vowel):
-                        apply_rel_off(0.00, 0.25)
-                        apply_rel_scale(1.00, 0.75)
+                        apply_rel_off(0.00, 0.22)
+                        apply_rel_scale(1.00, 0.78)
 
                 if (not letter.final.is_none() and letter.final.value == 'ㄴ'):
-                    print(trans_off, trans_scale)
-                    trans_off = (trans_off[0], trans_off[1]-0.18)
+                    trans_off = (trans_off[0], trans_off[1]-0.12)
                     trans_scale = (trans_scale[0]+0.15, trans_scale[1]+0.1)
-                    print(trans_off, trans_scale)
 
                 vert_pos_rel = map(lambda v: (v[0]*trans_scale[0]+trans_off[0]+overall_trans_off[0], v[1]*trans_scale[1]+trans_off[1]+overall_trans_off[1]), vert_pos_rel)
                 vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
@@ -95,10 +102,10 @@ def draw(sent_hcl, output=None):
                 log.debug(vert_pos_rel)
                 line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=1.5, color='black', transform=None, clip_on=False)
                 ax.add_line(line)
-        
-        plt.rcParams['font.size'] = str(FONTBOX_SIZE*overall_scale_factor*0.75)
-        ax.text(cur_x+FONTBOX_SIZE*overall_trans_off[0], cur_y+FONTBOX_YOFF+FONTBOX_SIZE*overall_trans_off[1], han, transform=None)
-        plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
+
+            # TODO
+            if (letter.final.has_anno()):
+                pass
 
         cur_x = next_x
 

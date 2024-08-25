@@ -82,6 +82,15 @@ class HangulLetter(Letter):
     def set_final(self, han, anno=False):
         self.final = HangulConsonant(han, anno=anno)
 
+    def unset_initial(self):
+        self.initial = HangulConsonant(None)
+
+    def unset_vowel(self):
+        self.vowel = HangulVowel(None)
+
+    def unset_final(self):
+        self.final = HangulConsonant(None)
+
     def fuse(self):
         no_initial = tables.han_initial.index(self.initial.value)
         no_vowel = tables.han_vowel.index(self.vowel.value)

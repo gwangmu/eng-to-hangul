@@ -105,7 +105,7 @@ class HanPacker():
                         self.top().set_vowel(self.cur_han)
                 elif (self.top().final.is_none()):
                     if (util.is_hangul_initial(self.cur_han)):
-                        if (util.is_hangul_initfin(self.cur_han)):
+                        if (util.is_hangul_initfin(self.cur_han) and not self.has_anno):
                             if (util.is_hangul_vowel(self.next_han)):
                                 log.debug('jamo.final.initial.initfin.vowel')
                                 self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]
@@ -120,11 +120,22 @@ class HanPacker():
                         self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial='ㅇ', vowel=self.cur_han)]
             else:
                 log.debug('!jamo')
+                if (self.top().is_empty()):
+                    self.sent_hcl = self.sent_hcl[:-1]
                 self.sent_hcl = self.sent_hcl + [hcl.NonHangulLetter(self.cur_han)]
             
             log.debug(self.sent_han)
             log.debug(self.sent_hcl)
             log.debug("")
+
+        # Make it more natural
+        for i, cur_hcl in enumerate(self.sent_hcl):
+            if (i+1 < len(self.sent_hcl)):
+                next_hcl = self.sent_hcl[i+1]
+                if (type(cur_hcl) is hcl.HangulLetter and type(next_hcl) is hcl.HangulLetter and \
+                    not cur_hcl.final.is_none() and next_hcl.initial.value == 'ㅇ'):
+                    next_hcl.set_initial(cur_hcl.final.value)
+                    cur_hcl.unset_final()
 
         if (self.options["no_self_consonants"]):
             for cur_hcl in self.sent_hcl:
@@ -138,7 +149,13 @@ def loose_han_to_hcl(sent_han, options):
     return packer.get()
 
 def eng_to_ipa(sent_eng, options):
-    return ipa.convert(sent_eng)
+    sent_ipa = " " + ipa.convert(sent_eng) + " "
+    adjs = {
+        "tɪ": "tu"
+        }
+    for adj_from, adj_to in adjs.items():
+        sent_ipa = sent_ipa.replace(adj_from, adj_to)
+    return sent_ipa[1:-2]
 
 def hcl_to_han(sent_hcl, options):
     return ''.join(str(x) for x in sent_hcl)
