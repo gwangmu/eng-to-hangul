@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import interface as api
 import argparse
 import logging as log
 import os
@@ -10,6 +11,8 @@ import translit as tr
 parser = argparse.ArgumentParser()
 parser.add_argument('eng_sent', type=str, help="Sentence in English")
 parser.add_argument('--file', '-f', type=bool, default=False, help="Read from file and convert one line at a time")
+parser.add_argument('--draw', '-d', type=bool, default=True, help="Draw Hangul sentence")
+parser.add_argument('--draw-output', '-o', type=str, default="", help="Draw output filename (empty: screen)")
 parser.add_argument('--standard-hangul', '-s', type=bool, default=False, help="Print in the standard Hangul")
 parser.add_argument('--annotation', '-a', type=bool, default=True, help="With consonant annotations")
 parser.add_argument('--self-consonants', '-c', type=bool, default=True, help="With self consonants")
@@ -22,36 +25,6 @@ if (args.standard_hangul):
 if (os.path.isfile(args.eng_sent)):
     args.file = True
 
-log.basicConfig(level=log.INFO)
-
-def convert(sent, from_unit="eng", to_unit="han"):
-    if not (from_unit == "eng" and to_unit in ["ipa", "hcl", "han"]) and \
-       not (from_unit == "ipa" and to_unit in ["hcl", "han"]) and \
-       not (from_unit == "hcl" and to_unit in ["han"]):
-           log.error("unsupported conversion: '{}' to '{}'".format(from_unit, to_unit))
-           return None
-    
-    cur_sent = sent
-    cur_from = from_unit
-    while (cur_from != to_unit):
-        trans = getattr(tr, cur_from + "_to_" + to_unit)
-        cur_sent = trans(cur_sent)
-
-        if (cur_from == "eng"):
-            cur_from = "ipa"
-        elif (cur_from == "ipa"):
-            cur_from = "hcl"
-        elif (cur_from == "hcl"):
-            cur_from = "han"
-        else:
-            log.critical("bogus conversion from '{}'".format(cur_from))
-            exit
-
-    return cur_sent
-
-def draw(hcl_sent, output=None):
-    dr.draw(hcl_sent, output)
-
 eng_sents = []
 if (args.file):
     with open(args.eng_sent, 'r') as f:
@@ -59,16 +32,36 @@ if (args.file):
 else:
     eng_sents = [args.eng_sent]
 
+if (args.draw and args.draw_output):
+    _split = args.draw_output.split('.')
+    _dirname = os.path.dirname(args.draw_output)
+    if (_dirname and not os.path.isdir(_dirname)):
+        if (os.path.exists(_dirname)):
+            log.critical("Output directory exists")
+            exit
+        else:
+            os.mkdir(_dirname)
+
 for i, eng_sent in enumerate(eng_sents):
     log.info("Converting {}/{}...".format(i+1, len(eng_sents)))
 
-    ipa_sent = convert(eng_sent, from_unit="eng", to_unit="ipa")
-    hcl_sent = convert(ipa_sent, from_unit="ipa", to_unit="hcl")
-    han_sent = convert(hcl_sent, from_unit="hcl", to_unit="han")
+    ipa_sent = api.convert(eng_sent, from_unit="eng", to_unit="ipa")
+    hcl_sent = api.convert(ipa_sent, from_unit="ipa", to_unit="hcl")
+    han_sent = api.convert(hcl_sent, from_unit="hcl", to_unit="han")
 
     log.info("ipa: {}".format(ipa_sent))
     log.info("han: {}".format(han_sent))
     log.info("hcl: {}".format(hcl_sent))
     log.info("hfu: {}".format(han_sent))
 
-    draw(hcl_sent)
+    if (args.draw):
+        if (not args.draw_output):
+            api.draw(hcl_sent)
+        else:
+            if (len(eng_sents) <= 1):
+                api.draw(hcl_sent, args.draw_output)
+            else:
+                _split_new = _split[:]
+                _split_new[-2] = _split[-2] + "-" + str(i+1).zfill(3)
+                filename='.'.join(_split_new)
+                api.draw(hcl_sent, filename)
