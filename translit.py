@@ -72,7 +72,7 @@ class HanPacker():
 
             if (self.cur_han == '`'):
                 self.next()
-                if (self.options["annotation"]):
+                if (not self.options["no_annotation"]):
                     self.has_anno = True
 
             if (util.is_whole_hangul_letter(self.cur_han)):
@@ -126,7 +126,7 @@ class HanPacker():
             log.debug(self.sent_hcl)
             log.debug("")
 
-        if (not self.options["self_consonants"]):
+        if (self.options["no_self_consonants"]):
             for cur_hcl in self.sent_hcl:
                 if (type(cur_hcl) is hcl.HangulLetter and cur_hcl.is_self_consonant()):
                     cur_hcl.set_vowel('ㅡ')

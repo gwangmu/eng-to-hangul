@@ -14,13 +14,13 @@ parser.add_argument('--file-input', '-f', action='store_true', help="Read from f
 parser.add_argument('--no-draw', '-D', action='store_true', help="Don't draw Hangul sentence")
 parser.add_argument('--draw-output', '-o', type=str, default="", help="Draw output filename (empty: screen)")
 parser.add_argument('--standard-hangul', '-s', action='store_true', help="Print in the standard Hangul")
-parser.add_argument('--annotation', '-a', action='store_true', help="With consonant annotations")
-parser.add_argument('--self-consonants', '-c', action='store_true', help="With self consonants")
+parser.add_argument('--no-annotation', '-A', action='store_true', help="With consonant annotations")
+parser.add_argument('--no-self-consonants', '-C', action='store_true', help="With self consonants")
 args = parser.parse_args()
 
 if (args.standard_hangul):
-    args.annotation = False
-    args.self_consonants = False
+    args.no_annotation = False
+    args.no_self_consonants = False
 
 if (os.path.isfile(args.eng_sent)):
     args.file_input = True
@@ -48,8 +48,8 @@ if (not args.no_draw and args.draw_output):
 pass_args = {
     "eng_to_ipa": {},
     "ipa_to_hcl": {
-        "annotation": args.annotation, 
-        "self_consonants": args.self_consonants,
+        "no_annotation": args.no_annotation, 
+        "no_self_consonants": args.no_self_consonants,
         },
     "hcl_to_han": {},
     }
