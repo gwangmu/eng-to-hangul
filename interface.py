@@ -5,7 +5,13 @@ import logging as log
 import drawing as dr
 import translit as tr
 
-log.basicConfig(level=log.INFO)
+logger = log.getLogger()
+logger.setLevel(log.INFO)
+
+ch = log.StreamHandler()
+formatter = log.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+logger.addHandler(ch)
 
 # TODO: support retrive_all in eng_to_ipa
 def convert(sent, from_unit="eng", to_unit="han", options={}):

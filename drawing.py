@@ -74,7 +74,7 @@ def draw(sent_hcl, output=None):
                 vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
 
                 vert_pos_rel = list(map(list, zip(*vert_pos_rel)))
-                print(vert_pos_rel)
+                log.debug(vert_pos_rel)
                 line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=1.5, color='black', transform=None, clip_on=False)
                 ax.add_line(line)
         

@@ -18,6 +18,7 @@ parser.add_argument('--no-annotation', '-A', action='store_true', help="With con
 parser.add_argument('--no-self-consonants', '-C', action='store_true', help="With self consonants")
 args = parser.parse_args()
 
+# Some convenience features
 if (args.standard_hangul):
     args.no_annotation = False
     args.no_self_consonants = False
@@ -54,6 +55,7 @@ pass_args = {
     "hcl_to_han": {},
     }
 
+# Convert one by one
 for i, eng_sent in enumerate(eng_sents):
     log.info("Converting {}/{}...".format(i+1, len(eng_sents)))
 
@@ -62,12 +64,13 @@ for i, eng_sent in enumerate(eng_sents):
     han_sent = api.convert(hcl_sent, "hcl", "han", pass_args["hcl_to_han"])
 
     log.info("ipa: {}".format(ipa_sent))
+    log.debug("hlo: {}".format(han_sent))
+    log.debug("hcl: {}".format(hcl_sent))
     log.info("han: {}".format(han_sent))
-    log.info("hcl: {}".format(hcl_sent))
-    log.info("hfu: {}".format(han_sent))
 
     if (not args.no_draw):
         if (not args.draw_output):
+            log.info("Close the figure to continue...")
             api.draw(hcl_sent)
         else:
             if (len(eng_sents) <= 1):
