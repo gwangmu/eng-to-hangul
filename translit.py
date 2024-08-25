@@ -8,25 +8,22 @@ import tables
 import util
 
 def eng_to_ipa(sent_eng):
-    return ipa.convert(sent_eng, keep_punct=False)
+    return ipa.convert(sent_eng)
 
 def hcl_to_han(sent_hcl):
     return ''.join(x.get_str_wo_anno() for x in sent_hcl)
 
+# TODO: polish this
 def ipa_to_hcl(sent_ipa):
     # Tranliterate to loose Hangul
     log.debug("# Tranliterate to loose Hangul")
 
     sent_han = ""
     while (sent_ipa):
-        # Carry over spaces.
-        if (sent_ipa[0:1] == " "):
-            sent_han = sent_han + " "
-            sent_ipa = sent_ipa[1:]
-
         # Ignore stresses for now.
         if (sent_ipa[0:1] == "ˈ" or sent_ipa[0:1] == "ˌ"):
             sent_ipa = sent_ipa[1:]
+            continue
 
         # Transliterate IPA symbols, longer symbol sets first.
         ipa_found=False
@@ -37,11 +34,8 @@ def ipa_to_hcl(sent_ipa):
                 ipa_found=True
                 break
         if (not ipa_found):
-            log.error("unrecognized IPA symbol '{}'".format(sent_ipa[0:1]))
-            log.error("tranliteration steps;")
-            for i, trans_step in enumerate(trans_steps):
-                log.error("{}: {}".format(i, trans_step))
-            log.fatal("terminating...")
+            sent_han = sent_han + sent_ipa[0:1]
+            sent_ipa = sent_ipa[1:]
 
         log.debug(sent_ipa + " --> " + sent_han)
 

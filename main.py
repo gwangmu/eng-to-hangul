@@ -2,12 +2,14 @@
 
 import argparse
 import logging as log
+import os
 
 import drawing as dr
 import translit as tr
 
 parser = argparse.ArgumentParser()
-parser.add_argument('sent_eng', type=str, help="Sentence in English")
+parser.add_argument('eng_sent', type=str, help="Sentence in English")
+parser.add_argument('--file', '-f', type=bool, default=False, help="Read from file and convert one line at a time")
 parser.add_argument('--standard-hangul', '-s', type=bool, default=False, help="Print in the standard Hangul")
 parser.add_argument('--annotation', '-a', type=bool, default=True, help="With consonant annotations")
 parser.add_argument('--self-consonants', '-c', type=bool, default=True, help="With self consonants")
@@ -16,6 +18,9 @@ args = parser.parse_args()
 if (args.standard_hangul):
     args.annotation = False
     args.self_consonants = False
+
+if (os.path.isfile(args.eng_sent)):
+    args.file = True
 
 log.basicConfig(level=log.INFO)
 
@@ -44,17 +49,26 @@ def convert(sent, from_unit="eng", to_unit="han"):
 
     return cur_sent
 
-def draw(sent_hcl, output=None):
-    dr.draw(sent_hcl, output)
+def draw(hcl_sent, output=None):
+    dr.draw(hcl_sent, output)
 
-sent_eng = args.sent_eng
-sent_ipa = convert(sent_eng, from_unit="eng", to_unit="ipa")
-sent_hcl = convert(sent_ipa, from_unit="ipa", to_unit="hcl")
-sent_han = convert(sent_hcl, from_unit="hcl", to_unit="han")
+eng_sents = []
+if (args.file):
+    with open(args.eng_sent, 'r') as f:
+        eng_sents = [sent.strip() for sent in f.readlines()];
+else:
+    eng_sents = [args.eng_sent]
 
-log.info("ipa: {}".format(sent_ipa))
-log.info("han: {}".format(sent_han))
-log.info("hcl: {}".format(sent_hcl))
-log.info("hfu: {}".format(sent_han))
+for i, eng_sent in enumerate(eng_sents):
+    log.info("Converting {}/{}...".format(i+1, len(eng_sents)))
 
-draw(sent_hcl)
+    ipa_sent = convert(eng_sent, from_unit="eng", to_unit="ipa")
+    hcl_sent = convert(ipa_sent, from_unit="ipa", to_unit="hcl")
+    han_sent = convert(hcl_sent, from_unit="hcl", to_unit="han")
+
+    log.info("ipa: {}".format(ipa_sent))
+    log.info("han: {}".format(han_sent))
+    log.info("hcl: {}".format(hcl_sent))
+    log.info("hfu: {}".format(han_sent))
+
+    draw(hcl_sent)
