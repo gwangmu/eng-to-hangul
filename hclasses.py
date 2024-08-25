@@ -38,8 +38,7 @@ class NonHangulLetter(Letter):
         return self.value
 
 class HangulLetter(Letter):
-    def __init__(self, initial=None, vowel=None, final=None, whole=None,
-            initial_anno=False, final_anno=False):
+    def __init__(self, initial=None, vowel=None, final=None, whole=None, initial_anno=False, final_anno=False):
         if (whole):
             whole_int = ord(whole)
             whole_int = whole_int - 44032
@@ -63,15 +62,16 @@ class HangulLetter(Letter):
         self.final = HangulConsonant(final, anno=final_anno)
 
     def is_empty(self):
-        return (self.initial.is_none() and self.vowel.is_none() and
-                self.final.is_none())
+        return (self.initial.is_none() and self.vowel.is_none() and self.final.is_none())
+
+    def is_self_consonant(self):
+        return (not self.initial.is_none() and self.vowel.is_none() and self.final.is_none())
 
     def is_defined(self):
         return (not self.initial.is_none() and not self.vowel.is_none())
 
     def is_full(self):
-        return (not self.initial.is_none() and not self.vowel.is_none() and
-                not self.final.is_none())
+        return (not self.initial.is_none() and not self.vowel.is_none() and not self.final.is_none())
 
     def set_initial(self, han, anno=False):
         self.initial = HangulConsonant(han, anno=anno)
