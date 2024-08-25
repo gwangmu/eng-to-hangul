@@ -7,18 +7,10 @@ import hclasses as hcl
 import tables
 import util
 
-def eng_to_ipa(sent_eng, options):
-    return ipa.convert(sent_eng)
-
-def hcl_to_han(sent_hcl, options):
-    return ''.join(x.get_str_wo_anno() for x in sent_hcl)
-
-# TODO: polish this
-def ipa_to_hcl(sent_ipa, options):
-    # Tranliterate to loose Hangul
-    log.debug("# Tranliterate to loose Hangul")
-
+def ipa_to_loose_han(sent_ipa, options):
+    log.debug("## Tranliterate to loose Hangul")
     sent_han = ""
+
     while (sent_ipa):
         # Ignore stresses for now.
         if (sent_ipa[0:1] == "ˈ" or sent_ipa[0:1] == "ˌ"):
@@ -39,80 +31,114 @@ def ipa_to_hcl(sent_ipa, options):
 
         log.debug(sent_ipa + " --> " + sent_han)
 
-    # Pack loose Hangul letters.
-    log.debug("## Pack loose Hangul letters")
+    return sent_han
 
-    sent_han_org = sent_han
-    sent_hcl = [hcl.HangulLetter()]
-    while (sent_han):
-        cur_hcl = sent_hcl[-1]
-        cur_han = sent_han[0]
-        next_han = sent_han[1:2]
-        sent_han = sent_han[1:]
-        has_anno = False
+class HanPacker():
+    def __init__(self, sent_han, options):
+        self.sent_hcl = [hcl.HangulLetter()]
+        self.cur_han = ""
+        self.next_han = ""
+        self.sent_han = sent_han
+        self.has_anno = False
+        self.options = options
 
-        if (cur_han == '`'):
-            cur_han = sent_han[0]
-            next_han = sent_han[1:2]
-            sent_han = sent_han[1:]
-            has_anno = True
+    def push_empty(self):
+        self.sent_hcl = self.sent_hcl + [hcl.HangulLetter()]
 
-        if (util.is_whole_hangul_letter(cur_han)):
-            if (cur_hcl.is_empty()):
-                sent_hcl = sent_hcl[:-1]
-            sent_hcl = sent_hcl + [hcl.HangulLetter(whole=cur_han)]
-        elif (util.is_hangul_jamo(cur_han)):
-            if (cur_hcl.initial.is_none()):
-                if (util.is_hangul_initial(cur_han)):
-                    log.debug('jamo.initial.initial')
-                    cur_hcl.set_initial(cur_han, anno=has_anno)
-                elif (util.is_hangul_vowel(cur_han)):
-                    log.debug('jamo.initial.vowel')
-                    cur_hcl.set_initial('ㅇ')
-                    cur_hcl.set_vowel(cur_han)
-                else:
-                    log.debug('jamo.initial.wtf')
-                    assert(false)
-            elif (cur_hcl.vowel.is_none()):
-                if (util.is_hangul_initial(cur_han)):
-                    if (util.is_hangul_initfin(cur_han)):
-                        log.debug('jamo.vowel.initial.initfin')
-                        cur_hcl.set_vowel('ㅡ')
-                        cur_hcl.set_final(cur_han, anno=has_anno)
+    def top(self):
+        return (self.sent_hcl[-1])
+
+    def next(self):
+        if (not self.is_empty()):
+            if (type(self.top()) is hcl.NonHangulLetter or \
+                (self.top().is_full() and (util.is_whole_hangul_letter(self.next_han) or \
+                    util.is_hangul_jamo(self.next_han)))):
+                self.sent_hcl = self.sent_hcl + [hcl.HangulLetter()]
+
+        self.cur_han = self.sent_han[0]
+        self.next_han = self.sent_han[1:2]
+        self.sent_han = self.sent_han[1:]
+        self.has_anno = False
+
+    def is_empty(self):
+        return (not self.sent_han)
+
+    def get(self):
+        return (self.sent_hcl)
+
+    def pack(self):
+        while (not self.is_empty()):
+            self.next()
+
+            if (self.cur_han == '`'):
+                self.next()
+                if (self.options["annotation"]):
+                    self.has_anno = True
+
+            if (util.is_whole_hangul_letter(self.cur_han)):
+                if (self.top().is_empty()):
+                    self.sent_hcl = self.sent_hcl[:-1]
+                self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(whole=self.cur_han)]
+            elif (util.is_hangul_jamo(self.cur_han)):
+                if (self.top().initial.is_none()):
+                    if (util.is_hangul_initial(self.cur_han)):
+                        log.debug('jamo.initial.initial')
+                        self.top().set_initial(self.cur_han, anno=self.has_anno)
+                    elif (util.is_hangul_vowel(self.cur_han)):
+                        log.debug('jamo.initial.vowel')
+                        self.top().set_initial('ㅇ')
+                        self.top().set_vowel(self.cur_han)
                     else:
-                        log.debug('jamo.vowel.initial.!initfin')
-                        sent_hcl = sent_hcl + [hcl.HangulLetter(initial=cur_han, initial_anno=has_anno)]
-                elif (util.is_hangul_vowel(cur_han)):
-                    log.debug('jamo.vowel.vowel')
-                    cur_hcl.set_vowel(cur_han)
-            elif (cur_hcl.final.is_none()):
-                if (util.is_hangul_initial(cur_han)):
-                    if (util.is_hangul_initfin(cur_han)):
-                        if (util.is_hangul_vowel(next_han)):
-                            log.debug('jamo.final.initial.initfin.vowel')
-                            sent_hcl = sent_hcl + [hcl.HangulLetter(initial=cur_han, initial_anno=has_anno)]
+                        log.debug('jamo.initial.wtf')
+                        assert(false)
+                elif (self.top().vowel.is_none()):
+                    if (util.is_hangul_initial(self.cur_han)):
+                        if (util.is_hangul_initfin(self.cur_han)):
+                            log.debug('jamo.vowel.initial.initfin')
+                            self.top().set_vowel('ㅡ')
+                            self.top().set_final(self.cur_han, anno=self.has_anno)
                         else:
-                            log.debug('jamo.final.initial.initfin.!vowel')
-                            cur_hcl.set_final(cur_han, anno=has_anno)
-                    else:
-                        log.debug('jamo.final.initial.!initfin')
-                        sent_hcl = sent_hcl + [hcl.HangulLetter(initial=cur_han, initial_anno=has_anno)]
-                elif (util.is_hangul_vowel(cur_han)):
-                    log.debug('jamo.final.vowel')
-                    sent_hcl = sent_hcl + [hcl.HangulLetter(initial='ㅇ', vowel=cur_han)]
-        else:
-            log.debug('!jamo')
-            sent_hcl = sent_hcl + [hcl.NonHangulLetter(cur_han)]
+                            log.debug('jamo.vowel.initial.!initfin')
+                            self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]
+                    elif (util.is_hangul_vowel(self.cur_han)):
+                        log.debug('jamo.vowel.vowel')
+                        self.top().set_vowel(self.cur_han)
+                elif (self.top().final.is_none()):
+                    if (util.is_hangul_initial(self.cur_han)):
+                        if (util.is_hangul_initfin(self.cur_han)):
+                            if (util.is_hangul_vowel(self.next_han)):
+                                log.debug('jamo.final.initial.initfin.vowel')
+                                self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]
+                            else:
+                                log.debug('jamo.final.initial.initfin.!vowel')
+                                self.top().set_final(self.cur_han, anno=self.has_anno)
+                        else:
+                            log.debug('jamo.final.initial.!initfin')
+                            self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]
+                    elif (util.is_hangul_vowel(self.cur_han)):
+                        log.debug('jamo.final.vowel')
+                        self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial='ㅇ', vowel=self.cur_han)]
+            else:
+                log.debug('!jamo')
+                self.sent_hcl = self.sent_hcl + [hcl.NonHangulLetter(self.cur_han)]
+            
+            log.debug(self.sent_han)
+            log.debug(self.sent_hcl)
+            log.debug("")
 
-        if (next_han):
-            cur_hcl = sent_hcl[-1]
-            if (type(cur_hcl) is hcl.NonHangulLetter or \
-                (cur_hcl.is_full() and (util.is_whole_hangul_letter(next_han) or \
-                    util.is_hangul_jamo(next_han)))):
-                sent_hcl = sent_hcl + [hcl.HangulLetter()]
-        
-        log.debug(sent_han)
-        log.debug(sent_hcl)
-        log.debug("")
+def loose_han_to_hcl(sent_han, options):
+    log.debug("## Pack loose Hangul letters")
+    packer = HanPacker(sent_han, options)
+    packer.pack()
+    return packer.get()
 
+def eng_to_ipa(sent_eng, options):
+    return ipa.convert(sent_eng)
+
+def hcl_to_han(sent_hcl, options):
+    return ''.join(x.get_str_wo_anno() for x in sent_hcl)
+
+def ipa_to_hcl(sent_ipa, options):
+    sent_han = ipa_to_loose_han(sent_ipa, options)
+    sent_hcl = loose_han_to_hcl(sent_han, options)
     return sent_hcl

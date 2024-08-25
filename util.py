@@ -17,3 +17,6 @@ def is_whole_hangul_letter(han):
 
 def is_hangul_jamo(han):
     return (0x3130 <= ord(han) and ord(han) <= 0x318f)
+
+def is_hangul(han):
+    return (is_whole_hangul_letter(han) or is_hangul_jamo(han))
