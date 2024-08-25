@@ -141,7 +141,7 @@ def eng_to_ipa(sent_eng, options):
     return ipa.convert(sent_eng)
 
 def hcl_to_han(sent_hcl, options):
-    return ''.join(x.get_str_wo_anno() for x in sent_hcl)
+    return ''.join(str(x) for x in sent_hcl)
 
 def ipa_to_hcl(sent_ipa, options):
     sent_han = ipa_to_loose_han(sent_ipa, options)

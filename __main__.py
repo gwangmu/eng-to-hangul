@@ -26,6 +26,9 @@ if (args.standard_hangul):
 if (os.path.isfile(args.eng_sent)):
     args.file_input = True
 
+if (not args.no_draw and not args.draw_output):
+    log.info("Note: close the figure to continue.")
+
 # Load sentences
 eng_sents = []
 if (args.file_input):
@@ -63,14 +66,13 @@ for i, eng_sent in enumerate(eng_sents):
     hcl_sent = api.convert(ipa_sent, "ipa", "hcl", pass_args["ipa_to_hcl"])
     han_sent = api.convert(hcl_sent, "hcl", "han", pass_args["hcl_to_han"])
 
-    log.info("ipa: {}".format(ipa_sent))
-    log.debug("hlo: {}".format(han_sent))
-    log.debug("hcl: {}".format(hcl_sent))
-    log.info("han: {}".format(han_sent))
+    log.info("- ipa: {}".format(ipa_sent))
+    log.debug("- hlo: {}".format(han_sent))
+    log.debug("- hcl: {}".format(hcl_sent))
+    log.info("- han: {}".format(han_sent))
 
     if (not args.no_draw):
         if (not args.draw_output):
-            log.info("Close the figure to continue...")
             api.draw(hcl_sent)
         else:
             if (len(eng_sents) <= 1):
