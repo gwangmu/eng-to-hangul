@@ -126,10 +126,10 @@ class HanPacker():
             log.debug(self.sent_hcl)
             log.debug("")
 
-    if (not options.self_consonants):
-        for cur_hcl in sent_hcl:
-            if (type(cur_hcl) is hcl.HangulLetter and cur_hcl.is_self_consonant()):
-                cur_hcl.set_vowel('ㅡ')
+        if (not self.options["self_consonants"]):
+            for cur_hcl in self.sent_hcl:
+                if (type(cur_hcl) is hcl.HangulLetter and cur_hcl.is_self_consonant()):
+                    cur_hcl.set_vowel('ㅡ')
 
 def loose_han_to_hcl(sent_han, options):
     log.debug("## Pack loose Hangul letters")
