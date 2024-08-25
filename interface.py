@@ -7,7 +7,8 @@ import translit as tr
 
 log.basicConfig(level=log.INFO)
 
-def convert(sent, from_unit="eng", to_unit="han"):
+# TODO: support retrive_all in eng_to_ipa
+def convert(sent, from_unit="eng", to_unit="han", options={}):
     if not (from_unit == "eng" and to_unit in ["ipa", "hcl", "han"]) and \
        not (from_unit == "ipa" and to_unit in ["hcl", "han"]) and \
        not (from_unit == "hcl" and to_unit in ["han"]):
@@ -18,7 +19,7 @@ def convert(sent, from_unit="eng", to_unit="han"):
     cur_from = from_unit
     while (cur_from != to_unit):
         trans = getattr(tr, cur_from + "_to_" + to_unit)
-        cur_sent = trans(cur_sent)
+        cur_sent = trans(cur_sent, options)
 
         if (cur_from == "eng"):
             cur_from = "ipa"

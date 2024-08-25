@@ -10,12 +10,12 @@ import translit as tr
 
 parser = argparse.ArgumentParser()
 parser.add_argument('eng_sent', type=str, help="Sentence in English")
-parser.add_argument('--file', '-f', type=bool, default=False, help="Read from file and convert one line at a time")
-parser.add_argument('--draw', '-d', type=bool, default=True, help="Draw Hangul sentence")
+parser.add_argument('--file-input', '-f', action='store_true', help="Read from file and convert one line at a time")
+parser.add_argument('--no-draw', '-D', action='store_true', help="Don't draw Hangul sentence")
 parser.add_argument('--draw-output', '-o', type=str, default="", help="Draw output filename (empty: screen)")
-parser.add_argument('--standard-hangul', '-s', type=bool, default=False, help="Print in the standard Hangul")
-parser.add_argument('--annotation', '-a', type=bool, default=True, help="With consonant annotations")
-parser.add_argument('--self-consonants', '-c', type=bool, default=True, help="With self consonants")
+parser.add_argument('--standard-hangul', '-s', action='store_true', help="Print in the standard Hangul")
+parser.add_argument('--annotation', '-a', action='store_true', help="With consonant annotations")
+parser.add_argument('--self-consonants', '-c', action='store_true', help="With self consonants")
 args = parser.parse_args()
 
 if (args.standard_hangul):
@@ -23,16 +23,18 @@ if (args.standard_hangul):
     args.self_consonants = False
 
 if (os.path.isfile(args.eng_sent)):
-    args.file = True
+    args.file_input = True
 
+# Load sentences
 eng_sents = []
-if (args.file):
+if (args.file_input):
     with open(args.eng_sent, 'r') as f:
         eng_sents = [sent.strip() for sent in f.readlines()];
 else:
     eng_sents = [args.eng_sent]
 
-if (args.draw and args.draw_output):
+# Prepare drawing
+if (not args.no_draw and args.draw_output):
     _split = args.draw_output.split('.')
     _dirname = os.path.dirname(args.draw_output)
     if (_dirname and not os.path.isdir(_dirname)):
@@ -42,19 +44,29 @@ if (args.draw and args.draw_output):
         else:
             os.mkdir(_dirname)
 
+# Set up the arguments to pass
+pass_args = {
+    "eng_to_ipa": {},
+    "ipa_to_hcl": {
+        "annotation": args.annotation, 
+        "self_consonants": args.self_consonants,
+        },
+    "hcl_to_han": {},
+    }
+
 for i, eng_sent in enumerate(eng_sents):
     log.info("Converting {}/{}...".format(i+1, len(eng_sents)))
 
-    ipa_sent = api.convert(eng_sent, from_unit="eng", to_unit="ipa")
-    hcl_sent = api.convert(ipa_sent, from_unit="ipa", to_unit="hcl")
-    han_sent = api.convert(hcl_sent, from_unit="hcl", to_unit="han")
+    ipa_sent = api.convert(eng_sent, "eng", "ipa", pass_args["eng_to_ipa"])
+    hcl_sent = api.convert(ipa_sent, "ipa", "hcl", pass_args["ipa_to_hcl"])
+    han_sent = api.convert(hcl_sent, "hcl", "han", pass_args["hcl_to_han"])
 
     log.info("ipa: {}".format(ipa_sent))
     log.info("han: {}".format(han_sent))
     log.info("hcl: {}".format(hcl_sent))
     log.info("hfu: {}".format(han_sent))
 
-    if (args.draw):
+    if (not args.no_draw):
         if (not args.draw_output):
             api.draw(hcl_sent)
         else:

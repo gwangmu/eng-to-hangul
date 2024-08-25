@@ -7,14 +7,14 @@ import hclasses as hcl
 import tables
 import util
 
-def eng_to_ipa(sent_eng):
+def eng_to_ipa(sent_eng, options):
     return ipa.convert(sent_eng)
 
-def hcl_to_han(sent_hcl):
+def hcl_to_han(sent_hcl, options):
     return ''.join(x.get_str_wo_anno() for x in sent_hcl)
 
 # TODO: polish this
-def ipa_to_hcl(sent_ipa):
+def ipa_to_hcl(sent_ipa, options):
     # Tranliterate to loose Hangul
     log.debug("# Tranliterate to loose Hangul")
 
