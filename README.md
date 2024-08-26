@@ -1,6 +1,6 @@
 # English to Hangul
 
-English sentence to naturally-sounding (modified) Hangul notation.
+English sentence to naturally-sounding (enhanced) Hangul notation.
 
 ## Requirement
 
@@ -8,6 +8,10 @@ English sentence to naturally-sounding (modified) Hangul notation.
  - Python 3.x
  - `eng-to-ipa` Python package
  - `matplotlib` Python package
+
+## What is "Enhanced" Hangul?
+
+(TBD. See https://gwangmu.medium.com/extending-hangul-for-english-70e8be3fc6ef in the meantime)
 
 ## TODO
 
