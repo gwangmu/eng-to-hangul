@@ -10,8 +10,20 @@ import util
 def ipa_to_loose_han(sent_ipa, options):
     log.debug("## Tranliterate to loose Hangul")
     sent_han = ""
+    first_iter = True
 
     while (sent_ipa):
+        if (first_iter or sent_ipa[0:1] == " "):
+            cur_idx = 0
+            str_buf=""
+            while (sent_ipa[cur_idx:cur_idx+1] != '' and sent_ipa[cur_idx:cur_idx+1] != ' '):
+                if (sent_ipa[cur_idx:cur_idx+1] == '*'):
+                    sent_han = sent_han + str_buf
+                    sent_ipa = sent_ipa[cur_idx+1:]
+                    break
+                str_buf = str_buf + sent_ipa[cur_idx:cur_idx+1]
+                cur_idx = cur_idx + 1
+
         # Ignore stresses for now.
         if (sent_ipa[0:1] == "ˈ" or sent_ipa[0:1] == "ˌ"):
             sent_ipa = sent_ipa[1:]
