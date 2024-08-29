@@ -62,7 +62,7 @@ def draw(sent_hcl, output=None):
             if (letter.initial.has_anno()):
                 vert_pos_rel=[]
                 if (letter.initial.value in ['ㅂ', 'ㅍ']):
-                    vert_pos_rel = [[0.42, 0.15], [0.58, 0.15]]
+                    vert_pos_rel = [[0.40, 0.15], [0.60, 0.15]]
                 elif (letter.initial.value in ['ㄹ', 'ㄷ', 'ㄸ']):
                     vert_pos_rel = [[0.05, 0.23], [0.05, 0.33]]
                 elif (letter.initial.value in ['ㅈ']):
@@ -88,15 +88,104 @@ def draw(sent_hcl, output=None):
                     apply_rel_scale(1.00, 0.75)
 
                 if (not letter.vowel.is_none()):
-                    if (letter.vowel.value in tables.wide_han_vowel):
+                    if (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅏ', 'ㅐ', 'ㅑ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ']):
+                        apply_rel_off(0.00, 0.00)
+                        apply_rel_scale(0.78, 1.00)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅗ', 'ㅛ']):
+                        apply_rel_off(0.10, 0.26)
+                        apply_rel_scale(0.90, 0.74)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅜ', 'ㅠ']):
+                        apply_rel_off(0.05, 0.35)
+                        apply_rel_scale(0.95, 0.65)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅘ', 'ㅚ']):
+                        apply_rel_off(0.00, 0.30)
+                        apply_rel_scale(0.80, 0.70)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅙ']):
+                        apply_rel_off(0.00, 0.28)
+                        apply_rel_scale(0.72, 0.72)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅝ', 'ㅟ']):
+                        apply_rel_off(0.00, 0.32)
+                        apply_rel_scale(0.78, 0.68)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅞ']):
+                        apply_rel_off(0.00, 0.28)
+                        apply_rel_scale(0.68, 0.72)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅡ']):
+                        apply_rel_off(0.10, 0.15)
+                        apply_rel_scale(0.90, 0.85)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅢ']):
                         apply_rel_off(0.00, 0.25)
-                        apply_rel_scale(0.75, 0.75)
-                    elif (letter.vowel.value in tables.vertical_han_vowel):
+                        apply_rel_scale(0.85, 0.75)
+                    elif (letter.initial.value in ['ㅍ'] and \
+                            letter.vowel.value in ['ㅣ']):
+                        apply_rel_off(0.00, 0.00)
+                        apply_rel_scale(0.85, 1.00)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅏ']):
+                        apply_rel_off(0.00, 0.00)
+                        apply_rel_scale(0.72, 1.00)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅐ']):
                         apply_rel_off(0.00, 0.00)
                         apply_rel_scale(0.65, 1.00)
-                    elif (letter.vowel.value in tables.horizontal_han_vowel):
-                        apply_rel_off(0.00, 0.22)
-                        apply_rel_scale(1.00, 0.78)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅓ']):
+                        apply_rel_off(0.00, 0.00)
+                        apply_rel_scale(0.78, 1.00)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅕ']):
+                        apply_rel_off(0.00, 0.00)
+                        apply_rel_scale(0.74, 1.00)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅗ', 'ㅛ']):
+                        apply_rel_off(0.10, 0.26)
+                        apply_rel_scale(0.90, 0.74)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅜ', 'ㅠ']):
+                        apply_rel_off(0.05, 0.35)
+                        apply_rel_scale(0.95, 0.65)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅝ', 'ㅟ']):
+                        apply_rel_off(0.00, 0.32)
+                        apply_rel_scale(0.78, 0.68)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅞ']):
+                        apply_rel_off(0.00, 0.32)
+                        apply_rel_scale(0.68, 0.68)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅙ']):
+                        apply_rel_off(0.00, 0.28)
+                        apply_rel_scale(0.72, 0.72)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅡ']):
+                        apply_rel_off(0.10, 0.15)
+                        apply_rel_scale(0.90, 0.85)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅢ']):
+                        apply_rel_off(0.00, 0.25)
+                        apply_rel_scale(0.85, 0.75)
+                    elif (letter.initial.value in ['ㅂ'] and \
+                            letter.vowel.value in ['ㅣ']):
+                        apply_rel_off(0.00, 0.00)
+                        apply_rel_scale(0.75, 1.00)
+                    else:
+                        if (letter.vowel.value in tables.wide_han_vowel):
+                            apply_rel_off(0.00, 0.25)
+                            apply_rel_scale(0.75, 0.75)
+                        elif (letter.vowel.value in tables.vertical_han_vowel):
+                            apply_rel_off(0.00, 0.00)
+                            apply_rel_scale(0.65, 1.00)
+                        elif (letter.vowel.value in tables.horizontal_han_vowel):
+                            apply_rel_off(0.00, 0.22)
+                            apply_rel_scale(1.00, 0.78)
 
                 if (not letter.final.is_none() and letter.final.value == 'ㄴ'):
                     trans_off = (trans_off[0], trans_off[1]-0.10)
