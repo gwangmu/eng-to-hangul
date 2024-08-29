@@ -50,6 +50,7 @@ if (not args.no_draw and args.draw_output):
         else:
             os.mkdir(_dirname)
 
+"""
 print("test start")
 
 import hclasses as hcl
@@ -68,6 +69,7 @@ for con_group in test_con:
     api.draw(test_hcl_sent)
 
 print("test end")
+"""
 
 # Set up the arguments to pass
 pass_args = {
