@@ -66,7 +66,7 @@ def draw(sent_hcl, output=None):
                 elif (letter.initial.value in ['ㄹ', 'ㄷ', 'ㄸ']):
                     vert_pos_rel = [[0.05, 0.23], [0.05, 0.33]]
                 elif (letter.initial.value in ['ㅈ']):
-                    vert_pos_rel = [[0.46, 0.30], [0.56, 0.30]]
+                    vert_pos_rel = [[0.48, 0.30], [0.54, 0.30]]
 
                 trans_off = (0.00, 0.00)
                 trans_scale = (1.00, 1.00)
@@ -80,8 +80,12 @@ def draw(sent_hcl, output=None):
                     trans_scale = (trans_scale[0]*rel_w, trans_scale[1]*rel_h)
 
                 if (letter.is_self_consonant()):
-                    apply_rel_off(0.10, 0.15)
-                    apply_rel_scale(0.90, 0.85)
+                    if (letter.initial.value in ['ㅂ', 'ㅍ']): 
+                        apply_rel_off(0.10, 0.15)
+                        apply_rel_scale(0.90, 0.85)
+                    elif (letter.initial.value in ['ㅈ']): 
+                        apply_rel_off(0.00, 0.20)
+                        apply_rel_scale(1.00, 0.80)
 
                 if (not letter.final.is_none()):
                     apply_rel_off(0.00, 0.30)
