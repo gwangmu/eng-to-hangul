@@ -19,15 +19,14 @@ def draw(sent_hcl, output=None):
     plt.rcParams['font.family'] = 'UnDotum'
     plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
     plt.rcParams['axes.unicode_minus'] = False
+    plt.rcParams['toolbar'] = 'None'
 
-    px = 1/plt.rcParams['figure.dpi']
-    fig_width = (VERTICAL_PAD*2+len(sent_hcl)*FONTBOX_SIZE)*px
-    fig_height = (HORIZONTAL_PAD*2+FONTBOX_SIZE)*px
-    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
+    fig, ax = plt.subplots(frameon=False)
     ax.set_axis_off()
 
-    cur_x = VERTICAL_PAD
-    cur_y = HORIZONTAL_PAD
+    cur_x = HORIZONTAL_PAD
+    cur_y = VERTICAL_PAD
+    max_x = HORIZONTAL_PAD
     for i, letter in enumerate(sent_hcl):
         han = letter.get_str_wo_anno()
         next_x = cur_x + FONTBOX_SIZE
@@ -40,12 +39,20 @@ def draw(sent_hcl, output=None):
         overall_scale_factor = 1
 
         if (type(letter) is hcl.NonHangulLetter):
-            next_x = cur_x + FONTBOX_SIZE * 0.5
+            if (letter.value == '\n'):
+                # FIXME: we're going upward now.
+                cur_x = HORIZONTAL_PAD
+                cur_y = cur_y + FONTBOX_SIZE
+                continue
+            else:
+                next_x = cur_x + FONTBOX_SIZE * 0.5
         elif (type(letter) is hcl.HangulLetter):
             if (letter.is_self_consonant()):
                 overall_trans_off = (0.00, -0.10)
                 overall_scale_factor = 0.8
                 next_x = cur_x + FONTBOX_SIZE * 0.8
+
+        max_x = max(next_x, max_x)
 
         plt.rcParams['font.size'] = str(FONTBOX_SIZE*overall_scale_factor*0.75)
         ax.text(cur_x+FONTBOX_SIZE*overall_trans_off[0], cur_y+FONTBOX_YOFF+FONTBOX_SIZE*overall_trans_off[1], han, transform=None)
@@ -55,7 +62,7 @@ def draw(sent_hcl, output=None):
             if (letter.initial.has_anno()):
                 vert_pos_rel=[]
                 if (letter.initial.value in ['ㅂ', 'ㅍ']):
-                    vert_pos_rel = [[0.45, 0.15], [0.55, 0.15]]
+                    vert_pos_rel = [[0.42, 0.15], [0.58, 0.15]]
                 elif (letter.initial.value in ['ㄹ', 'ㄷ', 'ㄸ']):
                     vert_pos_rel = [[0.05, 0.23], [0.05, 0.33]]
                 elif (letter.initial.value in ['ㅈ']):
@@ -86,14 +93,14 @@ def draw(sent_hcl, output=None):
                         apply_rel_scale(0.75, 0.75)
                     elif (letter.vowel.value in tables.vertical_han_vowel):
                         apply_rel_off(0.00, 0.00)
-                        apply_rel_scale(0.75, 1.00)
+                        apply_rel_scale(0.65, 1.00)
                     elif (letter.vowel.value in tables.horizontal_han_vowel):
                         apply_rel_off(0.00, 0.22)
                         apply_rel_scale(1.00, 0.78)
 
                 if (not letter.final.is_none() and letter.final.value == 'ㄴ'):
-                    trans_off = (trans_off[0], trans_off[1]-0.12)
-                    trans_scale = (trans_scale[0]+0.15, trans_scale[1]+0.1)
+                    trans_off = (trans_off[0], trans_off[1]-0.10)
+                    trans_scale = (trans_scale[0], trans_scale[1]+0.10)
 
                 vert_pos_rel = map(lambda v: (v[0]*trans_scale[0]+trans_off[0]+overall_trans_off[0], v[1]*trans_scale[1]+trans_off[1]+overall_trans_off[1]), vert_pos_rel)
                 vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
@@ -109,7 +116,9 @@ def draw(sent_hcl, output=None):
 
         cur_x = next_x
 
-    fig_width = (VERTICAL_PAD+cur_x)*px
+    px = 1/plt.rcParams['figure.dpi']
+    fig_width = (HORIZONTAL_PAD+max_x)*px
+    fig_height = (VERTICAL_PAD+FONTBOX_SIZE+cur_y)*px
     fig.set_size_inches(fig_width, fig_height)
 
     if (not output):

@@ -7,6 +7,7 @@ import os
 
 import drawing as dr
 import translit as tr
+import hclasses as hcl
 
 parser = argparse.ArgumentParser()
 parser.add_argument('eng_sent', type=str, help="Sentence in English")
@@ -16,6 +17,7 @@ parser.add_argument('--draw-output', '-o', type=str, default="", help="Draw outp
 parser.add_argument('--standard-hangul', '-s', action='store_true', help="Print in the standard Hangul")
 parser.add_argument('--no-annotation', '-A', action='store_true', help="With consonant annotations")
 parser.add_argument('--no-self-consonants', '-C', action='store_true', help="With self consonants")
+parser.add_argument('--retrieve-all', '-r', action='store_true', help="Retrieve every possible pronunciation")
 args = parser.parse_args()
 
 # Some convenience features
@@ -48,29 +50,55 @@ if (not args.no_draw and args.draw_output):
         else:
             os.mkdir(_dirname)
 
+"""
+print("test start")
+
+import hclasses as hcl
+import tables as tbl
+
+test_vowel = ['ㅏ', 'ㅓ', 'ㅔ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅢ']
+test_con = [['ㅂ', 'ㅍ'], ['ㅈ'], ['ㄹ', 'ㄷ', 'ㄸ']]
+
+for con_group in test_con:
+    test_hcl_sent = []
+    for con in con_group:
+        test_hcl_sent += [hcl.HangulLetter(initial=con, initial_anno=True)]
+        for vowel in tbl.han_vowel:
+            test_hcl_sent += [hcl.HangulLetter(initial=con, initial_anno=True, vowel=vowel)]
+        test_hcl_sent += [hcl.NonHangulLetter('\n')]
+    api.draw(test_hcl_sent)
+
+print("test end")
+"""
+
 # Set up the arguments to pass
 pass_args = {
-    "eng_to_ipa": {},
-    "ipa_to_hcl": {
-        "no_annotation": args.no_annotation, 
-        "no_self_consonants": args.no_self_consonants,
-        },
-    "hcl_to_han": {},
+    "retrieve_all": args.retrieve_all,
+    "no_annotation": args.no_annotation, 
+    "no_self_consonants": args.no_self_consonants,
     }
 
 # Convert one by one
 for i, eng_sent in enumerate(eng_sents):
     log.info("Converting {}/{}...".format(i+1, len(eng_sents)))
 
-    ipa_sent = api.convert(eng_sent, "eng", "ipa", pass_args["eng_to_ipa"])
-    hcl_sent = api.convert(ipa_sent, "ipa", "hcl", pass_args["ipa_to_hcl"])
-    han_sent = api.convert(hcl_sent, "hcl", "han", pass_args["hcl_to_han"])
+    ipa_sent = api.convert(eng_sent, "eng", "ipa", pass_args)
+    hcl_sent = api.convert(ipa_sent, "ipa", "hcl", pass_args)
+    han_sent = api.convert(hcl_sent, "hcl", "han", pass_args)
 
     log.info("- eng: {}".format(eng_sent))
     log.info("- ipa: {}".format(ipa_sent))
     log.debug("- hlo: {}".format(han_sent))
     log.debug("- hcl: {}".format(hcl_sent))
     log.info("- han: {}".format(han_sent))
+
+    if (isinstance(hcl_sent, list) and len(hcl_sent) != 0 and isinstance(hcl_sent[0], list)):
+        hcl_sent_flat = []
+        for i, h in enumerate(hcl_sent):
+            hcl_sent_flat = hcl_sent_flat + h
+            if (i < len(hcl_sent) - 1):
+                hcl_sent_flat = hcl_sent_flat + [hcl.NonHangulLetter('\n')]
+        hcl_sent = hcl_sent_flat
 
     if (not args.no_draw):
         if (not args.draw_output):

@@ -161,18 +161,53 @@ def loose_han_to_hcl(sent_han, options):
     return packer.get()
 
 def eng_to_ipa(sent_eng, options):
-    sent_ipa = " " + ipa.convert(sent_eng) + " "
-    adjs = {
-        "tɪ": "tu"
-        }
-    for adj_from, adj_to in adjs.items():
-        sent_ipa = sent_ipa.replace(adj_from, adj_to)
-    return sent_ipa[1:-2]
+    # Correct some peculiar punctuations.
+    list_eng = list(sent_eng)
+    for i, ch in enumerate(list_eng):
+        if (ch == '’'):
+            list_eng[i] = "'"
+    sent_eng = ''.join(list_eng)
+
+    if (options["retrieve_all"]):
+        sent_ipa = ipa.convert(sent_eng, retrieve_all=True)
+    else:
+        # Convert
+        sent_ipa = ipa.convert(sent_eng)
+
+        # Correct some words to Korean-friendly versions.
+        sent_ipa = " " + sent_ipa + " "
+        adjs = {
+            " tɪ ": " tu "
+            }
+        for adj_from, adj_to in adjs.items():
+            sent_ipa = sent_ipa.replace(adj_from, adj_to)
+        sent_ipa = sent_ipa[1:-2]
+
+    return sent_ipa
 
 def hcl_to_han(sent_hcl, options):
-    return ''.join(str(x) for x in sent_hcl)
+    if (not isinstance(sent_hcl, list)):
+        return ""
+    if (len(sent_hcl) != 0 and isinstance(sent_hcl[0], list)):
+        return [''.join(str(x) for x in h) for h in sent_hcl]
+    else:
+        return ''.join(str(x) for x in sent_hcl)
 
 def ipa_to_hcl(sent_ipa, options):
-    sent_han = ipa_to_loose_han(sent_ipa, options)
-    sent_hcl = loose_han_to_hcl(sent_han, options)
-    return sent_hcl
+    is_list_input = isinstance(sent_ipa, list)
+
+    if (is_list_input):
+        sent_ipa_list = sent_ipa
+    else:
+        sent_ipa_list = [sent_ipa]
+
+    sent_hcl_list = []
+    for sent_ipa in sent_ipa_list:
+        sent_han = ipa_to_loose_han(sent_ipa, options)
+        sent_hcl = loose_han_to_hcl(sent_han, options)
+        sent_hcl_list = sent_hcl_list + [sent_hcl]
+
+    if (is_list_input):
+        return sent_hcl_list
+    else:
+        return sent_hcl_list[0]
