@@ -80,12 +80,15 @@ def draw(sent_hcl, output=None):
                     trans_scale = (trans_scale[0]*rel_w, trans_scale[1]*rel_h)
 
                 if (letter.is_self_consonant()):
-                    apply_rel_off(0.00, 0.15)
-                    apply_rel_scale(1.00, 0.85)
+                    apply_rel_off(0.10, 0.15)
+                    apply_rel_scale(0.90, 0.85)
 
                 if (not letter.final.is_none()):
-                    apply_rel_off(0.00, 0.25)
-                    apply_rel_scale(1.00, 0.75)
+                    apply_rel_off(0.00, 0.30)
+                    apply_rel_scale(1.00, 0.70)
+                    if (letter.final.value == 'ㄴ'):
+                        trans_off = (trans_off[0], trans_off[1]-0.10)
+                        trans_scale = (trans_scale[0], trans_scale[1]+0.10)
 
                 if (not letter.vowel.is_none()):
                     if (letter.initial.value in ['ㅍ'] and \
@@ -186,10 +189,6 @@ def draw(sent_hcl, output=None):
                         elif (letter.vowel.value in tables.horizontal_han_vowel):
                             apply_rel_off(0.00, 0.22)
                             apply_rel_scale(1.00, 0.78)
-
-                if (not letter.final.is_none() and letter.final.value == 'ㄴ'):
-                    trans_off = (trans_off[0], trans_off[1]-0.10)
-                    trans_scale = (trans_scale[0], trans_scale[1]+0.10)
 
                 vert_pos_rel = map(lambda v: (v[0]*trans_scale[0]+trans_off[0]+overall_trans_off[0], v[1]*trans_scale[1]+trans_off[1]+overall_trans_off[1]), vert_pos_rel)
                 vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
