@@ -15,4 +15,4 @@ English sentence to naturally-sounding (enhanced) Hangul notation.
 
 ## TODO
 
- - Fine-tune the position of annotations.
+ - Fine-tune the position of consonant annotations.
