@@ -15,4 +15,4 @@ English sentence to naturally-sounding (enhanced) Hangul notation.
 
 ## TODO
 
- - Convert contractions correctly (e.g., I'll, can't, ...)
+ - Fine-tune the position of annotations.
