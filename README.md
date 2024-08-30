@@ -4,8 +4,8 @@ English sentence to naturally-sounding (enhanced) Hangul notation.
 
 ## Requirement
 
- - Linux
- - Python 3.x
+ - Linux (preferably, Ubuntu 22.04)
+ - Python 3
  - `eng-to-ipa` Python package
  - `matplotlib` Python package
 
