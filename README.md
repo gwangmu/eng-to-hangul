@@ -30,24 +30,12 @@ $ sudo apt install fonts-unfonts-core
 
 2. **Download this repository.** You may clone this repository or download it as an archive (zip).
 
-## How to Use
-
-### As a Standalone Program
-
-Type this command on the downloaded directory to convert English sentences. Use `-h` for available flags.
-```
-$ ./eng-to-han "<english-sentence-here>"
-```
-
 </details>
 
-### As a Python Package
+## How to Use
 
-Import the downloaded directory after placing it somewhere appropriate in your Python project.
-```
-import <name-of-this-repo-dir>
-```
-Two API methods are available: `convert` and `draw`. See `interface.py` for the signatures.
+ * As a Standalone Program: `$ ./eng-to-han "<english-sentence-here>"`
+ * As a Python package: `import <name-of-this-repo-dir>`
 
 ## What is "Augmented" Hangul?
 
