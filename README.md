@@ -4,10 +4,13 @@ English sentence to naturally-sounding (enhanced) Hangul notation.
 
 ## Requirement
 
- - Python 3
- - `eng-to-ipa` Python package
- - `matplotlib` Python package
- - `UnDotum` font (part of the CJK font set in Ubuntu 22.04)
+ - For `convert`
+     - Python 3
+     - `eng-to-ipa` Python package
+ - For `draw`
+     - `matplotlib` Python package
+     - `TkAgg` Pyplot backend
+     - `UnDotum` font
 
 ## What is "Enhanced" Hangul?
 
