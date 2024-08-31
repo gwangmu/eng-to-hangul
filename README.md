@@ -1,6 +1,6 @@
 # English to Hangul
 
-English sentence to naturally-sounding (enhanced) Hangul notation.
+English sentence to naturally-sounding (augmented) Hangul notation.
 
 ## Requirement
 
@@ -14,6 +14,9 @@ English sentence to naturally-sounding (enhanced) Hangul notation.
   
 ## Installation
 
+<details>
+  <summary>Click here for details.</summary>
+ 
 1. **Install dependencies.** Assuming Ubuntu 22.04,
 ```
 $ # For 'convert'
@@ -36,6 +39,8 @@ Type this command on the downloaded directory to convert English sentences. Use 
 $ ./eng-to-han "<english-sentence-here>"
 ```
 
+</details>
+
 ### As a Python Package
 
 Import the downloaded directory after placing it somewhere appropriate in your Python project.
@@ -44,7 +49,7 @@ import <name-of-this-repo-dir>
 ```
 Two API methods are available: `convert` and `draw`. See `interface.py` for the signatures.
 
-## What is "Enhanced" Hangul?
+## What is "Augmented" Hangul?
 
 (TBD. See https://gwangmu.medium.com/extending-hangul-for-english-70e8be3fc6ef in the meantime)
 
