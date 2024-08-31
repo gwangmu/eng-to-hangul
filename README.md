@@ -33,7 +33,7 @@ $ sudo apt install fonts-unfonts-core
 
 Type this command on the downloaded directory to convert English sentences. Use `-h` for available flags.
 ```
-$ python . "<english-sentence-here>"
+$ ./eng-to-han "<english-sentence-here>"
 ```
 
 ### As a Python Package
