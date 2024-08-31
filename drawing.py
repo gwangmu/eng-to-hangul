@@ -166,7 +166,7 @@ def draw(sent_hcl, output=None):
     HORIZONTAL_PAD = 40 * MAGN_FACTOR
     FONTBOX_SIZE = 28 * MAGN_FACTOR
     FONTBOX_YOFF = 4 * MAGN_FACTOR
-    ANNO_THICK = 1.5 * MAGN_FACTOR
+    ANNO_THICK = 1.7 * MAGN_FACTOR
 
     plt.rcParams['font.family'] = 'UnDotum'
     plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
@@ -185,10 +185,6 @@ def draw(sent_hcl, output=None):
         han = letter.get_str_wo_anno()
         next_x = cur_x + FONTBOX_SIZE
 
-        # Draw guide box
-        #p = plt.Rectangle((cur_x, cur_y), FONTBOX_SIZE, FONTBOX_SIZE, fill=False, transform=None, clip_on=False)
-        #ax.add_patch(p)
-
         overall_trans_off = (0.00, 0.00)
         overall_scale_factor = 1
 
@@ -197,6 +193,8 @@ def draw(sent_hcl, output=None):
                 cur_x = HORIZONTAL_PAD
                 cur_y = cur_y - FONTBOX_SIZE
                 continue
+            elif (letter.value in ['.', ',', "'", '"']):
+                next_x = cur_x + FONTBOX_SIZE * 0.3
             else:
                 next_x = cur_x + FONTBOX_SIZE * 0.5
         elif (type(letter) is hcl.HangulLetter):
@@ -206,6 +204,10 @@ def draw(sent_hcl, output=None):
                 next_x = cur_x + FONTBOX_SIZE * 0.8
 
         max_x = max(next_x, max_x)
+
+        # Draw guide box
+        #p = plt.Rectangle((cur_x, cur_y), next_x - cur_x, FONTBOX_SIZE, fill=False, transform=None, clip_on=False)
+        #ax.add_patch(p)
 
         plt.rcParams['font.size'] = str(FONTBOX_SIZE*overall_scale_factor*0.75)
         ax.text(cur_x+FONTBOX_SIZE*overall_trans_off[0], cur_y+FONTBOX_YOFF+FONTBOX_SIZE*overall_trans_off[1], han, transform=None)

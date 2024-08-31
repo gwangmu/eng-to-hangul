@@ -34,6 +34,12 @@ class NonHangulLetter(Letter):
     def __str__(self):
         return self.value
 
+    def is_empty(self):
+        return (not self.value)
+
+    def unset(self):
+        self.value = None
+
     def get_str_wo_anno(self):
         return self.value
 
@@ -92,6 +98,7 @@ class HangulLetter(Letter):
         self.final = HangulConsonant(None)
 
     def fuse(self):
+        assert(self.is_self_consonant() or self.is_defined())
         no_initial = tables.han_initial.index(self.initial.value)
         no_vowel = tables.han_vowel.index(self.vowel.value)
         no_final = tables.han_final.index(self.final.value)

@@ -90,7 +90,6 @@ for i, eng_sent in enumerate(eng_sents):
 
     log.info("- eng: {}".format(eng_sent))
     log.info("- ipa: {}".format(ipa_sent))
-    log.debug("- hlo: {}".format(han_sent))
     log.debug("- hcl: {}".format(hcl_sent))
     log.info("- han: {}".format(han_sent))
 

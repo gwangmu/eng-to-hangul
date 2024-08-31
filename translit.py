@@ -25,7 +25,13 @@ def ipa_to_loose_han(sent_ipa, options):
                 cur_idx = cur_idx + 1
 
         # Ignore stresses for now.
-        if (sent_ipa[0:1] == "ˈ" or sent_ipa[0:1] == "ˌ"):
+        if (sent_ipa[0:1] == "ˈ"):
+            sent_ipa = sent_ipa[1:]
+            continue
+
+        # Include the secondary stress as a divider. 
+        if (sent_ipa[0:1] == "ˌ"):
+            sent_han = sent_han + sent_ipa[0:1]
             sent_ipa = sent_ipa[1:]
             continue
 
@@ -105,7 +111,7 @@ class HanPacker():
                         assert(false)
                 elif (self.top().vowel.is_none()):
                     if (util.is_hangul_initial(self.cur_han)):
-                        if (util.is_hangul_initfin(self.cur_han)):
+                        if (not self.top().initial.has_anno() and util.is_hangul_initfin(self.cur_han) and not self.has_anno):
                             log.debug('jamo.vowel.initial.initfin')
                             self.top().set_vowel('ㅡ')
                             self.top().set_final(self.cur_han, anno=self.has_anno)
@@ -142,31 +148,59 @@ class HanPacker():
 
         # Make it more natural
         for i, cur_hcl in enumerate(self.sent_hcl):
-            # Steal final consonants to initals if it starts with 'ㅇ'.
+            next_hcl = None
             if (i+1 < len(self.sent_hcl)):
                 next_hcl = self.sent_hcl[i+1]
-                if (type(cur_hcl) is hcl.HangulLetter and type(next_hcl) is hcl.HangulLetter and \
-                        not cur_hcl.final.is_none() and next_hcl.initial.value == 'ㅇ'):
-                    next_hcl.set_initial(cur_hcl.final.value)
-                    cur_hcl.unset_final()
 
-            # Replace self-`ㄹ to '얼'.
-            if (isinstance(cur_hcl, hcl.HangulLetter) and
-                    cur_hcl.is_self_consonant() and cur_hcl.initial.value == 'ㄹ' and \
-                        cur_hcl.initial.has_anno()):
-                self.sent_hcl[i] = hcl.HangulLetter(whole='얼')
+            next_next_hcl = None
+            if (i+2 < len(self.sent_hcl)):
+                next_next_hcl = self.sent_hcl[i+2]
+
+            if (isinstance(cur_hcl, hcl.NonHangulLetter)):
+                if (cur_hcl.value == 'ˌ'):
+                    cur_hcl.unset()
+
+            if (isinstance(cur_hcl, hcl.HangulLetter) and isinstance(next_hcl, hcl.HangulLetter) and isinstance(next_next_hcl, hcl.HangulLetter)):
+                # Pack first in consonant cluster (if explosive) to an empty final consonant.
+                if (cur_hcl.is_defined() and not cur_hcl.is_full() and next_hcl.is_self_consonant() and next_next_hcl.is_self_consonant() and \
+                        next_hcl.initial.value in tables.han_explosive_consonants and not next_hcl.initial.has_anno()):
+                    cur_hcl.set_final(next_hcl.initial.value)
+                    next_hcl.unset_initial()
+
+            if (isinstance(cur_hcl, hcl.HangulLetter) and isinstance(next_hcl, hcl.HangulLetter)):
+                # Steal the final consonant if there is no next initial consonant. 
+                if (not cur_hcl.final.is_none() and next_hcl.initial.value == 'ㅇ'):
+                    next_hcl.set_initial(cur_hcl.final.value)
+                    if (cur_hcl.final.value != 'ㄹ'):
+                        cur_hcl.unset_final()
+
+                # Replicate 'ㄹ' if it's an initial consonant and there is no previous final consonant. 
+                if (next_hcl.initial.value == 'ㄹ' and not next_hcl.initial.has_anno() and cur_hcl.is_defined() and not cur_hcl.is_full()):
+                    cur_hcl.set_final('ㄹ')
+
+            if (isinstance(cur_hcl, hcl.HangulLetter)):
+                # Replace self-`ㄹ to '얼'.
+                if (cur_hcl.is_self_consonant() and cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno()):
+                    self.sent_hcl[i] = hcl.HangulLetter(whole='얼')
                 
-            # Replace '`라' to '롸'.
-            if (isinstance(cur_hcl, hcl.HangulLetter) and
-                    cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and \
-                    cur_hcl.vowel.value == 'ㅏ' and cur_hcl.final.is_none()):
-                self.sent_hcl[i] = hcl.HangulLetter(whole='롸')
+                # Replace '`라' to '롸'.
+                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅏ' and cur_hcl.final.is_none()):
+                    self.sent_hcl[i] = hcl.HangulLetter(whole='롸')
                 
-            # Replace '`러' to '뤄'.
-            if (isinstance(cur_hcl, hcl.HangulLetter) and
-                    cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and \
-                    cur_hcl.vowel.value == 'ㅓ' and cur_hcl.final.is_none()):
-                self.sent_hcl[i] = hcl.HangulLetter(whole='뤄')
+                # Replace '`러' to '뤄'.
+                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅓ' and cur_hcl.final.is_none()):
+                    self.sent_hcl[i] = hcl.HangulLetter(whole='뤄')
+                
+                # Replace '`리' to '뤼'.
+                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅣ' and cur_hcl.final.is_none()):
+                    self.sent_hcl[i] = hcl.HangulLetter(whole='뤼')
+                
+                # Replace '`레' to '뤠'.
+                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅔ' and cur_hcl.final.is_none()):
+                    self.sent_hcl[i] = hcl.HangulLetter(whole='뤠')
+
+        # Remove any by-product empty hcls.
+        self.sent_hcl = [c for c in self.sent_hcl if not c.is_empty()]
 
         if (self.options["no_self_consonants"]):
             for cur_hcl in self.sent_hcl:
@@ -188,10 +222,10 @@ def eng_to_ipa(sent_eng, options):
     sent_eng = ''.join(list_eng)
 
     if (options["retrieve_all"]):
-        sent_ipa = ipa.convert(sent_eng, retrieve_all=True)
+        sent_ipa = ipa.convert(sent_eng, keep_punct=True, retrieve_all=True)
     else:
         # Convert
-        sent_ipa = ipa.convert(sent_eng)
+        sent_ipa = ipa.convert(sent_eng, keep_punct=True)
 
         # Correct some words to Korean-friendly versions.
         sent_ipa = " " + sent_ipa + " "
@@ -200,7 +234,7 @@ def eng_to_ipa(sent_eng, options):
             }
         for adj_from, adj_to in adjs.items():
             sent_ipa = sent_ipa.replace(adj_from, adj_to)
-        sent_ipa = sent_ipa[1:-2]
+        sent_ipa = sent_ipa[1:-1]
 
     return sent_ipa
 
