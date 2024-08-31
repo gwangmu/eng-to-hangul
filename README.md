@@ -44,3 +44,5 @@ $ sudo apt install fonts-unfonts-core
 ## TODO
 
  - Fine-tune the position of consonant annotations.
+ - Improve the handling of pronunciation variations.
+ - Support the preferred ways of some pronunciations.
