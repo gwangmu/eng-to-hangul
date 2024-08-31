@@ -13,6 +13,7 @@ import util
 
 tune_cons_w_vowel = {
     'ㅍ': {
+        None: ((0.05, 0.15), (0.95, 0.85)),
         'ㅏ': ((0.00, 0.00), (0.78, 1.00)),
         'ㅐ': ((0.00, 0.00), (0.78, 1.00)),
         'ㅑ': ((0.00, 0.00), (0.78, 1.00)),
@@ -36,6 +37,7 @@ tune_cons_w_vowel = {
         'ㅣ': ((0.00, 0.00), (0.85, 1.00)),
     },
     'ㅂ': {
+        None: ((0.05, 0.15), (0.95, 0.85)),
         'ㅏ': ((0.00, 0.00), (0.70, 1.00)),
         'ㅐ': ((0.00, 0.00), (0.60, 1.00)),
         'ㅑ': ((0.00, 0.00), (0.65, 1.00)),
@@ -59,6 +61,7 @@ tune_cons_w_vowel = {
         'ㅣ': ((0.00, 0.00), (0.65, 1.00)),
     },
     'ㅈ': {
+        None: ((0.05, 0.20), (0.95, 0.80)),
         'ㅏ': ((0.00, 0.00), (0.72, 1.00)),
         'ㅐ': ((0.00, 0.00), (0.56, 1.00)),
         'ㅑ': ((0.00, 0.00), (0.72, 1.00)),
@@ -82,31 +85,33 @@ tune_cons_w_vowel = {
         'ㅣ': ((0.00, 0.00), (0.72, 1.00)),
     },
     'ㄹ': {
+        None: ((0.00, 0.17), (1.00, 0.83)),
         'ㅏ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅐ': ((0.00, 0.00), (0.65, 1.00)),
+        'ㅐ': ((-.04, 0.00), (0.65, 1.00)),
         'ㅑ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅒ': ((0.00, 0.00), (0.65, 1.00)),
+        'ㅒ': ((-.04, 0.00), (0.65, 1.00)),
         'ㅓ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅔ': ((0.00, 0.00), (0.65, 1.00)),
+        'ㅔ': ((-.04, 0.00), (0.65, 1.00)),
         'ㅕ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅖ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅗ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅘ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅙ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅚ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅛ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅜ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅝ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅞ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅟ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅠ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅡ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅢ': ((0.00, 0.22), (1.00, 0.78)),
+        'ㅖ': ((-.04, 0.00), (0.65, 1.00)),
+        'ㅗ': ((0.08, 0.22), (0.92, 0.78)),
+        'ㅘ': ((0.01, 0.29), (0.76, 0.71)),
+        'ㅙ': ((0.00, 0.29), (0.75, 0.71)),
+        'ㅚ': ((0.04, 0.27), (0.71, 0.73)),
+        'ㅛ': ((0.08, 0.24), (0.92, 0.76)),
+        'ㅜ': ((0.08, 0.40), (0.92, 0.60)),
+        'ㅝ': ((0.04, 0.42), (0.69, 0.58)),
+        'ㅞ': ((0.00, 0.42), (0.75, 0.58)),
+        'ㅟ': ((0.04, 0.41), (0.71, 0.59)),
+        'ㅠ': ((0.06, 0.42), (0.94, 0.59)),
+        'ㅡ': ((0.06, 0.22), (0.94, 0.78)),
+        'ㅢ': ((0.03, 0.28), (0.97, 0.72)),
         'ㅣ': ((0.00, 0.00), (0.65, 1.00)),
     },
     'ㄷ': {
-        'ㅏ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅐ': ((0.00, 0.00), (0.65, 1.00)),
+        None: ((0.00, 0.10), (1.00, 0.90)),
+        'ㅏ': ((0.00, 0.13), (0.65, 0.87)),
+        'ㅐ': ((-.05, 0.08), (0.65, 0.92)),
         'ㅑ': ((0.00, 0.00), (0.65, 1.00)),
         'ㅒ': ((0.00, 0.00), (0.65, 1.00)),
         'ㅓ': ((0.00, 0.00), (0.65, 1.00)),
@@ -128,8 +133,9 @@ tune_cons_w_vowel = {
         'ㅣ': ((0.00, 0.00), (0.65, 1.00)),
     },
     'ㄸ': {
-        'ㅏ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅐ': ((0.00, 0.00), (0.65, 1.00)),
+        None: ((0.00, 0.10), (1.00, 0.90)),
+        'ㅏ': ((-.03, 0.02), (0.65, 0.98)),
+        'ㅐ': ((-.05, 0.02), (0.65, 0.98)),
         'ㅑ': ((0.00, 0.00), (0.65, 1.00)),
         'ㅒ': ((0.00, 0.00), (0.65, 1.00)),
         'ㅓ': ((0.00, 0.00), (0.65, 1.00)),
@@ -170,8 +176,10 @@ def draw(sent_hcl, output=None):
     fig, ax = plt.subplots(frameon=False)
     ax.set_axis_off()
 
+    num_nls = sum(1 for c in sent_hcl if isinstance(c, hcl.NonHangulLetter) and c.value == '\n')
+
     cur_x = HORIZONTAL_PAD
-    cur_y = VERTICAL_PAD
+    cur_y = VERTICAL_PAD + num_nls * FONTBOX_SIZE
     max_x = HORIZONTAL_PAD
     for i, letter in enumerate(sent_hcl):
         han = letter.get_str_wo_anno()
@@ -186,9 +194,8 @@ def draw(sent_hcl, output=None):
 
         if (type(letter) is hcl.NonHangulLetter):
             if (letter.value == '\n'):
-                # FIXME: we're going upward now.
                 cur_x = HORIZONTAL_PAD
-                cur_y = cur_y + FONTBOX_SIZE
+                cur_y = cur_y - FONTBOX_SIZE
                 continue
             else:
                 next_x = cur_x + FONTBOX_SIZE * 0.5
@@ -225,13 +232,11 @@ def draw(sent_hcl, output=None):
                     nonlocal trans_scale
                     trans_scale = (trans_scale[0]*rel_w, trans_scale[1]*rel_h)
 
-                if (letter.is_self_consonant()):
-                    if (letter.initial.value in ['ㅂ', 'ㅍ']): 
-                        apply_rel_off(0.05, 0.15)
-                        apply_rel_scale(0.95, 0.85)
-                    elif (letter.initial.value in ['ㅈ']): 
-                        apply_rel_off(0.05, 0.20)
-                        apply_rel_scale(0.95, 0.80)
+                if (not letter.initial.is_none()):
+                    tune_off, tune_scale = tune_cons_w_vowel[letter.initial.value][letter.vowel.value]
+                    assert(tune_off and tune_scale)
+                    apply_rel_off(tune_off[0], tune_off[1])
+                    apply_rel_scale(tune_scale[0], tune_scale[1])
 
                 if (not letter.final.is_none()):
                     apply_rel_off(0.00, 0.30)
@@ -239,12 +244,6 @@ def draw(sent_hcl, output=None):
                     if (letter.final.value == 'ㄴ'):
                         trans_off = (trans_off[0], trans_off[1]-0.10)
                         trans_scale = (trans_scale[0], trans_scale[1]+0.10)
-
-                if (not letter.vowel.is_none()):
-                    tune_off, tune_scale = tune_cons_w_vowel[letter.initial.value][letter.vowel.value]
-                    assert(tune_off and tune_scale)
-                    apply_rel_off(tune_off[0], tune_off[1])
-                    apply_rel_scale(tune_scale[0], tune_scale[1])
 
                 vert_pos_rel = map(lambda v: (v[0]*trans_scale[0]+trans_off[0]+overall_trans_off[0], v[1]*trans_scale[1]+trans_off[1]+overall_trans_off[1]), vert_pos_rel)
                 vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
@@ -254,15 +253,14 @@ def draw(sent_hcl, output=None):
                 line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=ANNO_THICK, color='black', transform=None, clip_on=False)
                 ax.add_line(line)
 
-            # TODO
-            if (letter.final.has_anno()):
-                pass
+            # TODO: handle final consonants with annotations (if any).
+            assert(not letter.final.has_anno())
 
         cur_x = next_x
 
-    px = 1/plt.rcParams['figure.dpi']
-    fig_width = (HORIZONTAL_PAD+max_x)*px
-    fig_height = (VERTICAL_PAD+FONTBOX_SIZE+cur_y)*px
+    px = 1 / plt.rcParams['figure.dpi']
+    fig_width = (HORIZONTAL_PAD + max_x)*px
+    fig_height = (VERTICAL_PAD * 2 + FONTBOX_SIZE * (num_nls + 1))*px
     fig.set_size_inches(fig_width, fig_height)
     #fig.canvas.manager.window.overrideredirect(1)
 
