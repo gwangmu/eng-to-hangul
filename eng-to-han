@@ -56,7 +56,7 @@ import hclasses as hcl
 import tables as tbl
 
 test_vowel = ['ㅏ', 'ㅓ', 'ㅔ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅢ']
-test_con = [['ㅈ'], ['ㄹ', 'ㄷ', 'ㄸ'], ['ㅂ', 'ㅍ']]
+test_con = [['ㅂ', 'ㅍ'], ['ㅈ'], ['ㄹ', 'ㄷ', 'ㄸ'], ]
 
 for con_group in test_con:
     test_hcl_sent = []
