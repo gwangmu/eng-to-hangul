@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+import matplotlib
+matplotlib.use("TkAgg", force=True)
+
 import logging as log
 import matplotlib.lines as lines
 import matplotlib.pyplot as plt
@@ -56,27 +59,27 @@ tune_cons_w_vowel = {
         'ㅣ': ((0.00, 0.00), (0.75, 1.00)),
     },
     'ㅈ': {
-        'ㅏ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅐ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅑ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅒ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅓ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅔ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅕ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅖ': ((0.00, 0.00), (0.65, 1.00)),
-        'ㅗ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅘ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅙ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅚ': ((0.00, 0.25), (0.75, 0.75)),
+        'ㅏ': ((0.00, 0.00), (0.75, 1.00)),
+        'ㅐ': ((0.00, 0.00), (0.60, 1.00)),
+        'ㅑ': ((0.00, 0.00), (0.75, 1.00)),
+        'ㅒ': ((0.00, 0.00), (0.60, 1.00)),
+        'ㅓ': ((0.00, 0.00), (0.75, 1.00)),
+        'ㅔ': ((0.00, 0.00), (0.60, 1.00)),
+        'ㅕ': ((0.00, 0.00), (0.75, 1.00)),
+        'ㅖ': ((0.00, 0.00), (0.60, 1.00)),
+        'ㅗ': ((0.05, 0.27), (0.95, 0.73)),
+        'ㅘ': ((0.00, 0.27), (0.80, 0.73)),
+        'ㅙ': ((0.00, 0.27), (0.65, 0.73)),
+        'ㅚ': ((0.00, 0.27), (0.85, 0.73)),
         'ㅛ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅜ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅝ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅞ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅟ': ((0.00, 0.25), (0.75, 0.75)),
-        'ㅠ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅡ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅢ': ((0.00, 0.22), (1.00, 0.78)),
-        'ㅣ': ((0.00, 0.00), (0.65, 1.00)),
+        'ㅜ': ((0.05, 0.40), (0.95, 0.60)),
+        'ㅝ': ((0.00, 0.30), (0.80, 0.70)),
+        'ㅞ': ((0.00, 0.30), (0.65, 0.70)),
+        'ㅟ': ((0.00, 0.27), (0.81, 0.73)),
+        'ㅠ': ((0.03, 0.35), (0.97, 0.65)),
+        'ㅡ': ((0.03, 0.24), (0.97, 0.76)),
+        'ㅢ': ((0.00, 0.22), (0.85, 0.78)),
+        'ㅣ': ((0.00, 0.00), (0.76, 1.00)),
     },
     'ㄹ': {
         'ㅏ': ((0.00, 0.00), (0.65, 1.00)),
@@ -152,10 +155,12 @@ tune_cons_w_vowel = {
 def draw(sent_hcl, output=None):
     log.debug("## Draw")
 
-    VERTICAL_PAD = 30
-    HORIZONTAL_PAD = 40
-    FONTBOX_SIZE = 28
-    FONTBOX_YOFF = 4
+    MAGN_FACTOR = 1.5
+    VERTICAL_PAD = 30 * MAGN_FACTOR
+    HORIZONTAL_PAD = 40 * MAGN_FACTOR
+    FONTBOX_SIZE = 28 * MAGN_FACTOR
+    FONTBOX_YOFF = 4 * MAGN_FACTOR
+    ANNO_THICK = 1.5 * MAGN_FACTOR
 
     plt.rcParams['font.family'] = 'UnDotum'
     plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
@@ -246,7 +251,7 @@ def draw(sent_hcl, output=None):
 
                 vert_pos_rel = list(map(list, zip(*vert_pos_rel)))
                 log.debug(vert_pos_rel)
-                line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=1.5, color='black', transform=None, clip_on=False)
+                line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=ANNO_THICK, color='black', transform=None, clip_on=False)
                 ax.add_line(line)
 
             # TODO
@@ -259,6 +264,7 @@ def draw(sent_hcl, output=None):
     fig_width = (HORIZONTAL_PAD+max_x)*px
     fig_height = (VERTICAL_PAD+FONTBOX_SIZE+cur_y)*px
     fig.set_size_inches(fig_width, fig_height)
+    #fig.canvas.manager.window.overrideredirect(1)
 
     if (not output):
         plt.show()

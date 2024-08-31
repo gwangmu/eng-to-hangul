@@ -60,11 +60,12 @@ test_con = [['ㅈ'], ['ㄹ', 'ㄷ', 'ㄸ'], ['ㅂ', 'ㅍ']]
 
 for con_group in test_con:
     test_hcl_sent = []
-    for con in con_group:
+    for i, con in enumerate(con_group):
         test_hcl_sent += [hcl.HangulLetter(initial=con, initial_anno=True)]
         for vowel in tbl.han_vowel:
             test_hcl_sent += [hcl.HangulLetter(initial=con, initial_anno=True, vowel=vowel)]
-        test_hcl_sent += [hcl.NonHangulLetter('\n')]
+        if (i < len(con_group)-1):
+            test_hcl_sent += [hcl.NonHangulLetter('\n')]
     api.draw(test_hcl_sent)
 
 print("test end")
