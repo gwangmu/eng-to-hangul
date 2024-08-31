@@ -142,12 +142,31 @@ class HanPacker():
 
         # Make it more natural
         for i, cur_hcl in enumerate(self.sent_hcl):
+            # Steal final consonants to initals if it starts with 'ㅇ'.
             if (i+1 < len(self.sent_hcl)):
                 next_hcl = self.sent_hcl[i+1]
                 if (type(cur_hcl) is hcl.HangulLetter and type(next_hcl) is hcl.HangulLetter and \
-                    not cur_hcl.final.is_none() and next_hcl.initial.value == 'ㅇ'):
+                        not cur_hcl.final.is_none() and next_hcl.initial.value == 'ㅇ'):
                     next_hcl.set_initial(cur_hcl.final.value)
                     cur_hcl.unset_final()
+
+            # Replace self-`ㄹ to '얼'.
+            if (isinstance(cur_hcl, hcl.HangulLetter) and
+                    cur_hcl.is_self_consonant() and cur_hcl.initial.value == 'ㄹ' and \
+                        cur_hcl.initial.has_anno()):
+                self.sent_hcl[i] = hcl.HangulLetter(whole='얼')
+                
+            # Replace '`라' to '롸'.
+            if (isinstance(cur_hcl, hcl.HangulLetter) and
+                    cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and \
+                    cur_hcl.vowel.value == 'ㅏ' and cur_hcl.final.is_none()):
+                self.sent_hcl[i] = hcl.HangulLetter(whole='롸')
+                
+            # Replace '`러' to '뤄'.
+            if (isinstance(cur_hcl, hcl.HangulLetter) and
+                    cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and \
+                    cur_hcl.vowel.value == 'ㅓ' and cur_hcl.final.is_none()):
+                self.sent_hcl[i] = hcl.HangulLetter(whole='뤄')
 
         if (self.options["no_self_consonants"]):
             for cur_hcl in self.sent_hcl:
