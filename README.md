@@ -10,7 +10,7 @@ English sentence to naturally-sounding (augmented) Hangul notation.
 
 ## How to Use
 
- * As a Standalone Program: `$ eng-to-hangul "<english-sentence-here>"`
+ * As a standalone program: `$ eng-to-hangul "<english-sentence-here>"`
  * As a Python package: `import eng_to_hangul`
 
 ## What is "Augmented" Hangul?
