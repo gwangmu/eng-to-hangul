@@ -5,7 +5,7 @@ English sentence to naturally-sounding (augmented) Hangul notation.
   
 ## Installation
  
-1. Download this repository.
+1. Download or clone this repository.
 2. Type `make` in the root directory.
 
 ## How to Use
