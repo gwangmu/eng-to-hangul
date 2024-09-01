@@ -22,3 +22,4 @@ English sentence to naturally-sounding (augmented) Hangul notation.
  - Write "What is augmented Hangul?"
  - Improve the handling of pronunciation variations.
  - Support the preferred ways of some pronunciations.
+ - Package the repository more nicely. (Help needed!)
