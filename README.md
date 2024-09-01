@@ -2,40 +2,16 @@
 
 English sentence to naturally-sounding (augmented) Hangul notation.
 
-## Requirement
-
- - For `convert`
-     - Python 3
-     - `eng-to-ipa` Python package
- - For `draw`
-     - `matplotlib` Python package
-     - `TkAgg` Pyplot backend
-     - `UnDotum` font
   
 ## Installation
-
-<details>
-  <summary>Click here for details.</summary>
  
-1. **Install dependencies.** Assuming Ubuntu 22.04,
-```
-$ # For 'convert'
-$ sudo apt install python3 pip
-$ sudo pip install eng-to-ipa
-$ # For 'draw'
-$ sudo pip install matplotlib
-$ sudo apt install python3-tk python3-pil.imagetk
-$ sudo apt install fonts-unfonts-core
-```
-
-2. **Download this repository.** You may clone this repository or download it as an archive (zip).
-
-</details>
+1. Download this repository.
+2. Type `make` in the root directory.
 
 ## How to Use
 
- * As a Standalone Program: `$ ./eng-to-han "<english-sentence-here>"`
- * As a Python package: `import <name-of-this-repo-dir>`
+ * As a Standalone Program: `$ eng-to-hangul "<english-sentence-here>"`
+ * As a Python package: `import eng_to_hangul`
 
 ## What is "Augmented" Hangul?
 
