@@ -27,7 +27,7 @@ Augmented Hangul is **Hangul with annotation** to indicate the pronunciation tha
   
 The basic philosophy behind this is, "We can only imagine just as much as we can describe." Because some sounds are lacking in Korean, native Korean speakers are particularly bad at some pronunciation to the point that non-Koreans may find it difficult to understand. This is (I think) because native Korean speakers cannot easily imagine how to pronounce those missing sounds, especially when combined with other speakable sounds (e.g., confusing 'v' with 'b' in the middle of words). We already have IPA symbols for that, but Koreans have a native toolset to "emulate" this function comfortably: Hangul. However, this may also be the reason why many Koreans' "imagination" is limited to what Hangul can describe. By annotating some Hangul letters that are the closest Hangul could possibly have offered, any Hangul users may be able to "imagine" those lacking sounds and speak them better.
 
-Adding a little note about annotation, the languages that use Latin alphabets (A-Z) routinely add annotations to the closest alphabets to describe their unique sounds. Why not do this in Hangul?
+Adding a little note about annotation, the languages that use Latin alphabets (A-Z) routinely add annotations to the closest alphabets to describe their unique sounds. Why not do this in Hangul, too?
 
 </details>
 
