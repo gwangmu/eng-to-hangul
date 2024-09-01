@@ -19,6 +19,6 @@ English sentence to naturally-sounding (augmented) Hangul notation.
 
 ## TODO
 
- - Fine-tune the position of consonant annotations.
+ - Write "What is augmented Hangul?"
  - Improve the handling of pronunciation variations.
  - Support the preferred ways of some pronunciations.
