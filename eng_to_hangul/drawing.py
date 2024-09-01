@@ -7,9 +7,8 @@ import logging as log
 import matplotlib.lines as lines
 import matplotlib.pyplot as plt
 
-import hclasses as hcl
-import tables
-import util
+from . import hclasses as hcl
+from . import tables
 
 tune_cons_w_vowel = {
     'ㅍ': {

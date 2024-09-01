@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-import tables
 import logging as log
+
+from . import tables
 
 class HangulConsonant:
     def __init__(self, value, anno=False):

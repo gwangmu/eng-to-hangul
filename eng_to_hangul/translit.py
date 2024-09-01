@@ -3,9 +3,8 @@
 import eng_to_ipa as ipa
 import logging as log
 
-import hclasses as hcl
-import tables
-import util
+from . import hclasses as hcl
+from . import tables as tbl
 
 def ipa_to_loose_han(sent_ipa, options):
     log.debug("## Tranliterate to loose Hangul")
@@ -37,7 +36,7 @@ def ipa_to_loose_han(sent_ipa, options):
 
         # Transliterate IPA symbols, longer symbol sets first.
         ipa_found=False
-        for ipa, han in tables.ipa_to_han.items():
+        for ipa, han in tbl.ipa_to_han.items():
             if (sent_ipa[0:len(ipa)] == ipa):
                 sent_han = sent_han + han 
                 sent_ipa = sent_ipa[len(ipa):]
@@ -69,8 +68,8 @@ class HanPacker():
     def next(self):
         if (not self.is_empty()):
             if (type(self.top()) is hcl.NonHangulLetter or \
-                (self.top().is_full() and (util.is_whole_hangul_letter(self.next_han) or \
-                    util.is_hangul_jamo(self.next_han)))):
+                (self.top().is_full() and (tbl.is_whole_hangul_letter(self.next_han) or \
+                    tbl.is_hangul_jamo(self.next_han)))):
                 self.sent_hcl = self.sent_hcl + [hcl.HangulLetter()]
 
         self.cur_han = self.sent_han[0]
@@ -93,16 +92,16 @@ class HanPacker():
                 if (not self.options["no_annotation"]):
                     self.has_anno = True
 
-            if (util.is_whole_hangul_letter(self.cur_han)):
+            if (tbl.is_whole_hangul_letter(self.cur_han)):
                 if (self.top().is_empty()):
                     self.sent_hcl = self.sent_hcl[:-1]
                 self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(whole=self.cur_han)]
-            elif (util.is_hangul_jamo(self.cur_han)):
+            elif (tbl.is_hangul_jamo(self.cur_han)):
                 if (self.top().initial.is_none()):
-                    if (util.is_hangul_initial(self.cur_han)):
+                    if (tbl.is_hangul_initial(self.cur_han)):
                         log.debug('jamo.initial.initial')
                         self.top().set_initial(self.cur_han, anno=self.has_anno)
-                    elif (util.is_hangul_vowel(self.cur_han)):
+                    elif (tbl.is_hangul_vowel(self.cur_han)):
                         log.debug('jamo.initial.vowel')
                         self.top().set_initial('ㅇ')
                         self.top().set_vowel(self.cur_han)
@@ -110,21 +109,21 @@ class HanPacker():
                         log.debug('jamo.initial.wtf')
                         assert(false)
                 elif (self.top().vowel.is_none()):
-                    if (util.is_hangul_initial(self.cur_han)):
-                        if (not self.top().initial.has_anno() and util.is_hangul_initfin(self.cur_han) and not self.has_anno):
+                    if (tbl.is_hangul_initial(self.cur_han)):
+                        if (not self.top().initial.has_anno() and tbl.is_hangul_initfin(self.cur_han) and not self.has_anno):
                             log.debug('jamo.vowel.initial.initfin')
                             self.top().set_vowel('ㅡ')
                             self.top().set_final(self.cur_han, anno=self.has_anno)
                         else:
                             log.debug('jamo.vowel.initial.!initfin')
                             self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]
-                    elif (util.is_hangul_vowel(self.cur_han)):
+                    elif (tbl.is_hangul_vowel(self.cur_han)):
                         log.debug('jamo.vowel.vowel')
                         self.top().set_vowel(self.cur_han)
                 elif (self.top().final.is_none()):
-                    if (util.is_hangul_initial(self.cur_han)):
-                        if (util.is_hangul_initfin(self.cur_han) and not self.has_anno):
-                            if (util.is_hangul_vowel(self.next_han)):
+                    if (tbl.is_hangul_initial(self.cur_han)):
+                        if (tbl.is_hangul_initfin(self.cur_han) and not self.has_anno):
+                            if (self.cur_han != 'ㅇ' and tbl.is_hangul_vowel(self.next_han)):
                                 log.debug('jamo.final.initial.initfin.vowel')
                                 self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]
                             else:
@@ -133,7 +132,7 @@ class HanPacker():
                         else:
                             log.debug('jamo.final.initial.!initfin')
                             self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]
-                    elif (util.is_hangul_vowel(self.cur_han)):
+                    elif (tbl.is_hangul_vowel(self.cur_han)):
                         log.debug('jamo.final.vowel')
                         self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial='ㅇ', vowel=self.cur_han)]
             else:
@@ -163,13 +162,13 @@ class HanPacker():
             if (isinstance(cur_hcl, hcl.HangulLetter) and isinstance(next_hcl, hcl.HangulLetter) and isinstance(next_next_hcl, hcl.HangulLetter)):
                 # Pack first in consonant cluster (if explosive) to an empty final consonant.
                 if (cur_hcl.is_defined() and not cur_hcl.is_full() and next_hcl.is_self_consonant() and next_next_hcl.is_self_consonant() and \
-                        next_hcl.initial.value in tables.han_explosive_consonants and not next_hcl.initial.has_anno()):
+                        next_hcl.initial.value in tbl.han_explosive_consonants and not next_hcl.initial.has_anno()):
                     cur_hcl.set_final(next_hcl.initial.value)
                     next_hcl.unset_initial()
 
             if (isinstance(cur_hcl, hcl.HangulLetter) and isinstance(next_hcl, hcl.HangulLetter)):
                 # Steal the final consonant if there is no next initial consonant. 
-                if (not cur_hcl.final.is_none() and next_hcl.initial.value == 'ㅇ'):
+                if (not cur_hcl.final.is_none() and next_hcl.initial.value == 'ㅇ' and cur_hcl.final.value != 'ㅇ'):
                     next_hcl.set_initial(cur_hcl.final.value)
                     if (cur_hcl.final.value != 'ㄹ'):
                         cur_hcl.unset_final()
@@ -184,20 +183,20 @@ class HanPacker():
                     self.sent_hcl[i] = hcl.HangulLetter(whole='얼')
                 
                 # Replace '`라' to '롸'.
-                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅏ' and cur_hcl.final.is_none()):
-                    self.sent_hcl[i] = hcl.HangulLetter(whole='롸')
+                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅏ'):
+                    self.sent_hcl[i] = hcl.HangulLetter(initial='ㄹ', vowel='ㅘ', final=cur_hcl.final.value)
                 
                 # Replace '`러' to '뤄'.
-                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅓ' and cur_hcl.final.is_none()):
-                    self.sent_hcl[i] = hcl.HangulLetter(whole='뤄')
+                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅓ'):
+                    self.sent_hcl[i] = hcl.HangulLetter(initial='ㄹ', vowel='ㅝ', final=cur_hcl.final.value)
                 
                 # Replace '`리' to '뤼'.
-                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅣ' and cur_hcl.final.is_none()):
-                    self.sent_hcl[i] = hcl.HangulLetter(whole='뤼')
+                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅣ'):
+                    self.sent_hcl[i] = hcl.HangulLetter(initial='ㄹ', vowel='ㅟ', final=cur_hcl.final.value)
                 
                 # Replace '`레' to '뤠'.
-                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅔ' and cur_hcl.final.is_none()):
-                    self.sent_hcl[i] = hcl.HangulLetter(whole='뤠')
+                if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅔ'):
+                    self.sent_hcl[i] = hcl.HangulLetter(initial='ㄹ', vowel='ㅞ', final=cur_hcl.final.value)
 
         # Remove any by-product empty hcls.
         self.sent_hcl = [c for c in self.sent_hcl if not c.is_empty()]

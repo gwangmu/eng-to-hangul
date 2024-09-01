@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
-import interface as api
 import argparse
 import logging as log
 import os
 
-import drawing as dr
-import translit as tr
-import hclasses as hcl
+from eng_to_hangul import drawing as dr
+from eng_to_hangul import hclasses as hcl
+from eng_to_hangul import interface as api
+from eng_to_hangul import translit as tr
 
 parser = argparse.ArgumentParser()
 parser.add_argument('eng_sent', type=str, help="Sentence in English")

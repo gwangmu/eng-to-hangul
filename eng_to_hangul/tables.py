@@ -2,14 +2,6 @@
 
 # IPA to hangul transcription
 ipa_to_han = {
-    "eɪ": "ㅔ이", 
-    "aʊ": "ㅏ우",
-    "aɪ": "ㅏ이", 
-    "ar": "ㅏㄹ", 
-    "ər": "ㅓㄹ", 
-    "oʊ": "ㅗ우", 
-    "ɔɪ": "ㅗ이", 
-    "əʊ": "ㅓ우",
     "ts": "ㅊ",
     "wa": "와",
     "wɑ": "와",
@@ -18,7 +10,9 @@ ipa_to_han = {
     "wɪ": "위",
     "wi": "위",
     "we": "웨",
+    "wɛ": "웨",
     "wʊ": "우",
+    "ʊə": "워",
     "ʃə": "셔",
     "ʃe": "쉐",
     "ʃɑ": "샤",
@@ -164,3 +158,25 @@ han_explosive_consonants = [
     "ㄲ",
     "ㅋ",
     ]
+
+# Utility methods
+def is_hangul_initial(han):
+    return (han in han_initial)
+
+def is_hangul_vowel(han):
+    return (han in han_vowel)
+
+def is_hangul_final(han):
+    return (han in han_final)
+
+def is_hangul_initfin(han):
+    return (han in han_initfin)
+
+def is_whole_hangul_letter(han):
+    return (0xac00 <= ord(han) and ord(han) <= 0xd7a4)
+
+def is_hangul_jamo(han):
+    return (0x3130 <= ord(han) and ord(han) <= 0x318f)
+
+def is_hangul(han):
+    return (is_whole_hangul_letter(han) or is_hangul_jamo(han))

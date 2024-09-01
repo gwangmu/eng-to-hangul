@@ -2,8 +2,8 @@
 
 import logging as log
 
-import drawing as dr
-import translit as tr
+from . import drawing as dr
+from . import translit as tr
 
 logger = log.getLogger()
 logger.setLevel(log.INFO)
@@ -13,7 +13,6 @@ formatter = log.Formatter('%(levelname)s: [%(name)s] %(message)s')
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-# TODO: support retrive_all in eng_to_ipa
 def convert(sent, from_unit="eng", to_unit="han", options={}):
     if not (from_unit == "eng" and to_unit in ["ipa", "hcl", "han"]) and \
        not (from_unit == "ipa" and to_unit in ["hcl", "han"]) and \
