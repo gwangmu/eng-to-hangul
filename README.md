@@ -1,3 +1,5 @@
+![sample_output](https://github.com/user-attachments/assets/dc1cfa83-eb2e-4f39-a6ff-da6bf3c954b0)
+
 # English to Hangul
 
 English sentence to naturally-sounding (augmented) Hangul notation.
