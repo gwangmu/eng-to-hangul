@@ -178,9 +178,9 @@ class HanPacker():
                     cur_hcl.set_final('ㄹ')
 
             if (isinstance(cur_hcl, hcl.HangulLetter)):
-                # Replace self-`ㄹ to '얼'.
-                if (cur_hcl.is_self_consonant() and cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno()):
-                    self.sent_hcl[i] = hcl.HangulLetter(whole='얼')
+                ## Replace self-`ㄹ to '얼'.
+                #if (cur_hcl.is_self_consonant() and cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno()):
+                #    self.sent_hcl[i] = hcl.HangulLetter(whole='얼')
                 
                 # Replace '`라' to '롸'.
                 if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅏ'):
