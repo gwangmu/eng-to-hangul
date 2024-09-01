@@ -23,3 +23,6 @@ English sentence to naturally-sounding (augmented) Hangul notation.
  - Improve the handling of pronunciation variations.
  - Support the preferred ways of some pronunciations.
  - Package the repository more nicely. (Help needed!)
+    - Installing non-`pip` dependencies (e.g., `python3-tk`, `python3-pil.imagetk`, and `UnDotum`)
+    - Printing post-install messages after installation. (in `setup.py`)
+    - Uploading this repository to a Python package manager.
