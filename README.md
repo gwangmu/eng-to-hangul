@@ -26,8 +26,7 @@ English sentence to naturally-sounding (augmented) Hangul notation.
     * `-C`: Turn off self consonants. Self-consonants will be assigned with 'ㅡ.'
     * `-r`: Retrieve every possible pronunciation.
  * For the Python package
-    * `convert()`: Convert sentence(s).
-    * `draw()`: Draw annotated Hangul.
+    * (Details to be added)
 
 </details>
 
