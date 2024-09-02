@@ -15,9 +15,9 @@ English sentence to naturally-sounding (augmented) Hangul notation.
  * As a Python package: `import eng_to_hangul`
 
 <details>
-  <summary>    * Options</summary>
+  <summary>Options and details</summary>
   
- * As a standalone program: `$ eng-to-hangul "<english-sentence-here>"`
+ * For the standalone program
     * `-f <filename>`: Read from `<filename>` and convert it line by line.
     * `-D`: Don't draw the Hangul sentence. Output only in the terminal.
     * `-o <filename>`: Print the output to `<filename>` (if empty, on the screen).
@@ -25,7 +25,7 @@ English sentence to naturally-sounding (augmented) Hangul notation.
     * `-A`: Turn off annotations.
     * `-C`: Turn off self consonants. Self-consonants will be assigned with 'ㅡ.'
     * `-r`: Retrieve every possible pronunciation.
- * As a Python package: `import eng_to_hangul`
+ * For the Python package
     * `convert()`: Convert sentence(s).
     * `draw()`: Draw annotated Hangul.
 
