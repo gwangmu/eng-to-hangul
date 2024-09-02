@@ -60,8 +60,9 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
 
 `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) to convert English to IPA sentences.
 
-## TODO
-
+<details>
+  <summary>Technical TODOs</summary>
+  
  - Write "What is augmented Hangul?"
  - Translate the whole documentation in Korean.
  - Improve the handling of pronunciation variations.
@@ -70,3 +71,5 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
     - Installing non-`pip` dependencies (e.g., `python3-tk`, `python3-pil.imagetk`, and `UnDotum`)
     - Printing post-install messages after installation. (in `setup.py`)
     - Uploading this repository to a Python package manager.
+
+</details>
