@@ -56,7 +56,7 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
 ## Acknowledgement and Notes
 
  * `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) to convert English to IPA sentences.
- * It is not mandatory, but please leave a link to this repository if you do (and let me know if you want to please me).
+ * It is not mandatory, but please leave a link to this repository if you use this (and let me know if you want to please me).
 
 
 <details>
