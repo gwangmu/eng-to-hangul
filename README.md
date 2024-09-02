@@ -60,6 +60,8 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
 
 `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) to convert English to IPA sentences.
 
+---
+
 <details>
   <summary>Technical TODOs</summary>
   
