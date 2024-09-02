@@ -69,5 +69,6 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
     - Installing non-`pip` dependencies (e.g., `python3-tk`, `python3-pil.imagetk`, and `UnDotum`)
     - Printing post-install messages after installation. (in `setup.py`)
     - Uploading this repository to a Python package manager.
+ - Provide a friendlier interface to non-terminal or non-Linux users.
 
 </details>
