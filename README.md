@@ -57,6 +57,10 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
 
 </details>
 
+## Acknowledgement
+
+`eng-to-hangul` uses the `eng-to-ipa` Python package to convert English to IPA sentences.
+
 ## TODO
 
  - Write "What is augmented Hangul?"
