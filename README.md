@@ -25,9 +25,16 @@ Augmented Hangul is **Hangul with annotation** to indicate the pronunciation tha
 <details>
   <summary>If you care to read more...</summary>
   
-The basic philosophy behind this is, "We can only imagine just as much as we can describe." Because some sounds are lacking in Korean, native Korean speakers are particularly bad at some pronunciation to the point that non-Koreans may find it difficult to understand. This is (I think) because native Korean speakers cannot easily imagine how to pronounce those missing sounds, especially when combined with other speakable sounds (e.g., confusing 'v' with 'b' in the middle of words). We already have IPA symbols for that, but Koreans have a native toolset to "emulate" this function comfortably: Hangul. However, this may also be the reason why many Koreans' "imagination" is limited to what Hangul can describe. By annotating some Hangul letters that are the closest Hangul could possibly have offered, any Hangul users may be able to "imagine" those lacking sounds and speak them better.
+The basic philosophy behind this is, "We can only imagine just as much as we can describe." Because some sounds are lacking in Korean, native Korean speakers are particularly bad at some pronunciation to the point that non-Koreans may find it difficult to understand. I imagine this is because they cannot "imagine" how to pronounce those missing sounds, especially when combined with other speakable sounds (e.g., consonant clusters). We already have IPA symbols to describe pronunciation, but Koreans have a native toolset to "emulate" this comfortably: Hangul. However, this is also why many Koreans' "imagination" stops in what Hangul can describe. 
 
-Adding a little note about annotation, the languages that use Latin alphabets (A-Z) routinely add annotations to the closest alphabets to describe their unique sounds. Why not do this in Hangul, too? It's not like Hangul should be stagnant to the 19th century.
+My solution is to introduce **annotations and self-consonants** so that any Hangul user can "imagine" those lacking sounds and speak them better. Specifically, annotations will describe the missing sounds in Hangul (e.g., /f/ or /v/), and self-consonants will describe consonant clusters (e.g., al**ps** or **st**rike). They were deliberately designed to fit in the regular Hangul as seamlessly as possible so that people who had not heard of augmented Hangul could still read it roughly. For example, the annotated 'ㄸ' indicates /θ/, but clueless readers may simply ignore the annotation but still get the closest approximation (i.e., unannotated 'ㄸ').
+
+<details>
+  <summary>My two cents</summary>
+  
+The languages that use Latin alphabets (i.e., A to Z) routinely add annotations to the closest alphabets to describe their unique sounds, and for the letters that they _don't_ use, they just simply leave it in the Alphabet set so that they can use them to describe _other_ language pronunciation. I think Hangul can do this the other way around: we add annotations and a new concept (i.e., consonant clusters) to describe other language pronunciation and use regular Hangul letters to describe Korean as it's always been.
+
+</details>
 
 </details>
 
