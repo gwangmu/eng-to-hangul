@@ -15,7 +15,7 @@ English sentence to naturally-sounding (augmented) Hangul notation.
  * As a Python package: `import eng_to_hangul`
 
 <details>
-  <summary>Options</summary>
+  <summary>    * Options</summary>
   
  * As a standalone program: `$ eng-to-hangul "<english-sentence-here>"`
     * `-f <filename>`: Read from `<filename>` and convert it line by line.
