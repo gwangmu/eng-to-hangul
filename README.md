@@ -14,12 +14,12 @@ The annotation was purposefully added to the closest Hangul consonants. The clas
 
 | Class  	| Sound 	| Consonant                                                                               	| Example     | Explanation                    |
 |--------	|-------	|-----------	                                                                              |-----------	|-------------                   |
-| Lip    	| /v/   	| ![image](https://github.com/user-attachments/assets/0cbf93f6-a3b5-4e44-b3cf-4478054edfbc) | ![image](https://github.com/user-attachments/assets/2253aa94-ad86-4bc7-85bb-e8bc9fa09525) (**V**ery) | Softly bite the lower **lip**. |
-|        	| /f/   	| ![image](https://github.com/user-attachments/assets/81f56f07-5c2e-41f6-8931-816125a8b8d4) |             | Softly bite the lower **lip**. |
-| Tongue 	| /r/   	| ![image](https://github.com/user-attachments/assets/e0d3a86d-8d4b-4d75-b06a-e628912ae4ac) |             | Roll your **tongue**.          |
-|        	| /θ/   	| ![image](https://github.com/user-attachments/assets/bcf3ffcb-10be-4147-94e0-7140f6f693f6)	|             | Softly bite your **tongue**.   |
-|        	| /ð/   	| ![image](https://github.com/user-attachments/assets/0187de51-973c-4819-986a-b1255a892d63) |             | Softly bite your **tongue**.   |
-| Stress 	| /z/   	| ![image](https://github.com/user-attachments/assets/da010c74-3779-4a8a-9b42-4931c52689d2)	|             | **Stress** 'ㅅ'.                |
+| Lip    	| /v/   	| ![image](https://github.com/user-attachments/assets/0cbf93f6-a3b5-4e44-b3cf-4478054edfbc) | ![image](https://github.com/user-attachments/assets/2253aa94-ad86-4bc7-85bb-e8bc9fa09525) (**V**ery)      | Softly bite the lower **lip**. |
+|        	| /f/   	| ![image](https://github.com/user-attachments/assets/81f56f07-5c2e-41f6-8931-816125a8b8d4) | ![image](https://github.com/user-attachments/assets/0c88cd99-abeb-4d70-83f1-cd203972ce2d) (Beauti**f**ul) | Softly bite the lower **lip**. |
+| Tongue 	| /r/   	| ![image](https://github.com/user-attachments/assets/e0d3a86d-8d4b-4d75-b06a-e628912ae4ac) | ![image](https://github.com/user-attachments/assets/2a5f9a45-9019-4c64-91ed-68e58f8c4964) (**R**oom)      | Roll your **tongue**.          |
+|        	| /θ/   	| ![image](https://github.com/user-attachments/assets/bcf3ffcb-10be-4147-94e0-7140f6f693f6)	| ![image](https://github.com/user-attachments/assets/7941149e-79e2-4c9c-b4b6-720cc393aab3) (**Th**e)       | Softly bite your **tongue**.   |
+|        	| /ð/   	| ![image](https://github.com/user-attachments/assets/0187de51-973c-4819-986a-b1255a892d63) | ![image](https://github.com/user-attachments/assets/2f56d68b-159b-4e55-8c7d-a0e4f63f354c) (Wi**th**out)   | Softly bite your **tongue**.   |
+| Stress 	| /z/   	| ![image](https://github.com/user-attachments/assets/da010c74-3779-4a8a-9b42-4931c52689d2)	| ![image](https://github.com/user-attachments/assets/eaba1bce-df31-4c07-a42e-8272b597189d) (**Z**one)      | **Stress** 'ㅅ'.                |
 
 ### Self-consonants
 
