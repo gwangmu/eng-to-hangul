@@ -7,7 +7,8 @@ English sentence to naturally-sounding (augmented) Hangul notation.
 ## Installation
  
 1. Download or clone this repository.
-2. Type `make` in the root directory. (`sudo` required)
+2. Type `sudo make` in the root directory.
+3. (For Ubuntu users) Type `sudo make dep-ubuntu` in the root directory to install dependencies.
 
 ## How to Use
 
