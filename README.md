@@ -3,33 +3,6 @@
 ![sample_output](https://github.com/user-attachments/assets/dc1cfa83-eb2e-4f39-a6ff-da6bf3c954b0)
 
 English sentence to naturally-sounding (augmented) Hangul notation.
-  
-## Installation
- 
-1. Download or clone this repository.
-2. Type `sudo make` in the root directory.
-3. (For Ubuntu users) Type `sudo make dep-ubuntu` in the root directory to install dependencies.
-
-## How to Use
-
- * As a standalone program: `$ eng-to-hangul "<english-sentence-here>"`
- * As a Python package: `import eng_to_hangul`
-
-<details>
-  <summary>Options and details</summary>
-  
- * For the standalone program
-    * `-f <filename>`: Read from `<filename>` and convert it line by line.
-    * `-D`: Don't draw the Hangul sentence. Output only in the terminal.
-    * `-o <filename>`: Print the output to `<filename>` (if empty, on the screen).
-    * `-s`: Print in the regular Hangul.
-    * `-A`: Turn off annotations.
-    * `-C`: Turn off self consonants. Self-consonants will be assigned with 'ㅡ.'
-    * `-r`: Retrieve every possible pronunciation.
- * For the Python package
-    * (Details to be added)
-
-</details>
 
 ## About Augmented Hangul
 
@@ -72,6 +45,33 @@ My solution is to introduce **annotations and self-consonants** so that any Hang
 The languages that use Latin alphabets (i.e., A to Z) routinely add annotations to the closest alphabets to describe their unique sounds, and for the letters that they _don't_ use, they just simply leave it in the Alphabet set so that they can use them to describe _other_ language pronunciation. I think Hangul can do this the other way around: we add annotations and a new concept (i.e., consonant clusters) to describe other language pronunciation and use regular Hangul letters to describe Korean as it's always been.
 
 [This](https://gwangmu.medium.com/extending-hangul-for-english-70e8be3fc6ef) was written when I first thought about augmented Hangul, though at that point, I thought /z/ doesn't need to be thoroughly described in Hangul so I ruled out /z/ from the annotation list. Full disclosure: it was.
+
+</details>
+  
+## Installation
+ 
+1. Download or clone this repository.
+2. Type `sudo make` in the root directory.
+3. (For Ubuntu users) Type `sudo make dep-ubuntu` in the root directory to install dependencies.
+
+## How to Use
+
+ * As a standalone program: `$ eng-to-hangul "<english-sentence-here>"`
+ * As a Python package: `import eng_to_hangul`
+
+<details>
+  <summary>Options and details</summary>
+  
+ * For the standalone program
+    * `-f <filename>`: Read from `<filename>` and convert it line by line.
+    * `-D`: Don't draw the Hangul sentence. Output only in the terminal.
+    * `-o <filename>`: Print the output to `<filename>` (if empty, on the screen).
+    * `-s`: Print in the regular Hangul.
+    * `-A`: Turn off annotations.
+    * `-C`: Turn off self consonants. Self-consonants will be assigned with 'ㅡ.'
+    * `-r`: Retrieve every possible pronunciation.
+ * For the Python package
+    * (Details to be added)
 
 </details>
 
