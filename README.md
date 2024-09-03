@@ -35,6 +35,27 @@ English sentence to naturally-sounding (augmented) Hangul notation.
 
 Augmented Hangul is **Hangul with annotation** to indicate the pronunciation that doesn't exist in Korean but does in English. There is no "standard" annotation, so I just invented it using my limited knowledge of linguistics and, of course, common sense. The purpose is to help native Korean speakers pronounce English better, or at least _recognizable_ to someone non-native in not only Korean but also _English_.
 
+### Annotated Consonants
+
+The annotation was purposefully added to the closest Hangul consonants. The class suggests what needs attention.
+
+| Class  	| Sound 	| Consonant 	| Example     | Explanation                    |
+|--------	|-------	|-----------	|-----------	|-------------                   |
+| Lip    	| /v/   	|           	|             | Softly bite the lower **lip**. |
+|        	| /f/   	|           	|             | Softly bite the lower **lip**. |
+| Tongue 	| /r/   	|           	|             | Roll your **tongue**.          |
+|        	| /θ/   	|           	|             | Softly bite your **tongue**.   |
+|        	| /ð/   	|           	|             | Softly bite your **tongue**.   |
+| Stress 	| /z/   	|           	|             | **Stress** 'ㅅ'.                |
+
+### Self-consonants
+
+Self-consonants are simply **consonants without a vowel**. If you're unfamiliar with this concept, add 'ㅡ' but speak it very shortly, or don't use your vocal cord unless the consonant requires it.
+
+| Example     | IPA Pronunciation | Regular Hangul Equivalent | Explanation |
+|-------------|-------------------|---------------------------|-------------|
+|             |                   |                           |             |
+
 <details>
   <summary>If you care to read more...</summary>
 
