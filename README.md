@@ -35,8 +35,6 @@ English sentence to naturally-sounding (augmented) Hangul notation.
 
 Augmented Hangul is **Hangul with annotation** to indicate the pronunciation that doesn't exist in Korean but does in English. There is no "standard" annotation, so I just invented it using my limited knowledge of linguistics and, of course, common sense. The purpose is to help native Korean speakers pronounce English better, or at least _recognizable_ to someone non-native in not only Korean but also _English_.
 
-(TODO: table: annotated consonants and self-consonants, https://gwangmu.medium.com/extending-hangul-for-english-70e8be3fc6ef)
-
 <details>
   <summary>If you care to read more...</summary>
 
@@ -51,6 +49,8 @@ My solution is to introduce **annotations and self-consonants** so that any Hang
 ### My Two-cents
   
 The languages that use Latin alphabets (i.e., A to Z) routinely add annotations to the closest alphabets to describe their unique sounds, and for the letters that they _don't_ use, they just simply leave it in the Alphabet set so that they can use them to describe _other_ language pronunciation. I think Hangul can do this the other way around: we add annotations and a new concept (i.e., consonant clusters) to describe other language pronunciation and use regular Hangul letters to describe Korean as it's always been.
+
+[This](https://gwangmu.medium.com/extending-hangul-for-english-70e8be3fc6ef) was written when I first thought about augmented Hangul, though at that point, I thought /z/ doesn't need to be thoroughly described in Hangul. Full disclosure: it was.
 
 </details>
 
