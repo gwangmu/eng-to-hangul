@@ -25,9 +25,12 @@ The annotation was purposefully added to the closest Hangul consonants. The clas
 
 Self-consonants are simply **consonants without a vowel**. If you're unfamiliar with this concept, add 'ㅡ' but speak it very shortly, or don't use your vocal cord unless the consonant requires it.
 
-| Example     | IPA Pronunciation | Regular Hangul Equivalent | Explanation |
-|-------------|-------------------|---------------------------|-------------|
-|             |                   |                           |             |
+| Example | IPA Pronunciation | Regular Hangul Equivalent |
+|---------|-------------------|---------------------------|
+| ![image](https://github.com/user-attachments/assets/0c981773-d7bd-4541-9148-55d835bef5e7) | [ðɪs]    | 디스      |
+| ![image](https://github.com/user-attachments/assets/0fe76b9d-4ea3-45d9-982f-0efdebbadd58) | [teɪk]   | 테이크    |
+| ![image](https://github.com/user-attachments/assets/d5661a70-13b2-4e09-bbf8-ebb661b2a7a7) | [wərk]   | 워크      |
+| ![image](https://github.com/user-attachments/assets/cda0479f-c564-424c-9205-bc456c1831ff) | [straɪk] | 스트라이크 |
 
 <details>
   <summary>If you care to read more...</summary>
