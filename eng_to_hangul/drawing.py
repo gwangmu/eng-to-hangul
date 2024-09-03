@@ -208,8 +208,12 @@ def draw(sent_hcl, output=None):
         #p = plt.Rectangle((cur_x, cur_y), next_x - cur_x, FONTBOX_SIZE, fill=False, transform=None, clip_on=False)
         #ax.add_patch(p)
 
+        font_color='black'
+        #if (isinstance(letter, hcl.HangulLetter) and letter.is_self_consonant()):
+        #    font_color='red'
+
         plt.rcParams['font.size'] = str(FONTBOX_SIZE*overall_scale_factor*0.75)
-        ax.text(cur_x+FONTBOX_SIZE*overall_trans_off[0], cur_y+FONTBOX_YOFF+FONTBOX_SIZE*overall_trans_off[1], han, transform=None)
+        ax.text(cur_x+FONTBOX_SIZE*overall_trans_off[0], cur_y+FONTBOX_YOFF+FONTBOX_SIZE*overall_trans_off[1], han, color=font_color, transform=None)
         plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
 
         if (type(letter) is hcl.HangulLetter):
@@ -251,7 +255,7 @@ def draw(sent_hcl, output=None):
 
                 vert_pos_rel = list(map(list, zip(*vert_pos_rel)))
                 log.debug(vert_pos_rel)
-                line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=ANNO_THICK, color='black', transform=None, clip_on=False)
+                line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=ANNO_THICK, color=font_color, transform=None, clip_on=False)
                 ax.add_line(line)
 
             # TODO: handle final consonants with annotations (if any).
