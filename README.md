@@ -14,7 +14,7 @@ The annotation was purposefully added to the closest Hangul consonants. The clas
 
 | Class  	| Sound 	| Consonant                                                                               	| Example     | Explanation                    |
 |--------	|-------	|-----------	                                                                              |-----------	|-------------                   |
-| Lip    	| /v/   	| ![image](https://github.com/user-attachments/assets/0cbf93f6-a3b5-4e44-b3cf-4478054edfbc) |             | Softly bite the lower **lip**. |
+| Lip    	| /v/   	| ![image](https://github.com/user-attachments/assets/0cbf93f6-a3b5-4e44-b3cf-4478054edfbc) | ![image](https://github.com/user-attachments/assets/2253aa94-ad86-4bc7-85bb-e8bc9fa09525) (**V**ery) | Softly bite the lower **lip**. |
 |        	| /f/   	| ![image](https://github.com/user-attachments/assets/81f56f07-5c2e-41f6-8931-816125a8b8d4) |             | Softly bite the lower **lip**. |
 | Tongue 	| /r/   	| ![image](https://github.com/user-attachments/assets/e0d3a86d-8d4b-4d75-b06a-e628912ae4ac) |             | Roll your **tongue**.          |
 |        	| /θ/   	| ![image](https://github.com/user-attachments/assets/bcf3ffcb-10be-4147-94e0-7140f6f693f6)	|             | Softly bite your **tongue**.   |
