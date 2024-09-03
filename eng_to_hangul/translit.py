@@ -122,7 +122,7 @@ class HanPacker():
                         self.top().set_vowel(self.cur_han)
                 elif (self.top().final.is_none()):
                     if (tbl.is_hangul_initial(self.cur_han)):
-                        if (tbl.is_hangul_initfin(self.cur_han) and not self.has_anno):
+                        if (tbl.is_hangul_initfin(self.cur_han)):
                             if (self.cur_han != 'ㅇ' and tbl.is_hangul_vowel(self.next_han)):
                                 log.debug('jamo.final.initial.initfin.vowel')
                                 self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]

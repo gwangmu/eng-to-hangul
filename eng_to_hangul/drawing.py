@@ -157,6 +157,31 @@ tune_cons_w_vowel = {
     },
 }
 
+class RelPosBox:
+    def __init__(self, ch):
+        self.trans_off = (0.00, 0.00)
+        self.trans_scale = (1.00, 1.00)
+        if (ch in ['ㅂ', 'ㅍ']):
+            self.vert_pos_rel = [[0.40, 0.15], [0.60, 0.15]]
+        elif (ch in ['ㄹ', 'ㄷ', 'ㄸ']):
+            self.vert_pos_rel = [[0.05, 0.23], [0.05, 0.33]]
+        elif (ch in ['ㅈ']):
+            self.vert_pos_rel = [[0.48, 0.30], [0.54, 0.30]]
+        else:
+            assert(False)
+
+    def apply_off(self,rel_w, rel_h):
+        self.trans_off = (self.trans_off[0] + (1-self.trans_off[0])*rel_w, self.trans_off[1] + (1-self.trans_off[1])*rel_h)
+
+    def apply_scale(self, rel_w, rel_h):
+        self.trans_scale = (self.trans_scale[0]*rel_w, self.trans_scale[1]*rel_h)
+
+    def to_abs_pos(self, overall_trans_off, overall_scale_factor, FONTBOX_SIZE, cur_x, cur_y):
+        vert_pos_rel = self.vert_pos_rel
+        vert_pos_rel = map(lambda v: (v[0]*self.trans_scale[0]+self.trans_off[0]+overall_trans_off[0], v[1]*self.trans_scale[1]+self.trans_off[1]+overall_trans_off[1]), vert_pos_rel)
+        vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
+        return vert_pos_rel
+
 def draw(sent_hcl, output=None):
     log.debug("## Draw")
 
@@ -218,48 +243,41 @@ def draw(sent_hcl, output=None):
 
         if (type(letter) is hcl.HangulLetter):
             if (letter.initial.has_anno()):
-                vert_pos_rel=[]
-                if (letter.initial.value in ['ㅂ', 'ㅍ']):
-                    vert_pos_rel = [[0.40, 0.15], [0.60, 0.15]]
-                elif (letter.initial.value in ['ㄹ', 'ㄷ', 'ㄸ']):
-                    vert_pos_rel = [[0.05, 0.23], [0.05, 0.33]]
-                elif (letter.initial.value in ['ㅈ']):
-                    vert_pos_rel = [[0.48, 0.30], [0.54, 0.30]]
+                trans_rel = RelPosBox(letter.initial.value)
 
-                trans_off = (0.00, 0.00)
-                trans_scale = (1.00, 1.00)
-
-                def apply_rel_off(rel_w, rel_h):
-                    nonlocal trans_off
-                    trans_off = (trans_off[0] + (1-trans_off[0])*rel_w, trans_off[1] + (1-trans_off[1])*rel_h)
-
-                def apply_rel_scale(rel_w, rel_h):
-                    nonlocal trans_scale
-                    trans_scale = (trans_scale[0]*rel_w, trans_scale[1]*rel_h)
-
-                if (not letter.initial.is_none()):
-                    tune_off, tune_scale = tune_cons_w_vowel[letter.initial.value][letter.vowel.value]
-                    assert(tune_off and tune_scale)
-                    apply_rel_off(tune_off[0], tune_off[1])
-                    apply_rel_scale(tune_scale[0], tune_scale[1])
+                tune_off, tune_scale = tune_cons_w_vowel[letter.initial.value][letter.vowel.value]
+                assert(tune_off and tune_scale)
+                trans_rel.apply_off(*tune_off)
+                trans_rel.apply_scale(*tune_scale)
 
                 if (not letter.final.is_none()):
-                    apply_rel_off(0.00, 0.30)
-                    apply_rel_scale(1.00, 0.70)
                     if (letter.final.value == 'ㄴ'):
-                        trans_off = (trans_off[0], trans_off[1]-0.10)
-                        trans_scale = (trans_scale[0], trans_scale[1]+0.10)
+                        trans_rel.apply_off(0.00, 0.20)
+                        trans_rel.apply_scale(1.00, 0.80)
+                    else:
+                        trans_rel.apply_off(0.00, 0.30)
+                        trans_rel.apply_scale(1.00, 0.70)
 
-                vert_pos_rel = map(lambda v: (v[0]*trans_scale[0]+trans_off[0]+overall_trans_off[0], v[1]*trans_scale[1]+trans_off[1]+overall_trans_off[1]), vert_pos_rel)
-                vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
-
+                vert_pos_rel = trans_rel.to_abs_pos(overall_trans_off, overall_scale_factor, FONTBOX_SIZE, cur_x, cur_y)
                 vert_pos_rel = list(map(list, zip(*vert_pos_rel)))
                 log.debug(vert_pos_rel)
+
                 line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=ANNO_THICK, color=font_color, transform=None, clip_on=False)
                 ax.add_line(line)
 
-            # TODO: handle final consonants with annotations (if any).
-            assert(not letter.final.has_anno())
+            if (letter.final.has_anno()):
+                trans_rel = RelPosBox(letter.final.value)
+
+                assert(letter.final.value == 'ㄹ')
+                trans_rel.apply_off(0.08, 0.00)
+                trans_rel.apply_scale(0.92, 0.35)
+
+                vert_pos_rel = trans_rel.to_abs_pos(overall_trans_off, overall_scale_factor, FONTBOX_SIZE, cur_x, cur_y)
+                vert_pos_rel = list(map(list, zip(*vert_pos_rel)))
+                log.debug(vert_pos_rel)
+
+                line = lines.Line2D(vert_pos_rel[0], vert_pos_rel[1], lw=ANNO_THICK, color=font_color, transform=None, clip_on=False)
+                ax.add_line(line)
 
         cur_x = next_x
 
