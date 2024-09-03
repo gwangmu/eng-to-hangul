@@ -74,5 +74,6 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
  - Provide a friendlier interface to non-terminal or non-Linux users.
  - Draw the original English sentence below Hangul.
  - Support drawing regular Hangul sentences.
+ - Support annotations for final consonants.
 
 </details>
