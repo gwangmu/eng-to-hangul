@@ -82,7 +82,7 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
 
  * `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) from @mphilli for English-to-IPA transliteration.
  * It is not mandatory, but please let me know or leave a link to this repository if you use this.
- * Contributions and suggestions are always welcome, but please try to be *constructive*. If the only conclusion of the "opinion" is flat-out criticism or a complaint with no added value, it'll **very** likely be ignored (if not banned); for that, I gladly invite you to open your own project.
+ * Contributions and suggestions are always welcome, but please try to be *constructive*. If **the only** conclusion of the "opinion" is flat-out criticism or a complaint or, worse yet, it's a kind of "I don't like it", it'll **very** likely be ignored (if not banned); for that, I gladly invite you to open your own project.
 
 
 <details>
