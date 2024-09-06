@@ -89,8 +89,7 @@ class HanPacker():
 
             if (self.cur_han == '`'):
                 self.next()
-                if (not self.options["no_annotation"]):
-                    self.has_anno = True
+                self.has_anno = True
 
             if (tbl.is_whole_hangul_letter(self.cur_han)):
                 if (self.top().is_empty()):
@@ -122,7 +121,7 @@ class HanPacker():
                         self.top().set_vowel(self.cur_han)
                 elif (self.top().final.is_none()):
                     if (tbl.is_hangul_initial(self.cur_han)):
-                        if (tbl.is_hangul_initfin(self.cur_han)):
+                        if (tbl.is_hangul_initfin(self.cur_han) and not self.has_anno):
                             if (self.cur_han != 'ㅇ' and tbl.is_hangul_vowel(self.next_han)):
                                 log.debug('jamo.final.initial.initfin.vowel')
                                 self.sent_hcl = self.sent_hcl + [hcl.HangulLetter(initial=self.cur_han, initial_anno=self.has_anno)]
@@ -177,11 +176,17 @@ class HanPacker():
                 if (next_hcl.initial.value == 'ㄹ' and not next_hcl.initial.has_anno() and cur_hcl.is_defined() and not cur_hcl.is_full()):
                     cur_hcl.set_final('ㄹ')
 
+                # Pack 'annotated-ㄹ' to the final consonant if the vowel is 'ㅓ', otherwise make it 'annotated-얼'.
+                if (next_hcl.is_self_consonant() and next_hcl.initial.value == 'ㄹ' and next_hcl.initial.has_anno()):
+                    if (cur_hcl.final.is_none() and (cur_hcl.vowel.value == 'ㅓ' or cur_hcl.vowel.value == 'ㅏ')):
+                        cur_hcl.set_final('ㄹ', anno=True)
+                        next_hcl.unset_initial()
+                    else:
+                        next_hcl.set_initial('ㅇ')
+                        next_hcl.set_vowel('ㅓ')
+                        next_hcl.set_final('ㄹ', anno=True)
+
             if (isinstance(cur_hcl, hcl.HangulLetter)):
-                ## Replace self-`ㄹ to '얼'.
-                #if (cur_hcl.is_self_consonant() and cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno()):
-                #    self.sent_hcl[i] = hcl.HangulLetter(whole='얼')
-                
                 # Replace '`라' to '롸'.
                 if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅏ'):
                     self.sent_hcl[i] = hcl.HangulLetter(initial='ㄹ', vowel='ㅘ', final=cur_hcl.final.value)
@@ -205,6 +210,12 @@ class HanPacker():
             for cur_hcl in self.sent_hcl:
                 if (type(cur_hcl) is hcl.HangulLetter and cur_hcl.is_self_consonant()):
                     cur_hcl.set_vowel('ㅡ')
+
+        if (self.options["no_annotation"]):
+            for cur_hcl in self.sent_hcl:
+                if (type(cur_hcl) is hcl.HangulLetter):
+                    cur_hcl.initial.anno = False
+                    cur_hcl.final.anno = False
 
 def loose_han_to_hcl(sent_han, options):
     log.debug("## Pack loose Hangul letters")
