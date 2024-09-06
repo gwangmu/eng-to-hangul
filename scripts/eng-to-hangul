@@ -124,10 +124,10 @@ for i, eng_sent in enumerate(eng_sents):
 
     if (not args.no_draw):
         if (not args.draw_output):
-            api.draw(hcl_sent)
+            api.draw(hcl_sent, sub_sent=eng_sent)
         else:
             if (len(eng_sents) <= 1):
-                api.draw(hcl_sent, args.draw_output)
+                api.draw(hcl_sent, sub_sent=eng_sent, output=args.draw_output)
             else:
                 _split_new = _split[:]
                 _split_new[-2] = _split[-2] + "-" + str(i+1).zfill(3)

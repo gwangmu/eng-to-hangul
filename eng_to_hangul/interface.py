@@ -38,5 +38,5 @@ def convert(sent, from_unit="eng", to_unit="han", options={}):
 
     return cur_sent
 
-def draw(hcl_sent, output=None):
-    dr.draw(hcl_sent, output)
+def draw(hcl_sent, sub_sent=None, output=None):
+    dr.draw(hcl_sent, sub_sent, output)

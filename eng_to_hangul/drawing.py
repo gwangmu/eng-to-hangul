@@ -182,7 +182,7 @@ class RelPosBox:
         vert_pos_rel = map(lambda v: (v[0]*FONTBOX_SIZE*overall_scale_factor+cur_x, v[1]*FONTBOX_SIZE*overall_scale_factor+cur_y), vert_pos_rel)
         return vert_pos_rel
 
-def draw(sent_hcl, output=None):
+def draw(sent_hcl, sub_sent=None, output=None):
     log.debug("## Draw")
 
     MAGN_FACTOR = 1.5
@@ -191,6 +191,7 @@ def draw(sent_hcl, output=None):
     FONTBOX_SIZE = 28 * MAGN_FACTOR
     FONTBOX_YOFF = 4 * MAGN_FACTOR
     ANNO_THICK = 1.7 * MAGN_FACTOR
+    SUBFONTBOX_SIZE = int(FONTBOX_SIZE * 0.4)
 
     plt.rcParams['font.family'] = 'UnDotum'
     plt.rcParams['font.size'] = str(FONTBOX_SIZE*0.75)
@@ -201,6 +202,7 @@ def draw(sent_hcl, output=None):
     ax.set_axis_off()
 
     num_nls = sum(1 for c in sent_hcl if isinstance(c, hcl.NonHangulLetter) and c.value == '\n')
+    if (sub_sent): num_nls = num_nls + 0.8
 
     cur_x = HORIZONTAL_PAD
     cur_y = VERTICAL_PAD + num_nls * FONTBOX_SIZE
@@ -284,6 +286,14 @@ def draw(sent_hcl, output=None):
     px = 1 / plt.rcParams['figure.dpi']
     fig_width = (HORIZONTAL_PAD + max_x)*px
     fig_height = (VERTICAL_PAD * 2 + FONTBOX_SIZE * (num_nls + 1))*px
+
+    if (sub_sent):
+        plt.rcParams['font.size'] = SUBFONTBOX_SIZE 
+        sub_text = ax.text(0, -900, sub_sent, transform=None)
+        sub_bb = sub_text.get_window_extent()
+        sub_width = sub_bb.x1 - sub_bb.x0
+        ax.text(HORIZONTAL_PAD + (max_x - HORIZONTAL_PAD)/2 - sub_width/2,VERTICAL_PAD, sub_sent, transform=None)
+
     fig.set_size_inches(fig_width, fig_height)
     #fig.canvas.manager.window.overrideredirect(1)
 
