@@ -22,8 +22,8 @@ args = parser.parse_args()
 
 # Some convenience features
 if (args.standard_hangul):
-    args.no_annotation = False
-    args.no_self_consonants = False
+    args.no_annotation = True
+    args.no_self_consonants = True
 
 if (os.path.isfile(args.eng_sent)):
     args.file_input = True

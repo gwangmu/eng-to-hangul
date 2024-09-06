@@ -186,6 +186,12 @@ class HanPacker():
                         next_hcl.set_vowel('ㅓ')
                         next_hcl.set_final('ㄹ', anno=True)
 
+                # If no self-consonants, pack self-consonants to final consonants except for annotated ones.
+                if (self.options["no_self_consonants"]):
+                    if (cur_hcl.is_defined() and cur_hcl.final.is_none() and next_hcl.is_self_consonant() and next_hcl.initial.value in ['ㅂ', 'ㅍ', 'ㅌ', 'ㄱ', 'ㅋ'] and not next_hcl.initial.has_anno()):
+                        cur_hcl.set_final(next_hcl.initial.value, anno=next_hcl.initial.anno)
+                        next_hcl.unset_initial()
+
             if (isinstance(cur_hcl, hcl.HangulLetter)):
                 # Replace '`라' to '롸'.
                 if (cur_hcl.initial.value == 'ㄹ' and cur_hcl.initial.has_anno() and cur_hcl.vowel.value == 'ㅏ'):

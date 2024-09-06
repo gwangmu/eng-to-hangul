@@ -88,7 +88,6 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
 <details>
   <summary>Technical TODOs</summary>
   
- - Write "What is augmented Hangul?"
  - Translate the whole documentation in Korean.
  - Improve the handling of pronunciation variations.
  - Support the preferred ways of some pronunciations.
