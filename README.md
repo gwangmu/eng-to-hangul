@@ -82,7 +82,7 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
 
  * `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) from @mphilli for English-to-IPA transliteration.
  * It is not mandatory, but please let me know or leave a link to this repository if you use this.
- * Contributions and suggestions are always welcome 🙂, but please try to be *constructive*. No "rant" will be accepted. If **the only** conclusion of the "opinion" is flat-out criticism or, worse yet, it's just "I don't like it" in disguise, it'll **very** likely be ignored if not blocked; for that, I gladly invite you to open your own project.
+ * Contributions and suggestions are always welcome 🙂, but please try to be *constructive*. No "rant" will be accepted.
 
 
 <details>
@@ -99,5 +99,6 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
  - Provide a friendlier interface to non-terminal or non-Linux users.
  - Draw the original English sentence below Hangul.
  - Support drawing regular Hangul sentences.
+ - Pack annotated-ㄹ self-consonants to the final consonant of the previous letter if it doesn't have o,ne and its vowel is 'ㅓ'; otherwise, convert it to annotated-얼.
 
 </details>
