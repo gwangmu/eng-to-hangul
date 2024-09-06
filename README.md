@@ -96,7 +96,6 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
     - Printing post-install messages after installation. (in `setup.py`)
     - Uploading this repository to a Python package manager.
  - Provide a friendlier interface to non-terminal or non-Linux users.
- - Draw the original English sentence below Hangul.
  - Support drawing regular Hangul sentences.
 
 </details>
