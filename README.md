@@ -99,6 +99,5 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add annotations 
  - Provide a friendlier interface to non-terminal or non-Linux users.
  - Draw the original English sentence below Hangul.
  - Support drawing regular Hangul sentences.
- - Pack annotated-ㄹ self-consonants to the final consonant of the previous letter if it doesn't have o,ne and its vowel is 'ㅓ'; otherwise, convert it to annotated-얼.
 
 </details>
