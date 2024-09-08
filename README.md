@@ -8,18 +8,18 @@
 
 증강 한글은 한국어에는 없지만 영어에는 존재하는 발음을 표기하기 위해 증강된 한글입니다. 현 한글에 "표준" 증강 한글은 없는 바, 이 프로젝트는 제한된 언어학과 상식을 동원해 자체 발명된 증강 한글을 이용합니다. 증강 한글은 한국어 원어민이 영어/한국어 **비**원어민이 알아들을 수 있는 발음을 구사하도록 돕는 데 목적을 두고 있습니다.
 
-### 방점 자음
+### 분음부호 표기된 자음
 
-The annotation was purposefully added to the closest Hangul consonants. The class suggests what needs attention.
+한국어에 없는 발음을 표기하기 위헤 기존의 **가장 가까운** 자음 옆에 분음부호(예: ö 위의 점)를 붙입니다. 아래 표의 '종류'는 해당 자음에서 어떤 부분에 신경써야 하는 지를 의미합니다.
 
-| Class  	| Sound 	| Consonant                                                                               	| Example     | Explanation                    |
+| 종류   	| Sound 	| Consonant                                                                               	| Example     | Explanation                    |
 |--------	|-------	|-----------	                                                                              |-----------	|-------------                   |
-| Lip    	| /v/   	| ![image](https://github.com/user-attachments/assets/0cbf93f6-a3b5-4e44-b3cf-4478054edfbc) | ![image](https://github.com/user-attachments/assets/2253aa94-ad86-4bc7-85bb-e8bc9fa09525) (**V**ery)      | Softly bite the lower **lip**. |
-|        	| /f/   	| ![image](https://github.com/user-attachments/assets/81f56f07-5c2e-41f6-8931-816125a8b8d4) | ![image](https://github.com/user-attachments/assets/0c88cd99-abeb-4d70-83f1-cd203972ce2d) (Beauti**f**ul) | Softly bite the lower **lip**. |
-| Tongue 	| /r/   	| ![image](https://github.com/user-attachments/assets/e0d3a86d-8d4b-4d75-b06a-e628912ae4ac) | ![image](https://github.com/user-attachments/assets/2a5f9a45-9019-4c64-91ed-68e58f8c4964) (**R**oom)      | Roll your **tongue**.          |
-|        	| /θ/   	| ![image](https://github.com/user-attachments/assets/bcf3ffcb-10be-4147-94e0-7140f6f693f6)	| ![image](https://github.com/user-attachments/assets/7941149e-79e2-4c9c-b4b6-720cc393aab3) (**Th**e)       | Softly bite your **tongue**.   |
-|        	| /ð/   	| ![image](https://github.com/user-attachments/assets/0187de51-973c-4819-986a-b1255a892d63) | ![image](https://github.com/user-attachments/assets/2f56d68b-159b-4e55-8c7d-a0e4f63f354c) (Wi**th**out)   | Softly bite your **tongue**.   |
-| Stress 	| /z/   	| ![image](https://github.com/user-attachments/assets/da010c74-3779-4a8a-9b42-4931c52689d2)	| ![image](https://github.com/user-attachments/assets/eaba1bce-df31-4c07-a42e-8272b597189d) (**Z**one)      | **Stress** 'ㅅ'.                |
+| 입술    	| /v/   	| ![image](https://github.com/user-attachments/assets/0cbf93f6-a3b5-4e44-b3cf-4478054edfbc) | ![image](https://github.com/user-attachments/assets/2253aa94-ad86-4bc7-85bb-e8bc9fa09525) (**V**ery)      | 아랫 **입술**을 가볍게 물기. |
+|        	| /f/   	| ![image](https://github.com/user-attachments/assets/81f56f07-5c2e-41f6-8931-816125a8b8d4) | ![image](https://github.com/user-attachments/assets/0c88cd99-abeb-4d70-83f1-cd203972ce2d) (Beauti**f**ul) | 아랫 **입술**을 가볍게 물기. |
+| 혀    	| /r/   	| ![image](https://github.com/user-attachments/assets/e0d3a86d-8d4b-4d75-b06a-e628912ae4ac) | ![image](https://github.com/user-attachments/assets/2a5f9a45-9019-4c64-91ed-68e58f8c4964) (**R**oom)      | **혀**를 말기.            |
+|        	| /θ/   	| ![image](https://github.com/user-attachments/assets/bcf3ffcb-10be-4147-94e0-7140f6f693f6)	| ![image](https://github.com/user-attachments/assets/7941149e-79e2-4c9c-b4b6-720cc393aab3) (**Th**e)       | **혀**를 가볍게 물기.      |
+|        	| /ð/   	| ![image](https://github.com/user-attachments/assets/0187de51-973c-4819-986a-b1255a892d63) | ![image](https://github.com/user-attachments/assets/2f56d68b-159b-4e55-8c7d-a0e4f63f354c) (Wi**th**out)   | **혀**를 가볍게 물기.      |
+| 강조   	| /z/   	| ![image](https://github.com/user-attachments/assets/da010c74-3779-4a8a-9b42-4931c52689d2)	| ![image](https://github.com/user-attachments/assets/eaba1bce-df31-4c07-a42e-8272b597189d) (**Z**one)      | 'ㅅ' 을 **강조**하기.      |
 
 ### Self-consonants
 
