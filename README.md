@@ -199,8 +199,8 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritical 
 <details>
   <summary>Technical TODOs</summary>
   
- - Provide a friendlier interface to non-terminal or non-Linux users.
- - Package the repository more nicely. (Help needed!)
+ - (Important) Provide a friendlier interface to non-terminal or non-Linux users.
+ - (Important) Package the repository more nicely. (Help needed!)
     - Installing non-`pip` dependencies (e.g., `python3-tk`, `python3-pil.imagetk`, and `UnDotum`)
     - Printing post-install messages after installation. (in `setup.py`)
     - Uploading this repository to a Python package manager.
