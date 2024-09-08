@@ -50,6 +50,7 @@ if (not args.no_draw and args.draw_output):
         else:
             os.mkdir(_dirname)
 
+
 '''
 print("test start")
 
@@ -58,13 +59,17 @@ from eng_to_hangul import tables as tbl
 
 test_vowel = ['ㅏ', 'ㅓ', 'ㅔ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅢ']
 test_con = [['ㄹ'], ['ㄷ'], ['ㄸ'], ['ㅂ'], ['ㅍ'], ['ㅈ'], ]
+test_final = [None, 'ㄴ', 'ㅁ', 'ㄹ', 'ㅇ']
 
 for con_group in test_con:
     test_hcl_sent = []
     for i, con in enumerate(con_group):
-        test_hcl_sent += [hcl.HangulLetter(initial=con, initial_anno=True)]
-        #for vowel in tbl.han_vowel:
-        #    test_hcl_sent += [hcl.HangulLetter(initial=con, initial_anno=True, vowel=vowel)]
+        for j, final in enumerate(test_final):
+            test_hcl_sent += [hcl.HangulLetter(initial=con, initial_anno=True)]
+            for vowel in tbl.han_vowel:
+                test_hcl_sent += [hcl.HangulLetter(initial=con, initial_anno=True, vowel=vowel, final=final)]
+            if (j < len(test_final)-1):
+                test_hcl_sent += [hcl.NonHangulLetter('\n')]
         if (i < len(con_group)-1):
             test_hcl_sent += [hcl.NonHangulLetter('\n')]
     api.draw(test_hcl_sent)

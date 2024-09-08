@@ -254,8 +254,12 @@ def draw(sent_hcl, sub_sent=None, output=None):
 
                 if (not letter.final.is_none()):
                     if (letter.final.value == 'ㄴ'):
-                        trans_rel.apply_off(0.00, 0.20)
-                        trans_rel.apply_scale(1.00, 0.80)
+                        if (letter.initial.value in ['ㅂ', 'ㅍ']):
+                            trans_rel.apply_off(0.20, 0.20)
+                            trans_rel.apply_scale(0.80, 0.80)
+                        else:
+                            trans_rel.apply_off(0.00, 0.20)
+                            trans_rel.apply_scale(1.00, 0.80)
                     else:
                         trans_rel.apply_off(0.00, 0.30)
                         trans_rel.apply_scale(1.00, 0.70)
