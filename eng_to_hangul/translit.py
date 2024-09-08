@@ -217,7 +217,7 @@ class HanPacker():
                 if (type(cur_hcl) is hcl.HangulLetter and cur_hcl.is_self_consonant()):
                     cur_hcl.set_vowel('ㅡ')
 
-        if (self.options["no_annotation"]):
+        if (self.options["no_diacritical_mark"]):
             for cur_hcl in self.sent_hcl:
                 if (type(cur_hcl) is hcl.HangulLetter):
                     cur_hcl.initial.anno = False

@@ -15,14 +15,14 @@ parser.add_argument('--file-input', '-f', action='store_true', help="Read from f
 parser.add_argument('--no-draw', '-D', action='store_true', help="Don't draw Hangul sentence")
 parser.add_argument('--draw-output', '-o', type=str, default="", help="Draw output filename (empty: screen)")
 parser.add_argument('--standard-hangul', '-s', action='store_true', help="Print in the standard Hangul")
-parser.add_argument('--no-annotation', '-A', action='store_true', help="With consonant annotations")
+parser.add_argument('--no-diacritical-mark', '-M', action='store_true', help="With diacritical marks")
 parser.add_argument('--no-self-consonants', '-C', action='store_true', help="With self consonants")
 parser.add_argument('--retrieve-all', '-r', action='store_true', help="Retrieve every possible pronunciation")
 args = parser.parse_args()
 
 # Some convenience features
 if (args.standard_hangul):
-    args.no_annotation = True
+    args.no_diacritical_mark = True
     args.no_self_consonants = True
 
 if (os.path.isfile(args.eng_sent)):
@@ -102,7 +102,7 @@ assert(False)
 # Set up the arguments to pass
 pass_args = {
     "retrieve_all": args.retrieve_all,
-    "no_annotation": args.no_annotation, 
+    "no_diacritical_mark": args.no_diacritical_mark, 
     "no_self_consonants": args.no_self_consonants,
     }
 
