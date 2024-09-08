@@ -82,7 +82,7 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritic ma
 
  * 이 프로젝트는 영문에서 IPA 표기로 음역을 위해 @mphilli가 개발한 [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA)을 사용합니다.
  * 이 프로젝트를 사용하시는 경우 프로젝트 개발자에게 귀띔주시거나 프로젝트 링크를 남겨주실 것을 부탁합니다.
- * 제안이나 기여는 언제든 환영하지만, 최대한 *건설적*이 될 수 있도록 노력 부탁합니다. *분노/비방/폭언*은 자연스럽게 무시됨과 동시에 개발자로부터 3대에 걸친 저주를 받을 예정입니다.
+ * 제안이나 기여는 언제든 환영합니다. *분노/비방/폭언*은 자연스럽게 무시됨과 동시에 개발자로부터 3대에 걸친 저주를 받을 예정입니다.
 
 <details>
   <summary>Click here for English</summary>
