@@ -1,3 +1,5 @@
+* English below.
+
 # 영문-한글 음역기
 
 ![sample_output](https://github.com/user-attachments/assets/dc1cfa83-eb2e-4f39-a6ff-da6bf3c954b0)
