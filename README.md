@@ -78,7 +78,7 @@
 
 </details>
 
-## Notes
+## 주석
 
  * 이 프로젝트는 영문에서 IPA 표기로 음역을 위해 @mphilli가 개발한 [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA)을 사용합니다.
  * 이 프로젝트를 사용하시는 경우 프로젝트 개발자에게 귀띔주시거나 프로젝트 링크를 남겨주실 것을 부탁합니다.
