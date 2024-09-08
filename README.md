@@ -74,7 +74,7 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritic ma
     * `-C`: 홀자음에 모음 'ㅡ'을 덧붙임.
     * `-r`: 가능한 모든 발음을 결과로 받기.
  * Python 패키지
-    * (향후 적시 예정)
+    * (향후 추가 예정)
 
 </details>
 
@@ -171,7 +171,7 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritical 
 
  * `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) from @mphilli for English-to-IPA transliteration.
  * It is not mandatory, but please let me know or leave a link to this repository if you use this.
- * Contributions and suggestions are always welcome 🙂, but please try to be *constructive*. No "rant" will be accepted.
+ * Contributions and suggestions are always welcome 🙂, but please try to be *constructive*. Ranters will get cursed for the next three generations.
 
 </details>
 <details>
