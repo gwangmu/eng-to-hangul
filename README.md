@@ -1,12 +1,14 @@
-# English to Hangul
+# 영문-한글 음역기 (English to Hangul Transliterator)
 
 ![sample_output](https://github.com/user-attachments/assets/dc1cfa83-eb2e-4f39-a6ff-da6bf3c954b0)
 
+영문장에서 자연스럽게 들리는 (증강) 한글 표기로 음역.
 English sentence to naturally-sounding (augmented) Hangul notation.
 
-## About Augmented Hangul
+## 증강 한글 (About Augmented Hangul)
 
-Augmented Hangul is **Hangul with annotation** to indicate the pronunciation that doesn't exist in Korean but does in English. There is no "standard" annotation, so I just invented it using my limited knowledge of linguistics and, of course, common sense. The purpose is to help native Korean speakers pronounce English better, or at least _recognizable_ to someone non-native in not only Korean but also _English_.
+증강 한글은 한국어에는 없지만 영어에는 존재하는 발음을 표기하기 위해 증강된 한글입니다. 현 한글에 "표준" 증강 한글은 없는 바, 이 프로젝트는 제한된 언어학과 상식을 동원해 자체 발명된 증강 한글을 이용합니다. 증강 한글은 한국어 원어민이 영어/한국어에서 모두 **비**원어민인 사람이 알아들을 수 있는 발음을 구사하도록 돕는 데 목적을 두고 있습니다.
+Augmented Hangul is an augmented Hangul for pronunciation that doesn't exist in Korean but does exist in English. Since there is no "standard" augmentation, this project invented it using limited knowledge of linguistics and, of course, common sense. The purpose is to help native Korean speakers pronounce English better, or at least _recognizable_ to someone non-native in not only Korean but also _English_.
 
 ### Annotated Consonants
 
