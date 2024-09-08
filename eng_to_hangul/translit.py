@@ -178,7 +178,7 @@ class HanPacker():
 
                 # Pack 'annotated-ㄹ' to the final consonant if the vowel is 'ㅓ', otherwise make it 'annotated-얼'.
                 if (next_hcl.is_self_consonant() and next_hcl.initial.value == 'ㄹ' and next_hcl.initial.has_anno()):
-                    if (cur_hcl.final.is_none() and (cur_hcl.vowel.value == 'ㅓ' or cur_hcl.vowel.value == 'ㅏ')):
+                    if (cur_hcl.final.is_none() and cur_hcl.vowel.value in ['ㅓ', 'ㅏ', 'ㅝ', 'ㅘ']):
                         cur_hcl.set_final('ㄹ', anno=True)
                         next_hcl.unset_initial()
                     else:
