@@ -124,12 +124,22 @@ The diacritical marks were purposefully added to the closest Hangul consonants. 
 
 Self-consonants are simply **consonants without a vowel**. If you're unfamiliar with this concept, add 'ㅡ' but speak it very shortly, or don't use your vocal cord unless the consonant requires it.
 
-| Example | IPA Pronunciation | Regular Hangul Equivalent |
-|---------|-------------------|---------------------------|
+| Example | IPA Pronunciation | Standard Hangul Equivalent |
+|---------|-------------------|----------------------------|
 | ![image](https://github.com/user-attachments/assets/0c981773-d7bd-4541-9148-55d835bef5e7) | [ðɪs]    | 디스      |
 | ![image](https://github.com/user-attachments/assets/0fe76b9d-4ea3-45d9-982f-0efdebbadd58) | [teɪk]   | 테이크    |
 | ![image](https://github.com/user-attachments/assets/595ddcc9-1f00-4a7e-9a1c-a3a228f69fda) | [fraɪz]  | 프롸이즈   |
 | ![image](https://github.com/user-attachments/assets/cda0479f-c564-424c-9205-bc456c1831ff) | [straɪk] | 스트롸이크 |
+
+### Example Sentences
+
+| Example | English Sentence | Standard Hangul Equivalent  |
+|---------|------------------|-----------------------------|
+| ![image](https://github.com/user-attachments/assets/70e64f4f-59fd-49cd-9c7c-080f22cb376c) | If you go there, you will find him.    | 이프 유 고우 데얼, 유 윌 파인드 임.     |
+| ![image](https://github.com/user-attachments/assets/3c5eefe9-9b5a-421d-95bb-ec050e691620) | I'll do it immediately.                | 아일 두 이트 이미티어틀리.             |
+| ![image](https://github.com/user-attachments/assets/cc90b951-f0d8-4a5b-aed5-f8f15d6d43fc) | I have too much work to do.            | 아이 해브 투 머츠 워얼크 투 두.        |
+| ![image](https://github.com/user-attachments/assets/91fbdcd2-2322-4d91-9274-362d04b342dd) | He wanted very badly to survive.       | 히 원티드 베뤼 배들리 투 설바이브.      |
+| ![image](https://github.com/user-attachments/assets/984a763e-7652-4ba3-ac35-02b184071e0b) | I don't want a birthday party.         | 아이 도운트 원트 어 벌뜨데이 팔티.      |
 
 <details>
   <summary>If you care to read more...</summary>
