@@ -33,7 +33,7 @@
 | ![image](https://github.com/user-attachments/assets/cda0479f-c564-424c-9205-bc456c1831ff) | [straɪk] | 스트롸이크 |
 
 <details>
-  <summary>If you care to read more...</summary>
+  <summary>더 읽을거리</summary>
 
 ### 동기
 
@@ -43,11 +43,11 @@
 
 이 문제에 대한 이 프로젝트의 해결책은 기존 한글에 **분음부호와 홀자음**을 추가해 한글 사용자로 하여금 해당 발음들을 "상상할 수 있도록" 만들자는 것입니다. 분음부호는 한글에 없는 발음(/f/, /v/, /z/, /r/, /θ/, and /ð/)을 위해, 홀자음은 한국어에 없는 자음 클러스터를 묘사하기 위해 사용됩니다. 분음부호와 홀자음으로 증강된 한글은 이에 익숙하지 않은 한글 사용자들도 쉽게 이해하고 읽을 수 있도록 의도적으로 설계되었습니다. 예를 들어, 분음부호가 붙은 'ㄸ'은 음가 /θ/를 갖지만 분음부호를 무시하고도 /θ/에 가장 근사한 발음인 'ㄸ'으로 해석될 수 있습니다.
 
-### My Two-cents
-  
-The languages that use Latin alphabets (i.e., A to Z) routinely add diacritic marks to the closest alphabets to describe their unique sounds, and for the letters that they _don't_ use, they just simply leave it in the Alphabet set so that they can use them to describe _other_ language pronunciation. I think Hangul can do this the other way around: we add diacritic marks and a new concept (i.e., consonant clusters) to describe other language pronunciation and use regular Hangul letters to describe Korean as it's always been.
+### 개인적 사색
 
-[This](https://gwangmu.medium.com/extending-hangul-for-english-70e8be3fc6ef) was written when I first thought about augmented Hangul, though at that point, I thought /z/ doesn't need to be thoroughly described in Hangul so I ruled out /z/ out of question. Full disclosure: I was wrong.
+영문 알파벳을 이용하는 대다수의 언어들은 자체 언어에 적절한 발음을 표기하기 위해 흔히 분음부호를 활용하는데 더불어 (예: /œ/("외") 발음을 위해 가장 가까운 알파벳인 "o" 에 분음부호 움라우트(Unlaut)를 붙여 "ö"), 반대로 혹 사용하지 *않는* 알파벳이 생기더라도 이를 외국어 발음을 묘사하는 데 이용합니다 (예: 이탈리아어 자체에는 k나 y가 없지만 외국어 표기를 위해 사용). 한글은 이와 정반대로 분음부호를 활용할 수 있습니다. 즉, 한글은 *외국어를 위해* 분음부호를 사용하고, 분음부호가 없는 글자를 통상적 한국어 표기를 위해 사용할 수 있습니다. 
+
+일전에 [이 페이지](https://gwangmu.medium.com/extending-hangul-for-english-70e8be3fc6ef)에서 증강 한글에 대해 상술한 적이 있습니다.
 
 </details>
   
