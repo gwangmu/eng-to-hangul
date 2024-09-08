@@ -35,13 +35,13 @@
 <details>
   <summary>If you care to read more...</summary>
 
-### Motivation
+### 동기
 
-The basic philosophy behind this is, "We can only imagine just as much as we can describe." 
+이 프로젝트의 기본 철학은 "묘사할 수 있는 만큼 상상할 수 있다"입니다.
 
-Because some pronunciation is lacking in Korean, native Korean speakers are particularly bad at some pronunciation, so much so that non-Koreans may find it difficult to understand. I reckon this is because they cannot "imagine" how to pronounce those lacking pronunciation, especially when combined with other speakable sounds (e.g., consonant clusters). To make matters a little worse, native Koreans tend to use Hangul to "emulate" any sounds because Hangul is excellent at it. The only problem is that some of the pronunciation is lacking in Hangul, which makes Koreans' "imagination" stop there. 
+한국어 원어민이라면 흔히 한국어에는 없는 영어를 발음하는데 어려움을 겪습니다. 심한 경우 이는 한국어 비원어민이 알아듣기 힘든 발음 문제로 이어지는데, 이는 한국인이 해당 발음을 "상상하기 힘들다"는 점에서 비롯됩니다 (예: 자음 클러스터 - 모음 없는 자음들의 묶음). 특히 발음을 "한글"로 상상하는 경향이 있는 한국어 원어민들에게는 한글로 묘사할 수 있는 발음의 한계만큼 발음할 수 있게됩니다.
 
-My solution is introducing **diacritic marks and self-consonants** so that any Hangul user can "imagine" those lacking sounds and speak them better. Specifically, diacritic marks will describe the missing sounds in Hangul (i.e., /f/, /v/, /z/, /r/, /θ/, and /ð/), and self-consonants will describe consonant clusters (e.g., al**ps** or **st**rike). They were deliberately designed to fit in the regular Hangul as seamlessly as possible so that people who had not heard of augmented Hangul could still read it roughly. For example, the 'ㄸ' with a diacritical mark indicates /θ/, but clueless readers may simply ignore the diacritic mark but still get the closest approximation (i.e., 'ㄸ').
+이 문제에 대한 제 해결책은 기존 한글에 **분음부호와 홀자음**을 추가해 한글 사용자가 한국어에는 없는 발음들을 "상상할 수 있도록" 만들자는 것입니다. 분음부호는 한글에 없는 발음(/f/, /v/, /z/, /r/, /θ/, and /ð/)을 위해, 홀자음은 한국어에 없는 자음 클러스터를 묘사하기 위해 사용될 수 있습니다. 분음부호와 홀자음은 증강된 한글에 익숙하지 않은 한글 사용자들도 쉽게 이해하고 읽을 수 있도록 의도적으로 추가되었습니다. 예를 들어, 분음부호가 붙은 'ㄸ'은 음가 /θ/를 갖지만 분음부호를 무시하고도 /θ/에 가장 근사한 발음인 'ㄸ'으로 해석될 수 있습니다.
 
 ### My Two-cents
   
@@ -128,9 +128,9 @@ Self-consonants are simply **consonants without a vowel**. If you're unfamiliar 
 
 The basic philosophy behind this is, "We can only imagine just as much as we can describe." 
 
-Because some pronunciation is lacking in Korean, native Korean speakers are particularly bad at some pronunciation, so much so that non-Koreans may find it difficult to understand. I reckon this is because they cannot "imagine" how to pronounce those lacking pronunciation, especially when combined with other speakable sounds (e.g., consonant clusters). To make matters a little worse, native Koreans tend to use Hangul to "emulate" any sounds because Hangul is excellent at it. The only problem is that some of the pronunciation is lacking in Hangul, which makes Koreans' "imagination" stop there. 
+Because some pronunciation is lacking in Korean, native Korean speakers are particularly bad at some pronunciation, so much so that non-Koreans may find it difficult to understand. I reckon this is because they cannot "imagine" how to pronounce those lacking pronunciation, such as consonant clusters. To make matters a little worse, native Koreans tend to use Hangul to "emulate" any sounds because Hangul is excellent at it. The only problem is that some of the pronunciation is lacking in Hangul, which makes Koreans' "imagination" stop there. 
 
-My solution is to introduce **diacritical marks and self-consonants** so that any Hangul user can "imagine" those lacking sounds and speak them better. Specifically, diacritical marks will describe the missing sounds in Hangul (i.e., /f/, /v/, /z/, /r/, /θ/, and /ð/), and self-consonants will describe consonant clusters (e.g., al**ps** or **st**rike). They were deliberately designed to fit in the regular Hangul as seamlessly as possible so that people who had not heard of augmented Hangul could still read it roughly. For example, the 'ㄸ' with a diacritical mark indicates /θ/, but clueless readers may simply ignore the diacritical marks but still get the closest approximation (i.e., 'ㄸ').
+My solution is introducing **diacritical marks and self-consonants** so that any Hangul user can "imagine" those lacking sounds and speak them better. Specifically, diacritical marks will describe the missing sounds in Hangul (i.e., /f/, /v/, /z/, /r/, /θ/, and /ð/), and self-consonants will describe consonant clusters (e.g., al**ps** or **st**rike). They were deliberately designed to fit in the regular Hangul as seamlessly as possible so that people who had not heard of augmented Hangul could still read it roughly. For example, the 'ㄸ' with a diacritical mark indicates /θ/, but clueless readers may simply ignore the diacritical marks but still get the closest approximation (i.e., 'ㄸ').
 
 ### My Two-cents
   
