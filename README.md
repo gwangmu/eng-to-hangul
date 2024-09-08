@@ -12,7 +12,7 @@
 
 한국어에 없는 발음을 표기하기 위헤 기존의 **가장 가까운** 자음 옆에 분음부호(예: ö 위의 점)를 붙입니다. 아래 표의 '종류'는 해당 자음에서 어떤 부분에 신경써야 하는 지를 의미합니다.
 
-| 종류   	| Sound 	| Consonant                                                                               	| Example     | Explanation                    |
+| 종류   	| 발음   	| 자음                                                                                     	| 예          | 설명                            |
 |--------	|-------	|-----------	                                                                              |-----------	|-------------                   |
 | 입술    	| /v/   	| ![image](https://github.com/user-attachments/assets/0cbf93f6-a3b5-4e44-b3cf-4478054edfbc) | ![image](https://github.com/user-attachments/assets/2253aa94-ad86-4bc7-85bb-e8bc9fa09525) (**V**ery)      | 아랫 **입술**을 가볍게 물기. |
 |        	| /f/   	| ![image](https://github.com/user-attachments/assets/81f56f07-5c2e-41f6-8931-816125a8b8d4) | ![image](https://github.com/user-attachments/assets/0c88cd99-abeb-4d70-83f1-cd203972ce2d) (Beauti**f**ul) | 아랫 **입술**을 가볍게 물기. |
@@ -25,12 +25,22 @@
 
 홀자음은 **모음이 없는 자음**입니다. 모음 없는 자음에 익숙하지 않은 경우, 모음 'ㅡ'가 있다고 가정하되 최대한 'ㅡ' 발음을 짧게하고, 자음에서 필요로 하지 않는 한 성대를 쓰지 않도록 합니다.
 
-| Example | IPA Pronunciation | Regular Hangul Equivalent |
+| 예      | IPA 표기           | 표준 한글 표기               |
 |---------|-------------------|---------------------------|
 | ![image](https://github.com/user-attachments/assets/0c981773-d7bd-4541-9148-55d835bef5e7) | [ðɪs]    | 디스      |
 | ![image](https://github.com/user-attachments/assets/0fe76b9d-4ea3-45d9-982f-0efdebbadd58) | [teɪk]   | 테이크    |
 | ![image](https://github.com/user-attachments/assets/595ddcc9-1f00-4a7e-9a1c-a3a228f69fda) | [fraɪz]  | 프롸이즈   |
 | ![image](https://github.com/user-attachments/assets/cda0479f-c564-424c-9205-bc456c1831ff) | [straɪk] | 스트롸이크 |
+
+### 예문
+
+| 예      | 영문장             | 표준 한글 표기               |
+|---------|------------------|----------------------------|
+| ![image](https://github.com/user-attachments/assets/70e64f4f-59fd-49cd-9c7c-080f22cb376c) | If you go there, you will find him.    | 이프 유 고우 데얼, 유 윌 파인드 임.     |
+| ![image](https://github.com/user-attachments/assets/3c5eefe9-9b5a-421d-95bb-ec050e691620) | I'll do it immediately.                | 아일 두 이트 이미티어틀리.             |
+| ![image](https://github.com/user-attachments/assets/cc90b951-f0d8-4a5b-aed5-f8f15d6d43fc) | I have too much work to do.            | 아이 해브 투 머츠 워얼크 투 두.        |
+| ![image](https://github.com/user-attachments/assets/91fbdcd2-2322-4d91-9274-362d04b342dd) | He wanted very badly to survive.       | 히 원티드 베뤼 배들리 투 설바이브.      |
+| ![image](https://github.com/user-attachments/assets/984a763e-7652-4ba3-ac35-02b184071e0b) | I don't want a birthday party.         | 아이 도운트 원트 어 벌뜨데이 팔티.      |
 
 <details>
   <summary>더 읽을거리</summary>
