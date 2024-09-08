@@ -164,9 +164,9 @@ class RelPosBox:
         if (ch in ['ㅂ', 'ㅍ']):
             self.vert_pos_rel = [[0.40, 0.15], [0.60, 0.15]]
         elif (ch in ['ㄹ', 'ㄷ', 'ㄸ']):
-            self.vert_pos_rel = [[0.05, 0.23], [0.05, 0.33]]
+            self.vert_pos_rel = [[0.05, 0.23], [0.05, 0.38]]
         elif (ch in ['ㅈ']):
-            self.vert_pos_rel = [[0.48, 0.30], [0.54, 0.30]]
+            self.vert_pos_rel = [[0.48, 0.30], [0.53, 0.30]]
         else:
             assert(False)
 
@@ -190,7 +190,7 @@ def draw(sent_hcl, sub_sent=None, output=None):
     HORIZONTAL_PAD = 40 * MAGN_FACTOR
     FONTBOX_SIZE = 28 * MAGN_FACTOR
     FONTBOX_YOFF = 4 * MAGN_FACTOR
-    ANNO_THICK = 1.7 * MAGN_FACTOR
+    ANNO_THICK = 1.3 * MAGN_FACTOR
     SUBFONTBOX_SIZE = int(FONTBOX_SIZE * 0.4)
 
     plt.rcParams['font.family'] = 'UnDotum'
