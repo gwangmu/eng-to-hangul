@@ -197,14 +197,13 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritical 
 <details>
   <summary>Technical TODOs</summary>
   
- - Translate the whole documentation in Korean.
- - Improve the handling of pronunciation variations.
- - Support the preferred ways of some pronunciations.
+ - Provide a friendlier interface to non-terminal or non-Linux users.
  - Package the repository more nicely. (Help needed!)
     - Installing non-`pip` dependencies (e.g., `python3-tk`, `python3-pil.imagetk`, and `UnDotum`)
     - Printing post-install messages after installation. (in `setup.py`)
     - Uploading this repository to a Python package manager.
- - Provide a friendlier interface to non-terminal or non-Linux users.
+ - Improve handling of the variations of pronunciation.
+ - Support pronunciation preference.
  - Support drawing regular Hangul sentences.
 
 </details>
