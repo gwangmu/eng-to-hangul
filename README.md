@@ -30,7 +30,7 @@
 | ![image](https://github.com/user-attachments/assets/0c981773-d7bd-4541-9148-55d835bef5e7) | [ðɪs]    | 디스      |
 | ![image](https://github.com/user-attachments/assets/0fe76b9d-4ea3-45d9-982f-0efdebbadd58) | [teɪk]   | 테이크    |
 | ![image](https://github.com/user-attachments/assets/595ddcc9-1f00-4a7e-9a1c-a3a228f69fda) | [fraɪz]  | 프롸이즈   |
-| ![image](https://github.com/user-attachments/assets/cda0479f-c564-424c-9205-bc456c1831ff) | [straɪk] | 스트라이크 |
+| ![image](https://github.com/user-attachments/assets/cda0479f-c564-424c-9205-bc456c1831ff) | [straɪk] | 스트롸이크 |
 
 <details>
   <summary>If you care to read more...</summary>
@@ -119,7 +119,7 @@ Self-consonants are simply **consonants without a vowel**. If you're unfamiliar 
 | ![image](https://github.com/user-attachments/assets/0c981773-d7bd-4541-9148-55d835bef5e7) | [ðɪs]    | 디스      |
 | ![image](https://github.com/user-attachments/assets/0fe76b9d-4ea3-45d9-982f-0efdebbadd58) | [teɪk]   | 테이크    |
 | ![image](https://github.com/user-attachments/assets/595ddcc9-1f00-4a7e-9a1c-a3a228f69fda) | [fraɪz]  | 프롸이즈   |
-| ![image](https://github.com/user-attachments/assets/cda0479f-c564-424c-9205-bc456c1831ff) | [straɪk] | 스트라이크 |
+| ![image](https://github.com/user-attachments/assets/cda0479f-c564-424c-9205-bc456c1831ff) | [straɪk] | 스트롸이크 |
 
 <details>
   <summary>If you care to read more...</summary>
