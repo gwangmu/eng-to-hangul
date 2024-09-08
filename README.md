@@ -51,38 +51,38 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritic ma
 
 </details>
   
-## Installation
+## 설치
  
-1. Download or clone this repository.
-2. Type `sudo make` in the root directory.
-3. (For Ubuntu users) Type `sudo make dep-ubuntu` in the root directory to install dependencies.
+1. 이 레포지토리(저장소, repository)를 다운로드 혹은 클론.
+2. 터미널에서 레포지토리 디렉토리로 이동한 후 `sudo make`를 입력.
+3. (우분투 유저) 의존성 설치를 위해 레포지토리 디렉토리에서 `sudo make dep-ubuntu`를 입력.
 
-## How to Use
+## 사용법
 
- * As a standalone program: `$ eng-to-hangul "<english-sentence-here>"`
- * As a Python package: `import eng_to_hangul`
+ * 자체 프로그램으로: `$ eng-to-hangul "<english-sentence-here>"`
+ * Python 패키지로: `import eng_to_hangul`
 
 <details>
-  <summary>Options and details</summary>
+  <summary>옵션 및 상세</summary>
   
- * For the standalone program
-    * `-f <filename>`: Read from `<filename>` and convert it line by line.
-    * `-D`: Don't draw the Hangul sentence. Output only in the terminal.
-    * `-o <filename>`: Print the output to `<filename>` (if empty, on the screen).
-    * `-s`: Print in the regular Hangul.
-    * `-M`: Turn off diacritical marks.
-    * `-C`: Turn off self consonants. Self-consonants will be assigned with 'ㅡ.'
-    * `-r`: Retrieve every possible pronunciation.
- * For the Python package
-    * (Details to be added)
+ * 자체 프로그램 옵션
+    * `-f <filename>`: `<filename>` 파일에서 읽은 후 한 줄씩 음역.
+    * `-D`: 결과를 GUI에 그리지 않고 터미널에만 출력.
+    * `-o <filename>`: 결과를 `<filename>`에 저장 (기본값: 화면).
+    * `-s`: 표준 한글 표기로 결과 생성.
+    * `-M`: 분음부호 끄기.
+    * `-C`: 홀자음에 모음 'ㅡ'을 덧붙임.
+    * `-r`: 가능한 모든 발음을 결과로 받기.
+ * Python 패키지
+    * (향후 적시 예정)
 
 </details>
 
 ## Notes
 
- * `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) from @mphilli for English-to-IPA transliteration.
- * It is not mandatory, but please let me know or leave a link to this repository if you use this.
- * Contributions and suggestions are always welcome 🙂, but please try to be *constructive*. No "rant" will be accepted.
+ * 이 프로젝트는 영문에서 IPA 표기로 음역을 위해 @mphilli가 개발한 [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA)을 사용합니다.
+ * 이 프로젝트를 사용하시는 경우 프로젝트 개발자에게 귀띔주시거나 프로젝트 링크를 남겨주실 것을 부탁합니다.
+ * 제안이나 기여는 언제든 환영하지만, 최대한 *건설적*이 될 수 있도록 해주십시오. *분노/비방/폭언*은 자연스럽게 무시될 예정입니다.
 
 <details>
   <summary>Click here for English</summary>
