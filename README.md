@@ -8,7 +8,7 @@ English sentence to naturally-sounding (augmented) Hangul notation.
 
 ## 증강 한글 (About Augmented Hangul)
 
-증강 한글은 한국어에는 없지만 영어에는 존재하는 발음을 표기하기 위해 증강된 한글입니다. 현 한글에 "표준" 증강 한글은 없는 바, 이 프로젝트는 제한된 언어학과 상식을 동원해 자체 발명된 증강 한글을 이용합니다. 증강 한글은 한국어 원어민이 영어/한국어에서 모두 **비**원어민인 사람이 알아들을 수 있는 발음을 구사하도록 돕는 데 목적을 두고 있습니다.
+증강 한글은 한국어에는 없지만 영어에는 존재하는 발음을 표기하기 위해 증강된 한글입니다. 현 한글에 "표준" 증강 한글은 없는 바, 이 프로젝트는 제한된 언어학과 상식을 동원해 자체 발명된 증강 한글을 이용합니다. 증강 한글은 한국어 원어민이 영어/한국어 **비**원어민에게 알아들을 수 있는 발음을 구사하도록 돕는 데 목적을 두고 있습니다.
 
 Augmented Hangul is an augmented Hangul for pronunciation that doesn't exist in Korean but does exist in English. Since there is no "standard" augmentation, this project invented it using limited knowledge of linguistics and, of course, common sense. The purpose is to help native Korean speakers pronounce English better, or at least _recognizable_ to someone non-native in not only Korean but also _English_.
 
