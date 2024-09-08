@@ -21,9 +21,9 @@
 |        	| /ð/   	| ![image](https://github.com/user-attachments/assets/0187de51-973c-4819-986a-b1255a892d63) | ![image](https://github.com/user-attachments/assets/2f56d68b-159b-4e55-8c7d-a0e4f63f354c) (Wi**th**out)   | **혀**를 가볍게 물기.      |
 | 강조   	| /z/   	| ![image](https://github.com/user-attachments/assets/da010c74-3779-4a8a-9b42-4931c52689d2)	| ![image](https://github.com/user-attachments/assets/eaba1bce-df31-4c07-a42e-8272b597189d) (**Z**one)      | 'ㅅ' 을 **강조**하기.      |
 
-### Self-consonants
+### 홀자음
 
-Self-consonants are simply **consonants without a vowel**. If you're unfamiliar with this concept, add 'ㅡ' but speak it very shortly, or don't use your vocal cord unless the consonant requires it.
+홀자음은 **모음이 없는 자음**입니다. 모음 없는 자음에 익숙하지 않은 경우, 모음 'ㅡ'가 있다고 가정하되 최대한 'ㅡ' 발음을 짧게하고, 자음에서 필요로 하지 않는 한 성대를 쓰지 않습니다.
 
 | Example | IPA Pronunciation | Regular Hangul Equivalent |
 |---------|-------------------|---------------------------|
