@@ -66,6 +66,8 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritical 
 </details>
   
 ## Installation
+
+**Currently, there is only official support for Ubuntu 22.04+.**
  
 1. Download or clone this repository.
 2. Type `sudo make` in the root directory.
@@ -164,6 +166,8 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritical 
 </details>
   
 ## 설치
+
+**현재 Ubuntu 22.04+만 공식 지원.**
  
 1. 이 레포지토리(저장소, repository)를 다운로드 혹은 클론.
 2. 터미널에서 레포지토리 디렉토리로 이동한 후 `sudo make`를 입력.
