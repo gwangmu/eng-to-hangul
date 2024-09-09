@@ -96,7 +96,7 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritical 
 
  * `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) from @mphilli for English-to-IPA transliteration.
  * It is not mandatory, but please let me know or leave a link to this repository if you use this.
- * Contributions and suggestions are always welcome 🙂, but please try to be *constructive*. Ranters will get cursed for the next three generations.
+ * Contributions and suggestions are always welcome, but please try to be *constructive*. Rants will be ignored.
 
 </details>
 
@@ -194,7 +194,7 @@ The languages that use Latin alphabets (i.e., A to Z) routinely add diacritical 
 
  * 이 프로젝트는 영문에서 IPA 표기로 음역을 위해 @mphilli가 개발한 [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA)을 사용합니다.
  * 이 프로젝트를 사용하시는 경우 프로젝트 개발자에게 귀띔주시거나 프로젝트 링크를 남겨주실 것을 부탁합니다.
- * 제안이나 기여는 언제든 환영합니다. *분노/비방/폭언*은 자연스럽게 무시됨과 동시에 개발자로부터 3대에 걸친 저주를 받을 예정입니다.
+ * 제안이나 기여는 언제든 환영합니다. *분노/비방/폭언*은 자연스럽게 무시될 예정입니다.
 
 <details>
   <summary>Technical TODOs</summary>
