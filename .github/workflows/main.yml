@@ -1,5 +1,8 @@
 name: Default release workflow
-on: [push]
+on: 
+  push:
+    tags:
+      - '*'
 
 permissions:
   contents: write
@@ -16,4 +19,18 @@ jobs:
       - name: Release build for Ubuntu 24.04
         uses: ./.github/actions/release
         with:
+          release_name: ${{ github.event.release.tag_name }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  release-windows:
+    runs-on: windows-latest 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - name: Release build for Ubuntu 24.04
+        uses: ./.github/actions/release
+        with:
+          release_name: ${{ github.event.release.tag_name }}
           github_token: ${{ secrets.GITHUB_TOKEN }}

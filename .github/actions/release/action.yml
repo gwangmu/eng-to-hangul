@@ -1,4 +1,6 @@
 inputs:
+  release_name:
+    description: "Release name"
   github_token:
     description: "GitHub token"
 
@@ -22,7 +24,7 @@ runs:
       with:
         token: ${{ inputs.github_token }}
         tag: ${{ github.ref_name }}
-        name: Release ${{ github.ref_name }}
+        name: ${{ inputs.release_name }}
         artifacts: "dist/*"
         allowUpdates: true
         replacesArtifacts: false
