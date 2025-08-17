@@ -1,0 +1,23 @@
+name: Default release workflow
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+  packages: read
+
+jobs:
+  release-ubuntu_24_04:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - name: Release build for Ubuntu 24.04
+        uses: ./.github/actions/release
+        with:
+          artifact-tag: ubuntu_24_04
+          github_token: ${{ secrets.GITHUB_TOKEN }}
