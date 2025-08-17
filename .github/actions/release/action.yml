@@ -13,7 +13,7 @@ runs:
         . venv/bin/activate
         python -m pip install briefcase
         briefcase create
-        briefcaes update -r
+        briefcase update -r
         briefcase build
         briefcase package
 
