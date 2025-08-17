@@ -16,11 +16,28 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: 'true'
-      - name: Release build for Ubuntu 24.04
-        uses: ./.github/actions/release
-        with:
-          release_name: ${{ github.event.release.tag_name }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build
+      shell: bash
+      run: |
+        sudo apt install -y libcairo2-dev libgirepository1.0-dev
+        python3 -m venv venv
+        . venv/bin/activate
+        python -m pip install briefcase
+        briefcase create
+        briefcase update -r
+        briefcase build
+        briefcase package
+    - name: Create or update GitHub release
+      uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.ref_name }}
+        name: ${{ github.event.release.tag_name }}
+        artifacts: "dist/*"
+        allowUpdates: true
+        replacesArtifacts: false
+        draft: false
+        prerelease: false
 
   release-windows:
     runs-on: windows-latest 
@@ -29,8 +46,24 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: 'true'
-      - name: Release build for Ubuntu 24.04
-        uses: ./.github/actions/release
+      - name: Build
+        shell: bash
+        run: |
+          python3 -m venv venv
+          . venv/bin/activate
+          python -m pip install briefcase
+          briefcase create
+          briefcase update -r
+          briefcase build
+          briefcase package
+      - name: Create or update GitHub release
+        uses: ncipollo/release-action@v1
         with:
-          release_name: ${{ github.event.release.tag_name }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+          name: ${{ github.event.release.tag_name }}
+          artifacts: "dist/*"
+          allowUpdates: true
+          replacesArtifacts: false
+          draft: false
+          prerelease: false
