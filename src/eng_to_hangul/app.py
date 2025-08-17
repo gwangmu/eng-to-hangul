@@ -27,7 +27,7 @@ class EnglishtoHangul(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
 
-        self.app.commands=toga.CommandSet(self.app.factory)
+        self.commands.clear()
 
     def on_eng_input(self, widget):
         pass_args = {}
