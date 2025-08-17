@@ -21,6 +21,7 @@ test_sources = [
 ]
 
 requires = [
+    "eng-to-ipa",
 ]
 test_requires = [
     "pytest",
