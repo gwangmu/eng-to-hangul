@@ -8,6 +8,7 @@ runs:
     - name: Build
       shell: bash
       run: |
+        apt install libcairo2-dev libgirepository1.0-dev
         python3 -m venv venv
         . venv/bin/activate
         python -m pip install briefcase
