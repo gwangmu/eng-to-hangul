@@ -49,8 +49,8 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          python3 -m venv venv
-          . venv/bin/activate
+          py -3.12 -m venv venv
+          venv\Scripts\activate
           python -m pip install briefcase
           briefcase create
           briefcase update -r
