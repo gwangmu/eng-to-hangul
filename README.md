@@ -83,8 +83,6 @@ Run the executable of your platform on the [Release](https://github.com/gwangmu/
 
 Enter an English sentence on the top textbox; the augmented Hangul version will be printed in the bottom textbox.
 
-</details>
-
 ## Notes
 
  * `eng-to-hangul` uses [`eng-to-ipa`](https://github.com/mphilli/English-to-IPA) from @mphilli for English-to-IPA transliteration.
@@ -173,8 +171,6 @@ Enter an English sentence on the top textbox; the augmented Hangul version will 
 ## 사용법
 
 상단에 영문장을 입력하면 하단에 증강한글 문장이 출력됩니다.
-
-</details>
 
 ## 주석
 
