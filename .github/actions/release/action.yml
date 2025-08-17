@@ -1,6 +1,4 @@
 inputs:
-  artifact-tag:
-    description: "Artifact tag"
   github_token:
     description: "GitHub token"
 
@@ -12,6 +10,7 @@ runs:
       run: |
         python3 -m venv venv
         . venv/bin/activate
+        python -m pip install briefcase
         briefcase create
         briefcaes update -r
         briefcase build

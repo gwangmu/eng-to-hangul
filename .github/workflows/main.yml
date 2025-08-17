@@ -16,5 +16,4 @@ jobs:
       - name: Release build for Ubuntu 24.04
         uses: ./.github/actions/release
         with:
-          artifact-tag: ubuntu_24_04
           github_token: ${{ secrets.GITHUB_TOKEN }}
